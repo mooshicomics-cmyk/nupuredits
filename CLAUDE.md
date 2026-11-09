@@ -100,18 +100,29 @@ How reels sound traces back to [`brand-kit.md`](brand-kit.md) and the presets it
 from the style pack she picks. On a fresh install nothing is invented to fill the gap: no placeholder, and no
 handle, hook or colors that are not hers ever reach the screen.
 
-### Applied - nothing yet (fresh install)
+### Applied - Nupur, More than one fig (@morethanonefig)
 
-**No creator is applied to this engine.** Identity, niche, voice, hard rules, and voice DNA all
-come from `brand-kit.md`, which you fill in once during onboarding ("set me up", then "build my
-homebase"). It is strongly recommended, never required: a reel builds fine without it once a
-style pack is chosen. Until it is filled in, reels simply carry no personal voice (never somebody
-else's), and no blank-field text from it ever reaches the screen.
+**Who she is:** Nupur, a behind-the-scenes partner for women founders. She runs their social media and
+backend so they stay the face of their brand while she tells their story. Instagram @morethanonefig. TikTok:
+none. YouTube Shorts: planned.
 
-Once your brand kit is filled in, apply it per `brand-kit.md` Part B and your details land here.
+**How she sounds:** conversational and thinking out loud, like talking to one friend across a table. Plain
+words, second person, short questions to herself. Blunt truth first, softened by a small everyday moment.
+Repeats the key idea so it sticks, and teaches while she connects. No fixed sentence formula, no sign-off.
+Phrases she really says: "like," "you know," "what I've realized is." Gut check: would I say this to one
+friend over chai, and would she learn something?
 
-**Punctuation rules and banned phrases are YOURS.** Whatever hard rules you wrote in `brand-kit.md`
-are enforced on every caption, hook, and on-screen line. Nothing is enforced that you did not write.
+**Her hard rules (enforced on every caption, hook and on-screen line):**
+- No dashes of any kind: no em dashes, no en dashes, no hyphens used as a pause. Periods, commas and short
+  sentences, like writing on paper. Exclamation marks are welcome, never overdone. Capitals only where a
+  sentence starts.
+- Never the "this is not about X, it is about Y" shape, or any "not X, but Y" reframe.
+- Never: "game-changer," "unlock," "level up," "crushing it," "hustle," "girlboss," or anything that sounds
+  like AI wrote it.
+- Never fake urgency, never talk down to anyone, never say what someone is doing wrong.
+
+**Reels:** a new hook on every reel (no reused hook, no spoken closing word). Style pack: Butter. Headline
+font: Inter. Finish: the Instagram Edits app (Classic, Advercase font there), once the Edits Kit is on.
 
 **⚠️ ASK THE REGISTER AT THE GRAPHICS STEP**, one line: *"teaching or confessional?"* Never default to teaching.
 (Phase by phase on the visual editor, it's asked right before the editor opens, Claude's read marked; autopilot reads it from her words.)

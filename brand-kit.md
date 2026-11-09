@@ -88,6 +88,7 @@ one tap. Change it later by saying **"let's customize my style pack."** Your cap
 caption font. One font line remains, for the graphics the engine draws before a pack is in play:
 
 - **Headline font** (titles and graphics): `Inter`
+  - In the Edits app she uses the font **Classic, Advercase**.
   - Inter ships with the engine, so keeping it means nothing to install. To use your own, add a Regular, a
     Bold and a Black weight of it (`.otf` or `.ttf`) to `assets/fonts/` and write its name here.
 
@@ -97,10 +98,7 @@ The transcriber (WhisperX) gets some names wrong, usually a product or a brand. 
 `what it hears → how it is spelled` and your captions come out right every time.
 
 ```
-{{one per line, e.g.
-canva → Canva
-yourbrandname → YourBrandName
-}}
+(none yet, we add them as they come up)
 ```
 
 > ⚠️ **One word on the left of each arrow.** Corrections are matched one transcribed word at a time, so
