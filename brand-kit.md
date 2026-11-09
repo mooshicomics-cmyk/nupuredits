@@ -60,9 +60,9 @@ them from your own Instagram captions.
 
 The things your copy never does, checked on every caption, hook and card. Swap the samples for your own.
 
-- `Never use the "this is not about X, it is about Y" contrast construction, or any "not X, but Y" reframe. It reads as an AI tic and is not how she talks.`
-- `{{the words and phrases you never want to see, like "game-changer," "unlock," "level up," "crushing it"}}`
-- `{{the line your tone never crosses, like "never imply the viewer is doing it wrong" or "never fake urgency"}}`
+- `No dashes of any kind: no em dashes, no en dashes, no hyphens used as a pause. Use periods, commas and short sentences, like someone writing on paper. Exclamation marks are welcome, but never overdone. Capital letters only where a sentence starts. Never use the "this is not about X, it is about Y" contrast shape, or any "not X, but Y" reframe.`
+- `"game-changer," "unlock," "level up," "crushing it," "hustle," "girlboss," and anything that sounds like AI wrote it`
+- `Never fake urgency. Never talk down to anyone. Never say what someone is doing wrong.`
 
 ## 4. Your reels
 
