@@ -1,0 +1,31 @@
+# Background-music (MusicGen) dependencies, with the Intel-Mac pins that make them installable.
+#
+# WHY THIS FILE EXISTS
+# The local music generator (product/gen-music.py, and HyperFrames' own bgm fallback) runs
+# facebook/musicgen-small through transformers + torch. Unpinned, pip resolves the CURRENT releases,
+# and on an Intel Mac that combination cannot be installed at all:
+#
+#   torch          2.2.2   last release with a macosx x86_64 wheel   <- ceiling
+#   torch          2.3.0+  arm64 / linux / win only                  <- no Intel wheel, ever
+#   transformers   5.x     requires torch>=2.5                       <- unsatisfiable on Intel
+#   transformers   4.56.x  requires torch>=2.2                       <- satisfied by 2.2.2
+#   numpy          2.x     torch 2.2.2 predates the NumPy 2 ABI      <- imports, then crashes
+#
+# So an Intel buyer asking for a music bed does not get a slow result, she gets a failed install.
+# That is dependency drift, the same shape as the cryptography 49 break, NOT a capability limit of
+# her machine. Pinned as below, the whole stack installs on Intel and generates on CPU. How FAST it
+# generates is genuinely machine-dependent, and that part is fair to say out loud.
+#
+# Every pin is gated by a marker so Apple Silicon, Windows and Linux stay on current releases. An
+# ungated cap here would hold every modern machine back to a 2024 torch for no reason.
+# product/tests/test_intel_wheels.py guards these lines so a later tidy-up cannot quietly reopen it.
+
+transformers; sys_platform != "darwin" or platform_machine != "x86_64"
+torch; sys_platform != "darwin" or platform_machine != "x86_64"
+numpy; sys_platform != "darwin" or platform_machine != "x86_64"
+
+transformers<5; sys_platform == "darwin" and platform_machine == "x86_64"
+torch<2.3; sys_platform == "darwin" and platform_machine == "x86_64"
+numpy<2; sys_platform == "darwin" and platform_machine == "x86_64"
+
+soundfile

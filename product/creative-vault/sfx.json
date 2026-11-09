@@ -1,0 +1,52 @@
+{
+  "_doc": "CREATIVE VAULT — SFX. the creator's CapCut sound favorites. 'confirmed' = name->cache-hash proven in your builds (safe to use). 'favorites' = from your CapCut favorites screenshots (2026-07-29); IDs pending until matched from a draft/cache. You have MANY more — append as we go. Source cache dir: ~/Library/Containers/com.lemon.lvoverseas/Data/Movies/CapCut/User Data/Cache/music",
+  "confirmed": {
+    "_note": "Proven working in real builds. Use these directly.",
+    "Keyboard Typing": "6d3d8b710bf7def70913df299b447ee1.mp3",
+    "Mouse Click": "d91f21d1c2b6ec21cf77a8d7185bdb47.mp3",
+    "Decision Click": "d7084c064481b95a03c976f57346848a.mp3",
+    "Fuwa Swipe": "cc87eee8c1f4464dd0f467ae9347d6d8.mp3",
+    "Woosh": "7785b04dd58d6f7a816e7d9744448ae5.mp3",
+    "Pop Whoosh": "4ad0a41ca4dd4ee5d2c542ac361d0f0d.mp3",
+    "Pop": "a7058e0524ebcccf104b57c9a0361499.mp3",
+    "Cute Pop": "9a76000478007580cc94f9866f8b05f1.mp3"
+  },
+  "favorites_from_screenshots": {
+    "_note": "hash pending — resolve by matching when she uses one in a draft, or a cache pass. Artist kept to disambiguate (many similarly-named sounds).",
+    "clean_non_cartoon": [
+      {"name": "Decision / choice / stationery / click", "artist": "MATSU", "len": "00:01", "likely": "Decision Click (confirmed)"},
+      {"name": "Deep woosh", "len": "00:04"},
+      {"name": "Click Keyboard 5", "artist": "Hertz Box Music", "len": "00:02", "fav": true},
+      {"name": "Keyboard Typing 01", "artist": "佚名", "len": "00:04", "fav": true, "likely": "Keyboard Typing (confirmed)"},
+      {"name": "Realistic sound effects for typing on keyboards", "artist": "Rapid Fire", "len": "00:04"},
+      {"name": "Fuwa: short wind noise: swipe etc", "artist": "Y8MD", "len": "00:01", "likely": "Fuwa Swipe (confirmed)"},
+      {"name": "Woosh", "artist": "Official Sound Studio", "len": "00:01", "likely": "Woosh (confirmed)"},
+      {"name": "Pop Whoosh", "len": "00:02", "fav": true, "likely": "Pop Whoosh (confirmed)"},
+      {"name": "Mouse click sound", "artist": "moromi", "len": "00:01", "likely": "Mouse Click (confirmed)"},
+      {"name": "Soft and clear button sound", "artist": "patoran", "len": "00:02"},
+      {"name": "Camera shutter sound Kasha", "artist": "Whistle Grandpa", "len": "00:01", "code": "92309"},
+      {"name": "writing sound (pencil)", "artist": "LEOPARD", "len": "00:06", "code": "892020", "pairs_with": "Chalky Scribble animation"},
+      {"name": "Patterop sound etc", "artist": "amuri", "len": "00:01"},
+      {"name": "Bell ring ding", "artist": "DJ BAI", "len": "00:02"},
+      {"name": "Bell 02", "artist": "佚名", "len": "00:02", "fav": true}
+    ],
+    "reward_income": [
+      {"name": "Ka-ching (shopping / cash register)", "artist": "Minimal Order", "code": "1243277", "meaning": "income earned"},
+      {"name": "Coin earn", "artist": "tibita", "len": "00:04", "meaning": "general win"}
+    ],
+    "cartoon_glitter_use_sparingly": [
+      {"name": "Glitter / level up / cute", "artist": "MATSU", "len": "00:03"},
+      {"name": "Pop and short glitter A", "artist": "MATSU", "code": "1238081"},
+      {"name": "[Kirarin] Cute glitter chime", "artist": "Phoenix Tone", "code": "1179416"},
+      {"name": "Cute system Pyui", "artist": "VK", "len": "00:01"},
+      {"name": "Cute telop sound 26", "artist": "Takashi Beats", "code": "995600"},
+      {"name": "Glitter glitter / Glocken beautiful rising sound", "artist": "thunder"},
+      {"name": "Kirarin glitter star Glocken 2", "artist": "Yuumi Iida"},
+      {"name": "Kiran! Attacks 10", "artist": "lato"},
+      {"name": "Killarn glitter sparkle item appearance", "artist": "L SOUND", "code": "1468271"},
+      {"name": "Item killern glitter sparkle light", "artist": "L SOUND", "code": "1468268"},
+      {"name": "Pop! Pon! Pitch height", "artist": "ArcTracks", "code": "1394624"},
+      {"name": "Miss Failure Error Incorrect Answer", "artist": "Ei Itomaki", "code": "1218668", "meaning": "wrong / crossed-out"}
+    ]
+  }
+}

@@ -1,0 +1,509 @@
+{
+  "_doc": "Every bundled cue, tagged for selection. LOOKUP ORDER: (1) if something real is on screen, MATERIAL wins and mood is ignored. (2) otherwise filter by JOB, then by the reel's MOOD. MOOD is valence x energy, so 'serious' is never one thing: somber (low/negative, e.g. grief) and triumphant (high/positive, e.g. a big win) are opposite corners and must not share a palette or a budget. `neutral` cues have no mood and work anywhere. `tactile: true` means DIEGETIC — only use it when the object is actually on screen. `density` is a CEILING per mood, never a target, and SOMBER IS ZERO: a grief/loss reel gets no sound at all unless the creator asks by name. Register still wins when stricter: a confessional reel stays near-silent whatever its mood. `enabled` lists are in sfx-packs.json and are per-pack; a disabled sound is never deleted. A cue with `enabled: false` is OFF: never place it, never offer it, never count it as a rotation alternate. It stays on disk so it can be switched back on. `same_as` means that cue is THE SAME AUDIO FILE as the one it names, under a legacy name. For the never-repeat rule they are ONE sound: placing both back to back is a repeat, not variety. Prefer the canonical name.",
+  "density": {
+    "somber": {
+      "budget": "ZERO. opt-in only.",
+      "rule": "🔴 LOCKED: a somber reel gets NO sound effects. Grief, loss, a death, a diagnosis, a hard truth — place NOTHING, not one cue, not a soft one, not on the hook. Sound on grief reads as production value applied to someone's pain, and it is the fastest way to make a reel feel manufactured. The ONLY exception is the creator asking for one BY NAME. If she does, the somber cues are there; until she does, silence is not a gap you are filling in, it is the finished treatment. Do NOT offer sound on a somber reel as a suggestion either — say nothing about it."
+    },
+    "tender": {
+      "budget": "0-3",
+      "rule": "Warm and low-energy. Soft, single, never stacked."
+    },
+    "triumphant": {
+      "budget": "2-4",
+      "rule": "A win, a number, a reveal. These can land, but a win announced four times stops being a win."
+    },
+    "tense": {
+      "budget": "1-2",
+      "rule": "Alarm, failure, a hard turn. One hit IS the effect; a second cancels the first."
+    },
+    "playful": {
+      "budget": "the full soundscape",
+      "rule": "Spot SFX on every real beat. Never the same file twice in a row."
+    },
+    "neutral": {
+      "budget": "governed by the reel's mood, not its own",
+      "rule": "No mood of its own — a click is a click. Available to every mood. When `tactile` is set it is DIEGETIC: use it only when the thing is actually on screen."
+    }
+  },
+  "sounds": {
+    "chime": {
+      "file": "../../../.claude/skills/media-use/audio/assets/sfx/chime.mp3",
+      "source": "hyperframes",
+      "job": "notify",
+      "material": "bell",
+      "description": "Soft melodic chime — gentle positive beat: success/confirmation or a lighthearted transition. Sync to the visual moment.",
+      "mood": "tender"
+    },
+    "mouse-click": {
+      "file": "../../../.claude/skills/media-use/audio/assets/sfx/click-soft.mp3",
+      "source": "hyperframes",
+      "job": "click",
+      "description": "Mouse click: a quiet, short computer-mouse click. Sync exactly to the on-screen click.",
+      "mood": "tender"
+    },
+    "error": {
+      "file": "../../../.claude/skills/media-use/audio/assets/sfx/error.mp3",
+      "source": "hyperframes",
+      "job": "error",
+      "description": "Negative / error tone — failure state, a 'wrong' beat, or a glitchy interruption.",
+      "mood": "tense"
+    },
+    "glitch-1": {
+      "file": "../../../.claude/skills/media-use/audio/assets/sfx/glitch-1.mp3",
+      "source": "hyperframes",
+      "job": "emphasis",
+      "material": "glitch",
+      "description": "Punchy digital glitch — hard-cut accent or sudden reveal. Trigger on the hit; let the decay bleed into the next shot (J-cut).",
+      "mood": "tense",
+      "enabled": false,
+      "keep_off": true,
+      "disabled_reason": "switched off by the creator: not in the library, for her or for buyers"
+    },
+    "glitch-2": {
+      "file": "../../../.claude/skills/media-use/audio/assets/sfx/glitch-2.mp3",
+      "source": "hyperframes",
+      "job": "transition",
+      "material": "glitch",
+      "description": "Harsh, longer glitch — chaotic / jarring transition or a distorted reveal.",
+      "mood": "tense",
+      "enabled": false,
+      "disabled_reason": "switched off by the creator: not in the library, for her or for buyers",
+      "keep_off": true
+    },
+    "glitch-3": {
+      "file": "../../../.claude/skills/media-use/audio/assets/sfx/glitch-3.mp3",
+      "source": "hyperframes",
+      "job": "transition",
+      "material": "glitch",
+      "description": "Low-key glitch texture — subtle digital shift, minimal transition that sits under other audio.",
+      "mood": "tense"
+    },
+    "impact-bass-1": {
+      "file": "../../../.claude/skills/media-use/audio/assets/sfx/impact-bass-1.mp3",
+      "source": "hyperframes",
+      "job": "emphasis",
+      "material": "impact",
+      "description": "Bass impact hit — logo/hero snap, headline slam. Trigger on the visual landing; decay carries into the next shot (J-cut).",
+      "mood": "somber"
+    },
+    "impact-bass-2": {
+      "file": "../../../.claude/skills/media-use/audio/assets/sfx/impact-bass-2.mp3",
+      "source": "hyperframes",
+      "job": "emphasis",
+      "material": "impact",
+      "description": "Bass impact with a short swell — brief anticipation then a deep hit. Place so the peak lands on the reveal.",
+      "mood": "somber"
+    },
+    "key-press": {
+      "file": "../../../.claude/skills/media-use/audio/assets/sfx/key-press.mp3",
+      "source": "hyperframes",
+      "job": "typing",
+      "material": "keyboard",
+      "description": "Single key press — one keystroke / terminal-input beat. Short accent, sync to the typed character.",
+      "mood": "neutral",
+      "tactile": true
+    },
+    "notification": {
+      "file": "../../../.claude/skills/media-use/audio/assets/sfx/notification.mp3",
+      "source": "hyperframes",
+      "job": "notify",
+      "description": "Notification chime — alert, message-in, toast/badge appears. Sync to the element entering.",
+      "mood": "playful"
+    },
+    "ping": {
+      "file": "../../../.claude/skills/media-use/audio/assets/sfx/ping.mp3",
+      "source": "hyperframes",
+      "job": "notify",
+      "description": "Sharp electronic ping — punchy accent on a key reveal or data point. Sync to the beat.",
+      "mood": "tender"
+    },
+    "riser": {
+      "file": "../../../.claude/skills/media-use/audio/assets/sfx/riser.mp3",
+      "source": "hyperframes",
+      "job": "build",
+      "description": "Long cinematic riser (~10s build, peak at the end). Trigger at (climax_time − 10.03s) so it crests exactly on the reveal.",
+      "mood": "triumphant"
+    },
+    "sparkle": {
+      "file": "../../../.claude/skills/media-use/audio/assets/sfx/sparkle.mp3",
+      "source": "hyperframes",
+      "job": "reveal",
+      "material": "glitter",
+      "description": "Bright sparkle / shimmer — magical reveal or 'shine' highlight on a hero element. Sync to the highlight.",
+      "mood": "triumphant",
+      "enabled": false,
+      "disabled_reason": "switched off by the creator: not in the library, for her or for buyers",
+      "keep_off": true
+    },
+    "typing": {
+      "file": "../../../.claude/skills/media-use/audio/assets/sfx/typing.mp3",
+      "source": "hyperframes",
+      "job": "typing",
+      "material": "keyboard",
+      "description": "Typing burst (~1.5s of keys) — keyboard / code typing reveal, text-being-typed beat. Start as the text begins typing.",
+      "mood": "neutral",
+      "tactile": true
+    },
+    "whoosh-cinematic": {
+      "file": "../../../.claude/skills/media-use/audio/assets/sfx/whoosh-cinematic.mp3",
+      "source": "hyperframes",
+      "job": "transition",
+      "material": "air",
+      "description": "Cinematic whoosh build (~5.5s) — sweeping scene transition. Align so the swell peaks on the cut.",
+      "mood": "somber"
+    },
+    "whoosh-short": {
+      "file": "../../../.claude/skills/media-use/audio/assets/sfx/whoosh-short.mp3",
+      "source": "hyperframes",
+      "job": "transition",
+      "material": "air",
+      "description": "Short whoosh — quick swipe/slide accent, fast element move, snappy transition. Sync to the motion.",
+      "mood": "playful",
+      "same_as": "whoosh"
+    },
+    "whoosh": {
+      "file": "../../../.claude/skills/media-use/audio/assets/sfx/whoosh.mp3",
+      "source": "hyperframes",
+      "job": "transition",
+      "material": "air",
+      "description": "Punchy whoosh/impact — fast reveal or hard transition accent. Sync to the motion.",
+      "mood": "playful"
+    },
+    "pop_whoosh": {
+      "file": "(alias -> whoosh)",
+      "source": "alias",
+      "job": "transition",
+      "material": "air",
+      "description": "Legacy cue name, resolves to the whoosh file.",
+      "mood": "playful"
+    },
+    "comedic-pop": {
+      "file": "cc0/comedic-pop.mp3",
+      "source": "cc0",
+      "job": "reveal",
+      "mood": "playful",
+      "description": "A comedic pop: a playful, cartoon-style pop as something appears."
+    },
+    "studio-open": {
+      "file": "cc0/studio-open.mp3",
+      "source": "cc0",
+      "job": "reveal",
+      "mood": "neutral",
+      "description": "Studio open: a small, precise pop as text or a card appears."
+    },
+    "studio-snap": {
+      "file": "cc0/studio-snap.mp3",
+      "source": "cc0",
+      "job": "emphasis",
+      "mood": "neutral",
+      "description": "Studio snap: a crisp, short lock-in as something lands in place."
+    },
+    "correct-tone": {
+      "file": "cc0/correct-tone.mp3",
+      "source": "cc0",
+      "job": "notify",
+      "mood": "triumphant",
+      "description": "A correct-answer tone: the beat where something turns out right."
+    },
+    "studio-tap": {
+      "file": "cc0/studio-tap.mp3",
+      "source": "cc0",
+      "job": "click",
+      "mood": "neutral",
+      "description": "Studio tap: one light tap, for a single click or press on screen."
+    },
+    "studio-notification": {
+      "file": "cc0/studio-notification.mp3",
+      "source": "cc0",
+      "job": "notify",
+      "mood": "tender",
+      "description": "Studio notification: a short, gentle ping for a message or a new piece of information."
+    },
+    "cinematic-notification": {
+      "file": "cc0/cinematic-notification.mp3",
+      "source": "cc0",
+      "job": "notify",
+      "mood": "tender",
+      "description": "Cinematic notification: a warmer, longer ping with a soft tail."
+    },
+    "dishes-clink-1": {
+      "file": "cc0/dishes-clink-1.mp3",
+      "source": "cc0",
+      "job": "emphasis",
+      "material": "dishes",
+      "mood": "neutral",
+      "tactile": true,
+      "description": "Dishes clinking. Kitchen b-roll, only when dishes are on screen."
+    },
+    "dishes-clink-2": {
+      "file": "cc0/dishes-clink-2.mp3",
+      "source": "cc0",
+      "job": "emphasis",
+      "material": "dishes",
+      "mood": "neutral",
+      "tactile": true,
+      "description": "Dishes clinking, a second take. Only when dishes are on screen."
+    },
+    "microwave-door": {
+      "file": "cc0/microwave-door.mp3",
+      "source": "cc0",
+      "job": "transition",
+      "material": "appliance",
+      "mood": "neutral",
+      "tactile": true,
+      "description": "A microwave door opening. Only when it is on screen."
+    },
+    "thud": {
+      "file": "cc0/thud.mp3",
+      "source": "cc0",
+      "job": "emphasis",
+      "material": "impact",
+      "mood": "neutral",
+      "description": "A thud: something lands with weight."
+    },
+    "hit-tap-2": {
+      "file": "cc0/hit-tap-2.mp3",
+      "source": "cc0",
+      "job": "emphasis",
+      "material": "impact",
+      "mood": "neutral",
+      "description": "A hit with a tap on top, lighter."
+    },
+    "hit-tap-3": {
+      "file": "cc0/hit-tap-3.mp3",
+      "source": "cc0",
+      "job": "emphasis",
+      "material": "impact",
+      "mood": "neutral",
+      "description": "A short hit and tap."
+    },
+    "soulful-click": {
+      "file": "cc0/soulful-click.mp3",
+      "source": "cc0",
+      "job": "click",
+      "mood": "neutral",
+      "description": "A soulful click: a warm, rounded click."
+    },
+    "hit-1": {
+      "file": "cc0/hit-1.mp3",
+      "source": "cc0",
+      "job": "emphasis",
+      "material": "impact",
+      "mood": "neutral",
+      "description": "A soft hit: an accent when something lands."
+    },
+    "hit-2": {
+      "file": "cc0/hit-2.mp3",
+      "source": "cc0",
+      "job": "emphasis",
+      "material": "impact",
+      "mood": "neutral",
+      "description": "A soft hit, a second take."
+    },
+    "hit-3": {
+      "file": "cc0/hit-3.mp3",
+      "source": "cc0",
+      "job": "emphasis",
+      "material": "impact",
+      "mood": "neutral",
+      "description": "A light hit for emphasis."
+    },
+    "paper-1": {
+      "file": "cc0/paper-1.mp3",
+      "source": "cc0",
+      "job": "reveal",
+      "material": "paper",
+      "mood": "neutral",
+      "tactile": true,
+      "description": "Paper. Only when paper is on screen, or as a paper-style reveal."
+    },
+    "paper-2": {
+      "file": "cc0/paper-2.mp3",
+      "source": "cc0",
+      "job": "reveal",
+      "material": "paper",
+      "mood": "neutral",
+      "tactile": true,
+      "description": "Paper, a second take."
+    },
+    "paper-3": {
+      "file": "cc0/paper-3.mp3",
+      "source": "cc0",
+      "job": "reveal",
+      "material": "paper",
+      "mood": "neutral",
+      "tactile": true,
+      "description": "Paper, a third take."
+    },
+    "paper-4": {
+      "file": "cc0/paper-4.mp3",
+      "source": "cc0",
+      "job": "reveal",
+      "material": "paper",
+      "mood": "neutral",
+      "tactile": true,
+      "description": "Paper, a fourth take."
+    },
+    "bell": {
+      "file": "cc0/bell.mp3",
+      "source": "cc0",
+      "job": "notify",
+      "material": "bell",
+      "mood": "tender",
+      "description": "A bell ring: a message or a small win."
+    },
+    "bell-short": {
+      "file": "cc0/bell-short.mp3",
+      "source": "cc0",
+      "job": "notify",
+      "material": "bell",
+      "mood": "tender",
+      "description": "A short bell."
+    },
+    "retro-bell": {
+      "file": "cc0/retro-bell.mp3",
+      "source": "cc0",
+      "job": "notify",
+      "material": "bell",
+      "mood": "tender",
+      "description": "A retro bell: a long, old-fashioned ring."
+    },
+    "tap-1": {
+      "file": "cc0/tap-1.mp3",
+      "source": "cc0",
+      "job": "click",
+      "mood": "neutral",
+      "description": "A tap: one light touch on screen."
+    },
+    "tap-2": {
+      "file": "cc0/tap-2.mp3",
+      "source": "cc0",
+      "job": "click",
+      "mood": "neutral",
+      "description": "A tap, a second take."
+    },
+    "pop-1": {
+      "file": "cc0/pop-1.mp3",
+      "source": "cc0",
+      "job": "reveal",
+      "mood": "playful",
+      "description": "A pop as something appears."
+    },
+    "plop-2": {
+      "file": "cc0/plop-2.mp3",
+      "source": "cc0",
+      "job": "reveal",
+      "mood": "playful",
+      "description": "A second soft plop."
+    },
+    "quick-wind": {
+      "file": "cc0/quick-wind.mp3",
+      "source": "cc0",
+      "job": "transition",
+      "material": "air",
+      "mood": "neutral",
+      "description": "A quick gust of wind between shots."
+    },
+    "rattle": {
+      "file": "cc0/rattle.mp3",
+      "source": "cc0",
+      "job": "emphasis",
+      "mood": "neutral",
+      "description": "A short rattle."
+    },
+    "plastic-drop": {
+      "file": "cc0/plastic-drop.mp3",
+      "source": "cc0",
+      "job": "emphasis",
+      "material": "plastic",
+      "mood": "neutral",
+      "description": "Something plastic dropping: a landing accent."
+    },
+    "plastic-drop-large": {
+      "file": "cc0/plastic-drop-large.mp3",
+      "source": "cc0",
+      "job": "emphasis",
+      "material": "plastic",
+      "mood": "neutral",
+      "description": "Something large and plastic dropping."
+    },
+    "rubber-drop-heavy": {
+      "file": "cc0/rubber-drop-heavy.mp3",
+      "source": "cc0",
+      "job": "emphasis",
+      "material": "rubber",
+      "mood": "neutral",
+      "description": "Something heavy and rubbery dropping."
+    },
+    "coin-in-cup": {
+      "file": "cc0/coin-in-cup.mp3",
+      "source": "cc0",
+      "job": "money",
+      "material": "coin",
+      "mood": "triumphant",
+      "description": "A coin dropped into a cup."
+    },
+    "coin-drops": {
+      "file": "cc0/coin-drops.mp3",
+      "source": "cc0",
+      "job": "money",
+      "material": "coin",
+      "mood": "triumphant",
+      "description": "Coins dropping."
+    },
+    "plink": {
+      "file": "cc0/plink.mp3",
+      "source": "cc0",
+      "job": "reveal",
+      "mood": "playful",
+      "description": "A bright little plink as something appears."
+    },
+    "click-1": {
+      "file": "cc0/click-1.mp3",
+      "source": "cc0",
+      "job": "click",
+      "mood": "neutral",
+      "description": "A click."
+    },
+    "click-decision": {
+      "file": "cc0/click-decision.mp3",
+      "source": "cc0",
+      "job": "click",
+      "mood": "neutral",
+      "description": "A decisive click, for making a choice."
+    },
+    "echo-click": {
+      "file": "cc0/echo-click.mp3",
+      "source": "cc0",
+      "job": "click",
+      "mood": "neutral",
+      "description": "A click with a short echo."
+    },
+    "snap": {
+      "file": "cc0/snap.mp3",
+      "source": "cc0",
+      "job": "emphasis",
+      "mood": "neutral",
+      "description": "A snap as something locks in."
+    },
+    "creaky-door": {
+      "file": "cc0/creaky-door.mp3",
+      "source": "cc0",
+      "job": "transition",
+      "material": "door",
+      "mood": "tense",
+      "tactile": true,
+      "description": "A creaky door. Only when a door is on screen."
+    },
+    "tape-peel": {
+      "file": "cc0/tape-peel.mp3",
+      "source": "cc0",
+      "job": "reveal",
+      "material": "tape",
+      "mood": "neutral",
+      "tactile": true,
+      "description": "Tape peeling. Only when tape or a sticky note is on screen."
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "draft_profile": "capcut_legacy",  // capcut_legacy, jianying_legacy, or jianying_pro_10 for Jianying Pro 10.x
+  "is_capcut_env": true,  // Backward-compatible fallback. Ignored when draft_profile is set.
+  "draft_domain": "http://localhost:9001",  // Base URL for draft links. Local only; defaults to http://localhost:<port>
+  "port": 9001,  // Port number for the local server (it only answers 127.0.0.1 / localhost on this port)
+  "preview_router": "/draft/downloader"  // Router path for preview functionality
+}

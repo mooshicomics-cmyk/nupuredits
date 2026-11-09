@@ -1,0 +1,89 @@
+{
+  "_doc": "Clean Yap SPEC — the single source of truth for the trimmed-back yap format. Human doc: CLEANYAP.md. Engine: cleanyap.py. No ready-made per-reel driver ships: each reel gets a short driver calling cleanyap.py (see CLEANYAP.md, Run). NOT Super Yap (that's superyap.py, loaded).",
+  "format": {
+    "name": "Clean Yap",
+    "family": "YAPS (on-camera talking head)",
+    "definition": "trimmed-back: locked cut + ONE hook + thought bubbles (the pack's thought font) + matched SFX over full-screen footage. Everything individually editable. NOTHING loaded.",
+    "canvas": {"w": 1080, "h": 1920, "aspect": "9:16"},
+    "registers": ["confessional", "teaching"],
+    "excluded_features": ["full-screen takeover (the pack's takeover font)", "doodle-sticker layers", "b-roll cutaways/bursts", "stat cards", "closing/summary card"],
+    "doneness": {
+      "_axis_note": "Doneness (how baked) is a SEPARATE axis from format. A Clean Yap can be ANY of the three — the 'cooked' level is NOT a Super-Yap-only thing (locked). Pick per reel; default = raw.",
+      "raw": "editable CapCut text (hook + thoughts as real text) + native Auto Captions. Engine = cleanyap.py. DEFAULT.",
+      "medium_well": "hook / thoughts / captions rendered as Claude-built NAMED .mov layers (reposition/toggle, not retype); footage + SFX still editable. Engine = build-hf-captions.py -> build-overlay.py.",
+      "well_done": "fully baked flat MP4, nothing editable. Engine = build-reel-type.py (HyperFrames render + ffmpeg)."
+    }
+  },
+  "cut": {
+    "source": "locked rough cut (transcript/cuts.json), full-screen",
+    "jump_cuts": {"desc": "gentle scale push-ins on accent beats for rhythm", "scale_range": [1.06, 1.08]}
+  },
+  "intro_zoom": {
+    "_LOCKED": "slow keyframed push-in on the OPENING clip — clean-yap default, ESP confessional (the creator's own)",
+    "scale_from": 1.06, "scale_to": 1.22, "over_seconds": 1.4, "then": "hold 1.22",
+    "how": "KFTypeScaleX keyframes on the first footage segment"
+  },
+  "hook": {
+    "font": "the pack's hook font (resolved per style pack)",
+    "color": "#FFFFFF",
+    "case": "lowercase/title — NEVER all caps",
+    "no_em_dash": true,
+    "position": {"x": 0.0, "y": "measured: subject_place.y_for(zones, role='hook')", "note": "top, in the measured open zone above her; never a typed number"},
+    "size": 17,
+    "intro": {"animation": "Typewriter", "duration_s": [1.0, 1.5], "default_s": 1.25},
+    "outro": {"animation": "Slide Left"},
+    "HOLD_RULE": "hook HOLDS long through the opening (the creator extended it to ~20s on an example reel — do NOT drop it early)."
+  },
+  "thoughts": {
+    "font": "the pack's thought font (resolved per style pack)",
+    "color": "#FFFFFF",
+    "size": 12,
+    "front_bubble_size": 11,
+    "position": {"x": 0.0, "y": "measured: subject_place.y_for(zones, role='thought')", "note": "ABOVE her head, NOT across her face; never a typed number"},
+    "line_spacing": -0.15,
+    "line_spacing_note": "TIGHT — the creator's own value; engine default 0.02 reads too loose for thought-bubble multi-line",
+    "intro_rotation": {"_note": "VARY the entrance animation (real resource_ids, from creative-vault/animations.json)", "Cheeky Bounce": "7527870705392717057", "Slide Left": "6798332871267324423", "Slide Right": "6798333076469453320"},
+    "outro": {"animation": "Text Fade", "resource_id": "7646372829113371912", "_LOCKED": "bubbles FADE OUT (the creator) — and NO sound on the fade-out"},
+    "content_rule": "deep, in-voice; scripture-rooted content must be biblically accurate (she vets); cut a bubble that CITES/labels rather than FEELS (she cut the parable-of-the-talents citation)",
+    "front_engagement_bubble": "optional viewer-contribution prompt near the front (e.g. 'what would you call this?')"
+  },
+  "sfx": {
+    "source": "the engine's own sound library: `python3 product/capcut_sfx.py --list` (her favorites first, then her own sfx/ folder, then the bundled set). The palette below names the kinds of sound; its hashes are CapCut cache ids from the machine they were captured on and are never looked up.",
+    "rule": "NON-CARTOON unless she asks; sound matches motion — trim SFX to the EXACT animation length",
+    "LOCKED_default": {"hook": "Keyboard Typing (type-on)", "bubble_entrance": "Mouse Click", "bubble_exit": "NONE — bubbles fade out silent", "woosh": "RARE accent only — do NOT put a woosh on every exit (the creator called this out); you'll place the odd intentional one yourself"},
+    "palette": {
+      "Keyboard Typing": {"hash": "6d3d8b710bf7def70913df299b447ee1.mp3", "use": "typewriter / type-on (hook)"},
+      "Mouse Click": {"hash": "d91f21d1c2b6ec21cf77a8d7185bdb47.mp3", "use": "click (bubble entrance)"},
+      "Decision Click": {"hash": "d7084c064481b95a03c976f57346848a.mp3", "use": "decision cue"},
+      "Fuwa Swipe": {"hash": "cc87eee8c1f4464dd0f467ae9347d6d8.mp3", "dur_s": 0.86, "use": "SOFT outro woosh (aesthetic)"},
+      "Woosh": {"hash": "7785b04dd58d6f7a816e7d9744448ae5.mp3", "dur_s": 0.39, "use": "outro woosh"},
+      "Pop Whoosh": {"hash": "4ad0a41ca4dd4ee5d2c542ac361d0f0d.mp3", "dur_s": 1.79, "use": "outro (bigger)"},
+      "Pop": {"hash": "a7058e0524ebcccf104b57c9a0361499.mp3", "use": "pop (cartoonish — avoid unless asked)"},
+      "Cute Pop": {"hash": "9a76000478007580cc94f9866f8b05f1.mp3", "use": "pop (cartoonish — avoid unless asked)"}
+    },
+    "text_outro_default": "NONE — bubbles fade out silent. (Earlier woosh-on-every-exit was too much.)"
+  },
+  "captions": {
+    "engine": "native CapCut Auto Captions (the creator runs in-app)",
+    "style": "Bold Text-Popup + Auto highlight keywords ON (bold-white pop + yellow keyword)",
+    "rule": "NEVER injected as text clips; on the whole reel"
+  },
+  "layer_order": {"footage": 0, "img_baked_emoji_only": 12000, "text": 15000},
+  "maintrack_ripple": {
+    "REQUIRED": true,
+    "desc": "overlays + SFX must follow main-track ripple edits, like native CapCut",
+    "enforced_config": {"free_render_index_mode_on": false, "maintrack_adsorb": true},
+    "applies_to_all_formats": ["yap", "super yap", "clean yap", "broll", "vo reel"],
+    "status": "CONFIRMED FIXED (locked). Enforced in every finalize so it never regresses."
+  },
+  "finalize": {
+    "engine": "VectCutAPI :9001; fonts patched in (engine uses stand-in Inter_Black)",
+    "capcut_must_be_quit": true,
+    "run_with": "product/engine/VectCutAPI/venv-capcut/bin/python"
+  },
+  "workflow": {
+    "lock_cut_first": "dress with overlays/SFX only AFTER the cut is locked",
+    "never_compound_or_group": true,
+    "on_retrim": "re-read your live draft and re-align overlays; NEVER rebuild over your live edits"
+  }
+}

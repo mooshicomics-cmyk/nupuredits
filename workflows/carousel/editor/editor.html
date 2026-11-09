@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Carousel editor</title>
+<link rel="stylesheet" href="/editor/slide.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
+<style>
+:root{--bg:#f4f1ea;--panel:#fff;--ink:#1f1f1d;--muted:#77706a;--rule:#e3ddd1;--accent:#317ae1}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 -apple-system,BlinkMacSystemFont,Inter,sans-serif;height:100vh;display:grid;grid-template-rows:auto 1fr}
+header{display:flex;align-items:center;gap:14px;padding:12px 20px;background:var(--panel);border-bottom:1px solid var(--rule)}
+header h1{font-size:16px;margin:0;font-weight:600}
+header .st{color:var(--muted);font-size:13px;margin-right:auto}
+button{font:inherit;border:1px solid var(--rule);background:#fff;border-radius:999px;padding:8px 16px;cursor:pointer}
+button:hover{border-color:var(--ink)}
+button.go{background:var(--ink);color:#fff;border-color:var(--ink)}
+button:disabled{opacity:.5;cursor:progress}
+main{display:grid;grid-template-columns:150px 1fr 280px;min-height:0}
+#strip{overflow:auto;padding:14px;display:grid;gap:10px;align-content:start;border-right:1px solid var(--rule)}
+.th{width:108px;height:135px;overflow:hidden;border-radius:6px;cursor:pointer;outline:2px solid transparent;outline-offset:2px;position:relative;justify-self:center}
+.th.on{outline-color:var(--accent)}
+.th .s{transform:scale(.1);transform-origin:0 0;pointer-events:none}
+.th b{position:absolute;left:4px;top:3px;font-size:11px;color:#fff;text-shadow:0 1px 3px #000}
+#stagewrap{display:flex;align-items:center;justify-content:center;min-width:0;min-height:0;padding:18px}
+#stage{position:relative;border-radius:6px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.12)}
+#stage .s{transform-origin:0 0;position:absolute;left:0;top:0}
+#stage.drag{cursor:grab}#stage.dragging{cursor:grabbing}
+#stage [contenteditable]{cursor:move;outline:none}
+#stage [contenteditable]:focus{cursor:text}
+#stage [contenteditable]:hover{outline:4px dashed rgba(49,122,225,.7);outline-offset:6px}
+#stage [contenteditable].sel:hover{outline:none}
+#guides b{position:absolute;border:2px solid #317ae1;border-radius:3px}
+#guides u{position:absolute;border:0 dashed #ff2d87;opacity:.75}#guides u.v{top:0;bottom:0;border-left-width:1px}#guides u.h{left:0;right:0;border-top-width:1px}
+aside{background:var(--panel);border-left:1px solid var(--rule);padding:18px;overflow:auto;display:grid;gap:22px;align-content:start}
+aside h2{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;font-weight:600}
+.row{display:flex;align-items:center;gap:10px;margin:8px 0}.row label{width:70px;color:var(--muted)}.row input[type=range]{flex:1}
+.row output{width:42px;text-align:right;font-variant-numeric:tabular-nums}
+.hint{color:var(--muted);font-size:13px;margin:0}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+select{font:inherit;padding:7px;border-radius:8px;border:1px solid var(--rule);width:100%}
+.chk{display:flex;gap:8px;align-items:center;color:var(--muted);margin-top:6px}
+#photoBox[hidden],#textBox[hidden]{display:none}
+.lab{font-size:12px;color:var(--muted);margin:14px 0 6px}.dim{opacity:.7}
+.grid6{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.grid6 button{padding:7px 4px;font-size:13px}
+.ctr{display:grid;gap:4px;font-size:13px}.ctr span{padding:5px 10px;border-radius:8px;background:#f3f0e9;color:var(--muted)}
+.ctr span.ok{background:#e7f4ea;color:#1f7a3a}
+.ta{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.ta button{display:flex;align-items:center;justify-content:center;gap:6px;padding:7px 4px;font-size:13px}
+.ta button.on{background:#1e1e1e;color:#fff;border-color:#1e1e1e}.ta svg{width:16px;height:12px}
+#guides{position:absolute;inset:0;pointer-events:none;z-index:5}
+body.story .th{height:192px}
+/* stories: the strips Instagram covers with its own buttons, shaded in the editor only */
+#stage .ig{position:absolute;left:0;right:0;z-index:4;pointer-events:none;background:repeating-linear-gradient(135deg,rgba(0,0,0,.28) 0 10px,rgba(0,0,0,.18) 10px 20px);display:flex;justify-content:center}
+#stage .ig.top{top:0;align-items:flex-end}#stage .ig.bot{bottom:0;align-items:flex-start}
+#stage .ig span{white-space:nowrap;font-size:11px;color:#fff;background:rgba(0,0,0,.55);border-radius:99px;padding:3px 10px;margin:6px}
+#guides i{position:absolute;background:#ff2d87}#guides i.v{top:0;bottom:0;width:1px}#guides i.h{left:0;right:0;height:1px}
+
+#stagewrap{flex-direction:column;gap:12px}
+#tip{font-size:13px;color:var(--muted);background:#fff;border:1px solid var(--rule);border-radius:14px;padding:6px 14px;max-width:100%;text-align:center}
+#tip b{color:var(--ink);font-weight:600}
+aside section{display:grid;gap:4px;align-content:start;min-width:0}
+aside{min-width:0}aside section>*,.row input[type=range]{min-width:0}
+aside section[hidden]{display:none}
+aside h2{font-size:15px;letter-spacing:0;text-transform:none;color:var(--ink);margin:0 0 4px}
+#selN{font-weight:400;color:var(--muted);font-size:13px}
+.tb{display:flex;align-items:center;justify-content:space-between}
+button.sm{padding:6px 14px;font-size:13px;justify-self:start}
+.lab{font-size:12px;font-weight:600;color:var(--ink);margin:16px 0 6px}
+.row label{width:84px}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+.seg.two{grid-template-columns:1fr 1fr}
+.seg button{border:0;border-radius:0;padding:8px 4px;font-size:13px;display:flex;align-items:center;justify-content:center;gap:6px}
+.seg button+button,.seg output+button{border-left:1px solid var(--rule)}
+.seg button:hover{background:#f3f0e9}.seg button.on{background:var(--ink);color:#fff}
+.seg button:disabled{opacity:.35;cursor:default;background:none}
+.seg svg{width:16px;height:12px}
+.size output{display:flex;align-items:center;justify-content:center;border-left:1px solid var(--rule);font-variant-numeric:tabular-nums;color:var(--muted)}
+.size button{font-weight:700;font-size:15px}.size small{font-size:11px;margin-left:1px}
+.grid6 button{display:flex;flex-direction:column;align-items:center;gap:4px;border-radius:10px;padding:8px 4px}
+.grid6 svg{width:16px;height:16px}
+.tips{margin-top:18px;font-size:13px;color:var(--muted)}.tips summary{cursor:pointer}.tips ul{padding-left:18px;margin:8px 0 0}.tips li{margin:4px 0}
+#stage [contenteditable]:focus{outline:2px solid var(--accent);outline-offset:6px;cursor:text}
+#xbox{position:fixed;inset:0;background:rgba(31,31,29,.45);display:none;align-items:center;justify-content:center;z-index:50}
+#xbox.on{display:flex}
+#xbox .card{background:#fff;border-radius:20px;padding:28px 30px;width:min(760px,92vw);box-shadow:0 30px 80px rgba(0,0,0,.25)}
+#xbox h3{margin:0 0 4px;font-size:22px}#xbox p{margin:0;color:var(--muted)}
+#xbox .thumbs{display:flex;gap:8px;overflow-x:auto;margin:20px 0;padding-bottom:4px}
+#xbox .thumbs img{height:150px;border-radius:8px;border:1px solid var(--rule);flex:none}
+#xbox .where{display:flex;gap:10px;align-items:center;background:#f3f0e9;border-radius:12px;padding:12px 14px;margin-bottom:18px;font-size:13px}
+#xbox .where b{flex:1;word-break:break-all;font-weight:600;color:var(--ink)}
+#xbox .acts{display:flex;gap:10px;flex-wrap:wrap}#xbox .acts .x{margin-left:auto}
+#xbox .bar{height:10px;background:#efebe2;border-radius:99px;overflow:hidden;margin:22px 0 10px}
+#xbox .bar i{display:block;height:100%;width:0;background:var(--ink);border-radius:99px;transition:width .3s ease}
+#xbox .spin{display:inline-block;width:18px;height:18px;border:2.5px solid var(--rule);border-top-color:var(--ink);border-radius:50%;
+  animation:sp .8s linear infinite;vertical-align:-3px;margin-right:10px}
+@keyframes sp{to{transform:rotate(360deg)}}
+#xbox.working .ready,#xbox:not(.working) .working{display:none}
+#xbox .notes{margin:0 0 18px;padding:14px 16px 14px 34px;background:#fff8e6;border:1px solid #f0e2b8;border-radius:12px;font-size:13.5px}
+#xbox .notes b{display:block;margin:0 0 6px -18px}#xbox .notes li{margin:3px 0}
+#xbox .tip{font-size:12.5px;color:var(--muted);margin-top:12px}
+#offline{display:none;position:fixed;left:50%;top:70px;transform:translateX(-50%);z-index:60;background:#b3261e;color:#fff;border-radius:12px;
+  padding:12px 18px;font-size:14px;box-shadow:0 10px 30px rgba(0,0,0,.2);max-width:min(640px,92vw);text-align:center}
+#offline.on{display:block}#offline button{margin-left:10px;background:#fff;color:#b3261e;border:0;padding:6px 12px}
+#restore{display:none;position:fixed;left:50%;top:136px;transform:translateX(-50%);z-index:59;background:#1f1f1d;color:#fff;border-radius:12px;padding:12px 18px;font-size:14px}
+#restore.on{display:block}#restore button{margin-left:10px;padding:6px 12px}
+.ops{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px}.ops button{padding:7px 6px;font-size:13px;border-radius:10px}
+.ops select{grid-column:span 2}
+
+/* ── the engine's one look (the same tokens, type and pieces as the reel visual editor), so the reel, carousel and
+   story editors read as one system. Layout and editing logic above are untouched; this only reskins. ── */
+:root{--bg:#F8F6EE;--surface:#FFFFFF;--surface-2:#FFFDF6;--sunk:#F3EFE2;--text:#1E1E1E;--muted:#5B4A3B;--faint:#8A7B6C;--border:#E7E3D9;
+  --pill:rgba(30,30,30,.05);--red:#BD1B1B;--blue:#2F6D8C;--keep:#2F6B4F;
+  --shadow:0 1px 2px rgba(30,30,30,.05),0 10px 26px rgba(30,30,30,.06);--shadow-lift:0 2px 4px rgba(30,30,30,.06),0 24px 48px rgba(30,30,30,.14);
+  --read:"Hanken Grotesk",system-ui,sans-serif;--display:"Bricolage Grotesque",sans-serif;--data:"JetBrains Mono",ui-monospace,monospace;
+  --panel:var(--surface);--ink:var(--text);--rule:var(--border);--accent:var(--blue)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1B1815;--surface:#242019;--surface-2:#2B261E;--sunk:#15120F;--text:#F3ECDD;--muted:#C2B6A0;
+  --faint:#8F8471;--border:rgba(243,236,221,.14);--pill:rgba(243,236,221,.07);--red:#C4373C;--blue:#86C3E0;--keep:#9FC4AD;color-scheme:dark}}
+body{font-family:var(--read);font-size:14px;background:var(--bg);color:var(--text)}
+header{min-height:64px;padding:10px 20px;gap:12px;background:var(--surface);border-bottom:1px solid var(--border)}
+header::before{content:"";width:34px;height:34px;flex:none;border-radius:10px;background:var(--red);box-shadow:0 4px 12px rgba(189,27,27,.25);
+  -webkit-mask:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='7' height='7' rx='1.5'/%3E%3Crect x='14' y='3' width='7' height='7' rx='1.5'/%3E%3Crect x='3' y='14' width='7' height='7' rx='1.5'/%3E%3Crect x='14' y='14' width='7' height='7' rx='1.5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:center;background-size:18px}
+header h1{font-family:var(--display);font-weight:800;font-size:1.15rem;letter-spacing:-.02em}
+header .st{font-size:.85rem;color:var(--muted)}
+button{font-family:var(--read);font-weight:600;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:10px;padding:8px 14px;transition:border-color .15s,transform .15s}
+button:hover{border-color:var(--text)}
+button.go{background:var(--red);border-color:var(--red);color:#fff;box-shadow:0 6px 16px rgba(189,27,27,.22)}
+button.go:hover{transform:translateY(-1px);border-color:var(--red)}
+#strip{background:var(--bg);border-right:1px solid var(--border)}
+.th{border-radius:10px;box-shadow:var(--shadow)}.th.on{outline-color:var(--red)}
+#stage{border-radius:14px;box-shadow:var(--shadow-lift)}
+aside{background:var(--bg);border-left:1px solid var(--border);gap:16px}
+aside section{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+aside h2{font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:-.01em}
+.lab{font-family:var(--data);font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+.hint,.tips{color:var(--muted)}
+select{font-family:var(--read);border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--text)}
+.seg{border-color:var(--border);border-radius:10px}.seg button{border-radius:0}.seg button.on{background:var(--text);color:var(--bg)}
+.seg button:hover,.ctr span{background:var(--sunk)}
+.ta button.on{background:var(--text);color:var(--bg);border-color:var(--text)}
+#tip{background:var(--surface);border:1px solid var(--border);border-radius:999px;color:var(--muted);font-size:.84rem}
+#tip b{color:var(--text)}
+#xbox .card{background:var(--surface);color:var(--text);border-radius:20px;box-shadow:var(--shadow-lift)}
+#xbox h3{font-family:var(--display);font-weight:800;letter-spacing:-.02em}
+#xbox .where{background:var(--sunk)}#xbox .bar{background:var(--sunk)}#xbox .bar i{background:var(--red)}
+#restore{background:var(--text);color:var(--bg);border-radius:12px}
+input[type=range],input[type=checkbox]{accent-color:var(--red)}
+/* the reel editor's header pieces: icon Undo / Redo (greyed when there's nothing to undo) and the light / dark switch */
+:root[data-theme="dark"]{--bg:#1B1815;--surface:#242019;--surface-2:#2B261E;--sunk:#15120F;--text:#F3ECDD;--muted:#C2B6A0;
+  --faint:#8F8471;--border:rgba(243,236,221,.14);--pill:rgba(243,236,221,.07);--red:#C4373C;--blue:#86C3E0;--keep:#9FC4AD;color-scheme:dark}
+:root[data-theme="light"]{color-scheme:light}
+header .edits{display:inline-flex;gap:2px;padding:3px;border-radius:12px;background:var(--pill)}
+button.ib{width:40px;height:40px;padding:0;display:inline-grid;place-items:center;border-color:transparent;background:transparent;color:var(--muted);border-radius:10px}
+button.ib:hover{background:var(--pill);color:var(--text);border-color:transparent}
+button.ib:disabled{opacity:.38;cursor:default;background:transparent}
+button.ib .ico{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+button.go{min-height:40px;padding:9px 18px;border-radius:12px}
+</style></head><body>
+<header><h1>Carousel editor</h1><span class="st" id="st">Loading…</span>
+  <span class="edits"><button class="ib" id="undo" aria-label="Undo" title="Undo (⌘Z)"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg></button><button class="ib" id="redo" aria-label="Redo" title="Redo (⇧⌘Z)"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 14 5-5-5-5"/><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"/></svg></button></span>
+  <button class="ib" id="theme" aria-label="Switch light or dark" title="Light / dark"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor"/></svg></button><button class="go" id="export">Export slides</button></header>
+<div id="offline">The editor has closed, so changes can't save right now. Ask Claude to open the editor again. Your changes are kept on this computer and come back when it reopens.</div>
+<div id="restore">You have changes from last time that didn't save.<button id="restoreYes">Bring them back</button><button id="restoreNo">Start from the saved version</button></div>
+<main>
+  <div id="strip"></div>
+  <div id="stagewrap"><div id="stage"></div><div id="tip"></div></div>
+  <aside>
+    <section id="slidePanel">
+      <h2 id="slideTitle">Slide</h2>
+      <div id="photoBox">
+        <div class="lab">Photo</div><select id="swap"></select>
+        <div class="row"><label>Zoom</label><input type="range" id="zoom" min="100" max="300" step="1"><output id="zoomV"></output></div>
+        <button id="fit" class="sm">Reset photo</button>
+        <div class="lab">Readability</div>
+        <div class="row"><label>Darken</label><input type="range" id="ov" min="0" max="150" step="1"><output id="ovV"></output></div>
+        <div class="row"><label>Text shadow</label><input type="range" id="sh" min="0" max="60" step="1"><output id="shV"></output></div>
+        <label class="chk"><input type="checkbox" id="all"> Use on every photo slide</label></div>
+      <p id="plainNote" class="hint">This slide has no photo. Click any text on it to change it.</p>
+      <div class="lab" id="opsLab">This slide</div>
+      <div class="ops"><button id="addText">+ Add text</button><button id="dupSlide">Duplicate</button>
+        <button id="upSlide">Move earlier</button><button id="downSlide">Move later</button>
+        <button id="delSlide">Delete slide</button>
+        <select id="addSticker" hidden><option value="">+ Hold a space for a sticker…</option><option value="poll">Poll</option>
+          <option value="question">Question box (Ask Me Anything)</option><option value="link">Link sticker</option>
+          <option value="countdown">Countdown</option><option value="slider">Emoji slider</option><option value="quiz">Quiz</option></select></div>
+    </section>
+    <section id="textBox" hidden>
+      <div class="tb"><h2>Text <span id="selN"></span></h2><button id="done" class="sm">Done</button></div>
+      <div id="center" class="ctr"></div>
+      <div class="lab">Line up the words</div>
+      <div class="ta seg"><button data-ta="left" title="Words line up on the left"><svg viewBox="0 0 16 12"><rect x="0" y="0" width="16" height="2" rx="1" fill="currentColor"/><rect x="0" y="5" width="10" height="2" rx="1" fill="currentColor"/><rect x="0" y="10" width="13" height="2" rx="1" fill="currentColor"/></svg><span>Left</span></button><button data-ta="center" title="Words centered"><svg viewBox="0 0 16 12"><rect x="0" y="0" width="16" height="2" rx="1" fill="currentColor"/><rect x="3" y="5" width="10" height="2" rx="1" fill="currentColor"/><rect x="1.5" y="10" width="13" height="2" rx="1" fill="currentColor"/></svg><span>Center</span></button><button data-ta="right" title="Words line up on the right"><svg viewBox="0 0 16 12"><rect x="0" y="0" width="16" height="2" rx="1" fill="currentColor"/><rect x="6" y="5" width="10" height="2" rx="1" fill="currentColor"/><rect x="3" y="10" width="13" height="2" rx="1" fill="currentColor"/></svg><span>Right</span></button></div>
+      <div class="lab">Size</div>
+      <div class="size seg"><button id="smaller" title="Smaller">A<small>−</small></button><output id="sizeV"></output><button id="bigger" title="Bigger">A<small>+</small></button></div>
+      <div class="lab" id="alignTo">Move to</div>
+      <div class="grid6"><button data-a="l" title="Move to the left edge"><svg viewBox="0 0 14 14"><rect x=".75" y=".75" width="12.5" height="12.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".45"/><rect x="2.5" y="4.5" width="4" height="5" rx="1" fill="currentColor"/></svg><span>Left</span></button><button data-a="cx" title="Center left to right"><svg viewBox="0 0 14 14"><rect x=".75" y=".75" width="12.5" height="12.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".45"/><rect x="5" y="4.5" width="4" height="5" rx="1" fill="currentColor"/></svg><span>Center</span></button><button data-a="r" title="Move to the right edge"><svg viewBox="0 0 14 14"><rect x=".75" y=".75" width="12.5" height="12.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".45"/><rect x="7.5" y="4.5" width="4" height="5" rx="1" fill="currentColor"/></svg><span>Right</span></button>
+        <button data-a="t" title="Move to the top"><svg viewBox="0 0 14 14"><rect x=".75" y=".75" width="12.5" height="12.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".45"/><rect x="4.5" y="2.5" width="5" height="4" rx="1" fill="currentColor"/></svg><span>Top</span></button><button data-a="cy" title="Center top to bottom"><svg viewBox="0 0 14 14"><rect x=".75" y=".75" width="12.5" height="12.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".45"/><rect x="4.5" y="5" width="5" height="4" rx="1" fill="currentColor"/></svg><span>Middle</span></button><button data-a="b" title="Move to the bottom"><svg viewBox="0 0 14 14"><rect x=".75" y=".75" width="12.5" height="12.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".45"/><rect x="4.5" y="7.5" width="5" height="4" rx="1" fill="currentColor"/></svg><span>Bottom</span></button></div>
+      <div id="distBox"><div class="lab">Even out the spacing</div>
+        <div class="seg two"><button id="distV">Up and down</button><button id="distH">Side to side</button></div></div>
+      <button id="home" class="sm" style="margin-top:14px">Put it back where it started</button>
+      <button id="delText" class="sm" style="margin-top:6px">Remove it</button>
+      <details class="tips"><summary>Shortcuts</summary><ul>
+        <li><b>Double-click</b> to change the words. <b>Esc</b> when you're done.</li>
+        <li><b>Shift-click</b> to pick more than one.</li>
+        <li><b>Arrow keys</b> nudge it. Hold Shift to go further.</li>
+        <li>Hold <b>Option</b> while dragging to skip the pink snap lines.</li>
+        <li><b>⌘Z</b> undo, <b>⇧⌘Z</b> redo.</li></ul></details>
+    </section>
+  </aside>
+</main>
+<div id="xbox"><div class="card">
+  <div class="working"><h3><span class="spin"></span>Exporting your <span class="unit">slides</span></h3>
+    <div class="bar"><i id="doneBar"></i></div><p id="doneStep">Getting ready…</p></div>
+  <div class="ready"><h3>Your <span class="unit">slides</span> are ready</h3><p id="doneSub"></p>
+  <div class="thumbs" id="doneThumbs"></div>
+  <div class="where"><span>Saved to</span><b id="donePath"></b></div>
+  <ul class="notes" id="doneNotes"></ul>
+  <div class="acts"><button class="go" id="doneOpen">Open the folder</button>
+    <a id="doneZip" download><button>Download all</button></a>
+    <button id="doneCap">Copy caption</button><button id="doneDm">Copy DM message</button><button id="doneCloud">Send to iPhone</button>
+    <button class="x" id="doneClose">Keep editing</button></div><p class="tip" id="doneTip"></p></div>
+</div></div>
+<script src="/editor/slide.js"></script>
+<script>
+let S, cur = 0, scale = .5, slideEl, selText = null, saveT, hist = [];
+const $ = id => document.getElementById(id), stage = $("stage");
+let W = 1080, H = 1350, MV = {l: 90, t: 90, r: 990, b: 1260}, CX = W / 2, CY = H / 2;   // set from the state on load
+const EDITABLE = ".eye,.d,.b,.pill,.chip,.it,.n,.stk";
+const say = t => $("st").textContent = t;
+const snap = () => { hist.push(JSON.stringify(S)); if (hist.length > 60) hist.shift(); redoStack = []; };
+let redoStack = [];
+
+// Saving never fails quietly: every change is kept in this browser until the editor confirms it, and if the
+// editor has closed (its background process ended) a red banner says so instead of "Saving…" forever.
+let JOB = "", online = true, UNIT = "slide";
+const keep = () => { try { localStorage.setItem("unsaved:" + JOB, JSON.stringify(S)); } catch (e) {} };
+const kept = () => { try { return localStorage.getItem("unsaved:" + JOB); } catch (e) { return null; } };
+const forget = () => { try { localStorage.removeItem("unsaved:" + JOB); } catch (e) {} };
+function setOnline(ok) { online = ok; $("offline").classList.toggle("on", !ok); $("export").disabled = !ok; }
+function save() { say("Saving…"); keep(); clearTimeout(saveT);
+  saveT = setTimeout(() => fetch("/save", {method: "POST", body: JSON.stringify(S)})
+    .then(r => { if (!r.ok) throw 0; forget(); setOnline(true); say("All changes saved"); })
+    .catch(() => { setOnline(false); say("Not saved yet"); }), 400); }
+setInterval(() => fetch("/ping", {cache: "no-store"}).then(r => { if (!r.ok) throw 0;
+  if (!online) { setOnline(true); if (kept()) save(); } }).catch(() => setOnline(false)), 8000);
+
+function contentOf(el) { // the slide's text block, without editing marks
+  const c = el.cloneNode(true); c.querySelectorAll(".ph,.scrim").forEach(n => n.remove());
+  c.querySelectorAll("[contenteditable]").forEach(n => { n.removeAttribute("contenteditable"); n.classList.remove("sel"); if (!n.className) n.removeAttribute("class"); n.removeAttribute("spellcheck"); });
+  return c.innerHTML;
+}
+
+function thumbs() { $("strip").innerHTML = "";
+  S.slides.forEach((_, i) => { const t = document.createElement("div"); t.className = "th" + (i === cur ? " on" : "");
+    t.append(buildSlide(S, i)); t.insertAdjacentHTML("beforeend", `<b>${i + 1}</b>`); t.onclick = () => show(i); $("strip").append(t); }); }
+function thumb(i) { const t = $("strip").children[i]; t.querySelector(".s").replaceWith(buildSlide(S, i)); }
+
+function fitStage() { const r = $("stagewrap").getBoundingClientRect();
+  scale = Math.min((r.width - 36) / W, (r.height - 84) / H);
+  stage.style.width = W * scale + "px"; stage.style.height = H * scale + "px";
+  if (slideEl) slideEl.style.transform = `scale(${scale})`; }
+
+let sel = [], guides;
+function selectOnly(list) { sel.forEach(n => n.classList.remove("sel")); sel = list; sel.forEach(n => n.classList.add("sel")); panel(); }
+
+function show(i) { cur = i; sel = [];
+  [...$("strip").children].forEach((t, k) => t.classList.toggle("on", k === i));
+  stage.innerHTML = ""; slideEl = buildSlide(S, i); stage.append(slideEl);
+  guides = document.createElement("div"); guides.id = "guides"; stage.append(guides);
+  if (S.format === "story") stage.insertAdjacentHTML("beforeend", `<div class="ig top" style="height:${S.safe.t / H * 100}%"><span>Instagram covers this (name, close)</span></div>`
+    + `<div class="ig bot" style="height:${(H - S.safe.b) / H * 100}%"><span>Instagram covers this (reply bar)</span></div>`);
+  fitStage();
+  slideEl.querySelectorAll(EDITABLE).forEach(n => { n.contentEditable = "true"; n.spellcheck = false; });
+  const d = S.slides[i], photo = d.kind === "photo";
+  $("photoBox").hidden = !photo; $("plainNote").hidden = photo; stage.classList.toggle("drag", photo);
+  $("slideTitle").textContent = `${S.format === "story" ? "Frame" : "Slide"} ${i + 1} of ${S.slides.length}`;
+  if (photo) { $("zoom").value = Math.round(d.crop.scale / cover(d.crop) * 100); $("zoomV").textContent = $("zoom").value + "%"; $("swap").value = d.photo; }
+  $("ov").value = Math.round((d.overlay ?? S.overlay) * 100); $("ovV").textContent = $("ov").value + "%";
+  $("sh").value = Math.round((d.shadow ?? S.shadow) * 100); $("shV").textContent = $("sh").value + "%"; panel(); }
+
+const cover = c => Math.max(W / c.w, H / c.h);
+function clamp(c) { c.x = Math.min(Math.max(c.x, 0), c.w * c.scale - W); c.y = Math.min(Math.max(c.y, 0), c.h * c.scale - H); }
+function applyCrop() { const c = S.slides[cur].crop, img = slideEl.querySelector(".ph");
+  img.style.width = c.w * c.scale + "px"; img.style.left = -c.x + "px"; img.style.top = -c.y + "px"; }
+
+const px = n => parseFloat(getComputedStyle(n).fontSize);
+// ---- geometry, in slide pixels (W x H); MV = the margins Move to and snapping use ----
+function box(n) { // what you see: the words themselves, or the whole shape for pills/chips/highlights
+  const cs = getComputedStyle(n), shaped = cs.backgroundColor !== "rgba(0, 0, 0, 0)" || parseFloat(cs.borderTopWidth) > 0;
+  let r; if (shaped) r = n.getBoundingClientRect(); else { const g = document.createRange(); g.selectNodeContents(n); r = g.getBoundingClientRect(); }
+  const sr = stage.getBoundingClientRect(), l = (r.left - sr.left) / scale, t = (r.top - sr.top) / scale, w = r.width / scale, h = r.height / scale;
+  return {l, t, r: l + w, b: t + h, cx: l + w / 2, cy: t + h / 2, w, h}; }
+function union(bs) { const l = Math.min(...bs.map(b => b.l)), t = Math.min(...bs.map(b => b.t)), r = Math.max(...bs.map(b => b.r)), b = Math.max(...bs.map(b => b.b));
+  return {l, t, r, b, cx: (l + r) / 2, cy: (t + b) / 2, w: r - l, h: b - t}; }
+const tr = n => (n.style.translate || "0px 0px").split(" ").map(v => parseFloat(v) || 0).concat([0]).slice(0, 2);
+function moveBy(n, dx, dy) { const [tx, ty] = tr(n); n.style.translate = `${Math.round(tx + dx)}px ${Math.round(ty + dy)}px`; }
+function commit() { S.slides[cur].content = contentOf(slideEl); thumb(cur); save(); panel(); }
+
+function drawGuides(xs, ys) { guides.querySelectorAll("i").forEach(n => n.remove()); guides.innerHTML += xs.map(x => `<i class=v style="left:${x * scale}px"></i>`).join("") + ys.map(y => `<i class=h style="top:${y * scale}px"></i>`).join(""); }
+function snapDelta(u, dx, dy, off) { // nudge a moving box onto the slide center, the margins, or another line's edges/center
+  const others = [...slideEl.querySelectorAll(EDITABLE)].filter(n => !sel.includes(n)).map(box);
+  const tx = [MV.l, CX, MV.r, ...others.flatMap(b => [b.l, b.cx, b.r])], ty = [MV.t, CY, MV.b, ...others.flatMap(b => [b.t, b.cy, b.b])];
+  const pick = (vals, targets) => { let best = null; for (const v of vals) for (const t of targets) { const d = t - v; if (Math.abs(d) <= 10 && (!best || Math.abs(d) < Math.abs(best.d))) best = {d, t}; } return best; };
+  const sx = off ? null : pick([u.l + dx, u.cx + dx, u.r + dx], tx), sy = off ? null : pick([u.t + dy, u.cy + dy, u.b + dy], ty);
+  drawGuides(sx ? [sx.t] : [], sy ? [sy.t] : []);
+  return [dx + (sx ? sx.d : 0), dy + (sy ? sy.d : 0)]; }
+
+function panel() {
+  guides.querySelectorAll("b,u").forEach(n => n.remove());
+  sel.forEach(n => { const b = box(n); guides.insertAdjacentHTML("beforeend", `<b style="left:${(b.l - 6) * scale}px;top:${(b.t - 6) * scale}px;width:${(b.w + 12) * scale}px;height:${(b.h + 12) * scale}px"></b>`); });
+  const editing = document.activeElement.isContentEditable && sel.includes(document.activeElement);
+  $("tip").innerHTML = editing ? "Typing. Press <b>Esc</b> when you're done."
+    : sel.length ? "<b>Drag</b> to move · <b>Double-click</b> to change the words · <b>Shift-click</b> to pick more"
+    : "<b>Click</b> any text to select it" + (S.slides[cur].kind === "photo" ? " · <b>Drag</b> the photo to reframe it" : "");
+  $("textBox").hidden = !sel.length; $("slidePanel").hidden = !!sel.length; if (!sel.length) return;
+  $("selN").textContent = sel.length > 1 ? `· ${sel.length} picked` : "";
+  $("alignTo").textContent = sel.length > 1 ? "Line them up with each other" : "Move to";
+  $("distBox").hidden = sel.length < 3;
+  const sizes = new Set(sel.map(n => Math.round(px(n)))); $("sizeV").textContent = sizes.size === 1 ? [...sizes][0] : "mixed";
+  const u = union(sel.map(box)), ox = Math.round(u.cx - CX), oy = Math.round(u.cy - CY);
+  if (Math.abs(ox) <= 1) guides.insertAdjacentHTML("beforeend", `<u class=v style="left:${CX * scale}px"></u>`);   // dashed line = centered
+  if (Math.abs(oy) <= 1) guides.insertAdjacentHTML("beforeend", `<u class=h style="top:${CY * scale}px"></u>`);
+  $("center").innerHTML = (Math.abs(ox) <= 1 ? `<span class=ok>✓ Centered left to right</span>` : `<span>${Math.abs(ox)}px ${ox < 0 ? "left" : "right"} of center</span>`) +
+    (Math.abs(oy) <= 1 ? `<span class=ok>✓ Centered top to bottom</span>` : `<span>${Math.abs(oy)}px ${oy < 0 ? "above" : "below"} the middle</span>`);
+  const tas = new Set(sel.map(taOf)); document.querySelectorAll("[data-ta]").forEach(b => b.classList.toggle("on", tas.size === 1 && tas.has(b.dataset.ta)));
+  $("distV").disabled = $("distH").disabled = sel.length < 3; }
+
+// ---- pointer: drag photo, drag/select text ----
+let drag = null, tdrag = null;
+stage.addEventListener("pointerdown", e => {
+  const t = e.target.closest(EDITABLE);
+  if (t) {
+    if (t === document.activeElement) return;              // already typing in it: let the cursor move normally
+    e.preventDefault();                                      // one click selects; double-click types
+    if (e.shiftKey) { e.preventDefault(); selectOnly(sel.includes(t) ? sel.filter(n => n !== t) : [...sel, t]); }
+    else if (!sel.includes(t)) selectOnly([t]);
+    tdrag = {x: e.clientX, y: e.clientY, starts: sel.map(n => [n, ...tr(n)]), u: union(sel.map(box)), moved: false}; return; }
+  if (sel.length) { selectOnly([]); document.activeElement.blur(); }
+  if (S.slides[cur].kind !== "photo") return;
+  snap(); const c = S.slides[cur].crop; drag = {x: e.clientX, y: e.clientY, cx: c.x, cy: c.y};
+  stage.classList.add("dragging"); stage.setPointerCapture(e.pointerId); e.preventDefault(); });
+stage.addEventListener("pointermove", e => {
+  if (tdrag) { let dx = (e.clientX - tdrag.x) / scale, dy = (e.clientY - tdrag.y) / scale;
+    if (!tdrag.moved && Math.hypot(dx * scale, dy * scale) < 5) return;
+    if (!tdrag.moved) { tdrag.moved = true; snap(); document.activeElement.blur(); getSelection().removeAllRanges(); stage.setPointerCapture(e.pointerId); stage.classList.add("dragging"); }
+    e.preventDefault(); [dx, dy] = snapDelta(tdrag.u, dx, dy, e.altKey);
+    tdrag.starts.forEach(([n, tx, ty]) => n.style.translate = `${Math.round(tx + dx)}px ${Math.round(ty + dy)}px`); panel(); return; }
+  if (!drag) return; const c = S.slides[cur].crop;
+  c.x = drag.cx - (e.clientX - drag.x) / scale; c.y = drag.cy - (e.clientY - drag.y) / scale; clamp(c); applyCrop(); });
+stage.addEventListener("pointerup", () => {
+  if (tdrag) { const moved = tdrag.moved; tdrag = null; stage.classList.remove("dragging"); drawGuides([], []); if (moved) commit(); return; }
+  if (!drag) return; drag = null; stage.classList.remove("dragging"); thumb(cur); save(); });
+stage.addEventListener("input", () => { S.slides[cur].content = contentOf(slideEl); thumb(cur); save(); panel(); });
+stage.addEventListener("focusin", () => { snap(); panel(); });
+stage.addEventListener("focusout", () => setTimeout(panel));
+stage.addEventListener("dblclick", e => { const t = e.target.closest(EDITABLE); if (!t) return;
+  selectOnly([t]); t.focus(); const r = document.caretRangeFromPoint(e.clientX, e.clientY);
+  if (r) { const g = getSelection(); g.removeAllRanges(); g.addRange(r); g.modify("move", "backward", "word"); g.modify("extend", "forward", "word"); } panel(); });
+
+// ---- align and distribute ----
+document.querySelectorAll("[data-a]").forEach(btn => btn.onclick = () => { if (!sel.length) return; snap();
+  const k = btn.dataset.a, bs = sel.map(box), u = sel.length > 1 ? union(bs) : {l: MV.l, r: MV.r, t: MV.t, b: MV.b, cx: CX, cy: (MV.t + MV.b) / 2};
+  sel.forEach((n, i) => { const b = bs[i];
+    if (k === "l") moveBy(n, u.l - b.l, 0); if (k === "r") moveBy(n, u.r - b.r, 0); if (k === "cx") moveBy(n, u.cx - b.cx, 0);
+    if (k === "t") moveBy(n, 0, u.t - b.t); if (k === "b") moveBy(n, 0, u.b - b.b); if (k === "cy") moveBy(n, 0, u.cy - b.cy); });
+  commit(); });
+function distribute(axis) { if (sel.length < 3) return; snap();
+  const items = sel.map(n => [n, box(n)]).sort((a, b) => axis === "v" ? a[1].t - b[1].t : a[1].l - b[1].l);
+  const [s0, e0] = axis === "v" ? ["t", "b"] : ["l", "r"], size = axis === "v" ? "h" : "w";
+  const first = items[0][1], last = items[items.length - 1][1];
+  const gap = (last[s0] - first[e0] - items.slice(1, -1).reduce((a, [, b]) => a + b[size], 0)) / (items.length - 1);
+  let pos = first[e0] + gap;
+  items.slice(1, -1).forEach(([n, b]) => { const d = pos - b[s0]; axis === "v" ? moveBy(n, 0, d) : moveBy(n, d, 0); pos += b[size] + gap; });
+  commit(); }
+$("distV").onclick = () => distribute("v"); $("distH").onclick = () => distribute("h");
+
+// ---- arrow keys nudge the selection (when not typing) ----
+addEventListener("keydown", e => { if (!sel.length || document.activeElement.isContentEditable) return;
+  const k = {ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1]}[e.key]; if (!k) return;
+  e.preventDefault(); snap(); const step = e.shiftKey ? 10 : 1; sel.forEach(n => moveBy(n, k[0] * step, k[1] * step)); commit(); });
+
+$("zoom").oninput = e => { const c = S.slides[cur].crop, cx = c.x + W / 2, cy = c.y + H / 2, k = cover(c) * e.target.value / 100 / c.scale;
+  c.scale *= k; c.x = cx * k - W / 2; c.y = cy * k - H / 2; clamp(c); applyCrop(); $("zoomV").textContent = e.target.value + "%"; };
+$("zoom").onpointerdown = snap; $("zoom").onchange = () => { thumb(cur); save(); };
+
+function look(key, v) { if ($("all").checked) { S[key] = v; S.slides.forEach(d => delete d[key]); thumbs(); } else { S.slides[cur][key] = v; thumb(cur); }
+  slideEl.style.setProperty(key === "overlay" ? "--ov" : "--sh", v); save(); }
+$("ov").onpointerdown = $("sh").onpointerdown = snap;
+$("ov").oninput = e => { $("ovV").textContent = e.target.value + "%"; look("overlay", e.target.value / 100); };
+$("sh").oninput = e => { $("shV").textContent = e.target.value + "%"; look("shadow", e.target.value / 100); };
+
+$("swap").onchange = e => { snap(); const d = S.slides[cur], img = new Image();
+  img.onload = () => { const c = {w: img.naturalWidth, h: img.naturalHeight}; c.scale = cover(c); c.x = (c.w * c.scale - W) / 2; c.y = 0;
+    d.photo = e.target.value; d.crop = c; show(cur); thumb(cur); save(); };
+  img.src = "/photos/" + encodeURIComponent(e.target.value); };
+let start;
+$("fit").onclick = () => { snap(); S.slides[cur].crop = JSON.parse(JSON.stringify(start.slides[cur].crop || S.slides[cur].crop));
+  S.slides[cur].photo = start.slides[cur].photo; show(cur); thumb(cur); save(); };
+
+// ---- text alignment: the words line up left/center/right inside the safe area (90px margins) ----
+const taTarget = n => n.matches(".chip") ? n.parentElement : n;           // a row of chips aligns as a row
+function taOf(n) { const a = getComputedStyle(taTarget(n)).textAlign; return a === "start" ? "left" : a === "end" ? "right" : a; }
+function setTA(n, a) { n = taTarget(n); const flex = getComputedStyle(n.parentElement).display === "flex";
+  n.style.textAlign = a;
+  if (flex) n.style.alignSelf = {left: "flex-start", center: "center", right: "flex-end"}[a];      // centered lemon slides
+  else if (getComputedStyle(n).display.startsWith("inline")) {                                      // shapes like the LAUNCH button
+    n.style.display = "block"; n.style.width = "fit-content";
+    n.style.marginLeft = a === "left" ? "0" : "auto"; n.style.marginRight = a === "right" ? "0" : "auto"; }
+  const [, ty] = tr(n); if (n.style.translate) n.style.translate = `0px ${ty}px`; }               // drop any sideways drag so Center means centered
+document.querySelectorAll("[data-ta]").forEach(b => b.onclick = () => nudge(n => setTA(n, b.dataset.ta)));
+
+function nudge(fn) { if (!sel.length) return; snap(); sel.forEach(fn); commit(); }
+$("bigger").onclick = () => nudge(n => n.style.fontSize = Math.round(px(n) * 1.08) + "px");
+$("smaller").onclick = () => nudge(n => n.style.fontSize = Math.round(px(n) / 1.08) + "px");
+$("home").onclick = () => nudge(n => n.style.removeProperty("translate"));
+
+$("theme").onclick = () => { const r = document.documentElement; r.dataset.theme = getComputedStyle(r).colorScheme.includes("dark") ? "light" : "dark";
+  try { localStorage.setItem("ce-theme", r.dataset.theme); } catch (e) {} };
+try { const t = localStorage.getItem("ce-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+function edits() { $("undo").disabled = !hist.length; $("redo").disabled = !redoStack.length; }
+setInterval(edits, 400);                                  // (cheap: two lengths; keeps the buttons honest after any change)
+$("undo").onclick = () => { if (!hist.length) return; redoStack.push(JSON.stringify(S)); S = JSON.parse(hist.pop()); thumbs(); show(cur); save(); };
+$("redo").onclick = () => { if (!redoStack.length) return; hist.push(JSON.stringify(S)); S = JSON.parse(redoStack.pop()); thumbs(); show(cur); save(); };
+$("export").onclick = async () => {
+  const b = $("export"), n = S.slides.length, t0 = Date.now(); b.disabled = true; b.textContent = "Exporting…";
+  $("xbox").className = "on working"; $("doneBar").style.width = "3%"; $("doneStep").textContent = "Getting ready…";
+  // the bar follows the real count of finished slides, and eases forward meanwhile so it never looks frozen
+  const tick = setInterval(async () => {
+    const p = await fetch("/progress", {cache: "no-store"}).then(r => r.json()).catch(() => ({}));
+    const guess = Math.min(.9, (Date.now() - t0) / (n * 1100 + 1500)), real = p.total ? p.done / p.total : 0;
+    $("doneBar").style.width = Math.round(100 * Math.max(guess, real * .95)) + "%";
+    $("doneStep").textContent = p.stage === "saving" ? "Saving to your Downloads folder…" : p.stage === "finishing" ? "Almost done…"
+      : `Drawing ${UNIT} ${Math.min(n, (p.done || 0) + 1)} of ${n}…`;
+  }, 300);
+  const r = await fetch("/export", {method: "POST", body: JSON.stringify(S)}).then(r => r.json()).catch(e => ({ok: false, error: String(e)}));
+  clearInterval(tick); b.disabled = false; b.textContent = `Export ${UNIT}s`;
+  if (!r.ok) { $("xbox").className = ""; say("Export failed: " + r.error); return; }
+  $("doneBar").style.width = "100%"; say(`Exported ${r.count} ${UNIT}s`); const t = Date.now();
+  $("doneSub").textContent = `${r.count} ${UNIT}s, in posting order.` + (r.caption ? " Your caption is in the folder too." : "");
+  $("doneThumbs").innerHTML = r.files.map(f => `<img src="/slides/${f}?t=${t}" alt="${f}">`).join("");
+  $("donePath").textContent = r.folder; $("doneOpen").textContent = `Show in ${r.app}`;
+  $("doneZip").href = "/slides.zip?t=" + t; $("doneCap").style.display = r.caption ? "" : "none"; $("doneCap").dataset.cap = r.caption;
+  $("doneNotes").innerHTML = "<b>Before you post</b>" + r.notes.map(x => `<li>${x.replace(/[<>&]/g, c => ({"<": "&lt;", ">": "&gt;", "&": "&amp;"})[c])}</li>`).join("");
+  $("doneDm").style.display = r.dm ? "" : "none"; $("doneDm").dataset.cap = r.dm;
+  $("doneCloud").style.display = r.icloud ? "" : "none"; $("doneCloud").textContent = "Send to iPhone";
+  $("doneTip").textContent = r.icloud ? "Send to iPhone puts this folder in iCloud Drive, so it's in the Files app on your phone."
+    : "To post from your phone: AirDrop the folder, or save it to Google Drive or email it to yourself.";
+  $("xbox").className = "on"; };
+$("doneOpen").onclick = () => fetch("/reveal", {method: "POST"});
+$("doneDm").onclick = async e => { await navigator.clipboard.writeText(e.target.dataset.cap); e.target.textContent = "DM copied"; setTimeout(() => e.target.textContent = "Copy DM message", 1600); };
+$("doneCloud").onclick = async e => { e.target.disabled = true; e.target.textContent = "Sending…";
+  const r = await fetch("/icloud", {method: "POST"}).then(r => r.json()).catch(() => ({ok: false}));
+  e.target.disabled = false; e.target.textContent = r.ok ? "In iCloud Drive ✓" : "Couldn't reach iCloud";
+  if (r.ok) $("doneTip").textContent = `Saved to ${r.folder}. Open the Files app on your phone, then iCloud Drive.`; };
+$("doneCap").onclick = async e => { await navigator.clipboard.writeText(e.target.dataset.cap); e.target.textContent = "Caption copied"; setTimeout(() => e.target.textContent = "Copy caption", 1600); };
+$("doneClose").onclick = () => $("xbox").className = "";
+$("xbox").onclick = e => { if (e.target.id === "xbox" && !$("xbox").classList.contains("working")) $("xbox").className = ""; };
+
+$("restoreYes").onclick = () => { S = JSON.parse(kept()); $("restore").classList.remove("on"); thumbs(); show(0); save(); };
+$("restoreNo").onclick = () => { forget(); $("restore").classList.remove("on"); };
+
+// ---- slides: add text, duplicate, reorder, delete, hold a sticker space ----
+function host() { return slideEl.querySelector(".txt,.mid"); }   // the slide's text block
+function addPiece(htmlStr) { snap(); host().insertAdjacentHTML("beforeend", htmlStr); commit(); show(cur);
+  const n = [...slideEl.querySelectorAll(EDITABLE)].pop(); if (n) { selectOnly([n]); n.focus(); document.execCommand("selectAll"); } }
+$("addText").onclick = () => addPiece(S.format === "story" && S.style === "native" ? "<div class='n'>new text</div>"
+                                                                                   : "<div class='b' style='font-size:52px'>new text</div>");
+$("addSticker").onchange = e => { const t = e.target.value; e.target.value = ""; if (!t) return;
+  addPiece(`<div class='stk ${t}'><b>${e.target.querySelector(`[value=${t}]`).textContent.replace(/ \(.*\)/, "")} goes here</b><small>(not in the export)</small></div>`); };
+$("dupSlide").onclick = () => { snap(); S.slides.splice(cur + 1, 0, JSON.parse(JSON.stringify(S.slides[cur]))); thumbs(); show(cur + 1); save(); };
+$("delSlide").onclick = () => { if (S.slides.length < 2) return say(`A post needs at least one ${UNIT}`);
+  if (!confirm(`Delete ${UNIT} ${cur + 1}? (Undo brings it back.)`)) return;
+  snap(); S.slides.splice(cur, 1); cur = Math.min(cur, S.slides.length - 1); thumbs(); show(cur); save(); };
+function moveSlide(d) { const j = cur + d; if (j < 0 || j >= S.slides.length) return; snap();
+  [S.slides[cur], S.slides[j]] = [S.slides[j], S.slides[cur]]; thumbs(); show(j); save(); }
+$("upSlide").onclick = () => moveSlide(-1); $("downSlide").onclick = () => moveSlide(1);
+function removeSel() { if (!sel.length) return; snap(); sel.forEach(n => n.remove()); sel = []; commit(); show(cur); }
+$("delText").onclick = removeSel;
+addEventListener("keydown", e => { const field = document.activeElement.isContentEditable || /^(INPUT|SELECT|TEXTAREA)$/.test(document.activeElement.tagName);
+  if ((e.key === "Delete" || e.key === "Backspace") && sel.length && !field) {
+  e.preventDefault(); removeSel(); } });
+
+addEventListener("resize", fitStage);
+addEventListener("keydown", e => {
+  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "z" && !e.target.isContentEditable) { e.preventDefault(); $(e.shiftKey ? "redo" : "undo").click(); }
+  if (e.key === "Escape") { if (document.activeElement.isContentEditable) { document.activeElement.blur(); getSelection().removeAllRanges(); panel(); } else selectOnly([]); } });
+$("done").onclick = () => { document.activeElement.blur(); selectOnly([]); };
+Promise.all([fetch("/state", {cache: "no-store"}).then(r => r.json()), fetch("/photos").then(r => r.json()),
+             fetch("/ping", {cache: "no-store"}).then(r => r.json())]).then(([s, photos, ping]) => {
+  S = s; start = JSON.parse(JSON.stringify(s));
+  JOB = ping.job || "";
+  const old = kept(); if (old && old !== JSON.stringify(s)) $("restore").classList.add("on"); else forget();
+  if (s.size) { W = s.size.w; H = s.size.h; } if (s.move) MV = s.move; CX = W / 2; CY = H / 2;
+  document.body.classList.toggle("story", s.format === "story"); $("addSticker").hidden = s.format !== "story";
+  UNIT = s.format === "story" ? "frame" : "slide"; $("export").textContent = `Export ${UNIT}s`; $("opsLab").textContent = `This ${UNIT}`; $("plainNote").textContent = `This ${UNIT} has no photo. Click any text on it to change it.`;
+  document.querySelectorAll(".unit").forEach(n => n.textContent = UNIT + "s"); $("delSlide").textContent = `Delete ${UNIT}`;
+  if (s.format === "story") document.title = "Story editor", document.querySelector("header h1").textContent = "Story editor";
+  $("swap").innerHTML = photos.map(p => `<option>${p}</option>`).join("");
+  thumbs(); show(0); say("All changes saved"); });
+</script></body></html>

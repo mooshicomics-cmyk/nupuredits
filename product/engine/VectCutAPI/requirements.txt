@@ -1,0 +1,12 @@
+# Modified by Homewell LLC, 2026, for The Reels Editing Engine. Original: VectCutAPI
+# (https://github.com/sun-guannan/VectCutAPI), Apache License 2.0; see LICENSE in this folder.
+imageio
+psutil
+flask
+requests
+json5
+
+# oss2 (Aliyun cloud upload) is gone with the unused upstream cloud code. It was also the only thing
+# that pulled in `cryptography` (oss2 -> aliyun-python-sdk-core -> cryptography), whose arm64-only 49.x
+# wheels broke Intel-Mac installs, so the old Intel `cryptography<49` pin is no longer needed either.
+# product/tests/test_intel_wheels.py guards that neither comes back.

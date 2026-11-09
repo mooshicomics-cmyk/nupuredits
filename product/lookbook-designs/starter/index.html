@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en"><head>
+<meta content="width=1080, height=1920" name="viewport"/><meta charset="UTF-8"/>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+/* The starter design. Every color, font, case and shadow is the pack's (var(--pk-…), Pk… fonts); her words go in
+   the slot tokens; sizes the engine fits go in the PX tokens. Copy this folder, change the layout and motion, keep that. */
+html,body{width:1080px;height:1920px;overflow:hidden;background:transparent;}
+*{box-sizing:border-box;margin:0;padding:0;}
+#root{position:absolute;inset:0;}
+#card{position:absolute;left:110px;right:110px;top:420px;padding:56px 54px 60px;border-radius:36px;background:var(--pk-light);
+  box-shadow:0 18px 50px rgba(0,0,0,.28);text-align:left;}
+#eyebrow{display:block;font-family:PkAccent;font-size:54px;line-height:1.1;color:var(--pk-dark);text-transform:var(--pk-case-accent);margin-bottom:18px;}
+#head{display:block;font-family:PkHeadline;font-size:__PX_LINE2__px;line-height:0.98;color:var(--pk-dark);
+  text-transform:var(--pk-case-headline);letter-spacing:var(--pk-track-headline);}
+#bar{position:absolute;left:54px;bottom:-14px;width:160px;height:28px;border-radius:14px;background:var(--pk-accent);}
+</style></head>
+<body>
+<div id="root" data-composition-id="__COMP__" data-start="0" data-duration="__DUR__" data-width="1080" data-height="1920">
+<div class="clip" id="clip-card" data-start="0" data-duration="__DUR__" data-track-index="2">
+  <div id="card"><span id="eyebrow">__LINE1__</span><span id="head">__LINE2__</span><span id="bar"></span></div>
+</div>
+</div>
+<script>
+window.__timelines=window.__timelines||{};
+const D=__DUR__;
+const tl=gsap.timeline({paused:true});
+tl.fromTo("#card",{autoAlpha:0,y:40,rotation:-2},{autoAlpha:1,y:0,rotation:0,duration:0.5,ease:"back.out(1.6)"},0.1);
+tl.fromTo("#eyebrow",{autoAlpha:0,y:12},{autoAlpha:1,y:0,duration:0.35,ease:"power2.out"},0.3);
+tl.fromTo("#head",{autoAlpha:0,y:18},{autoAlpha:1,y:0,duration:0.4,ease:"power2.out"},0.45);
+tl.fromTo("#bar",{scaleX:0,transformOrigin:"0 50%"},{scaleX:1,duration:0.45,ease:"power3.out"},0.7);
+tl.to("#card",{autoAlpha:0,y:-20,duration:0.3,ease:"power2.in"},Math.max(1.2,D-0.35));
+tl.set("#card",{autoAlpha:0},Math.max(1.5,D-0.04));
+window.__timelines["__COMP__"]=tl;
+</script>
+</body></html>

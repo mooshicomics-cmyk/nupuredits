@@ -1,0 +1,6 @@
+{
+  "_doc": "The buyer's saved look for shipped yaps. default_pack = their chosen style pack (Editorial / Playful / Butter), set on first reel edit, switchable anytime. default_accent = an OPTIONAL single accent color as hex that replaces every pack's own accent (null is the normal state and simply means each pack's own accent_color is used; set or change it anytime via '/studio accent <color>'). Resolution order for a build's accent: a per-reel override passed in -> default_accent here -> the pack's own accent_color -> #FFFFFF. A creator's personal fonts are never a default here (see personal-fonts-vs-ship-fonts). No hardcoded Playfair default; the engine refuses to build a ship yap until a pack is chosen.",
+  "default_pack": null,
+  "default_accent": null,
+  "history": []
+}

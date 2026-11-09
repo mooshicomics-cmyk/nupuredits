@@ -1,0 +1,11 @@
+{
+  "_doc": "Where buyers get the Canva Style Pack template, and the markers canva_to_pack.py relies on. The style-pack skill reads this. Keep template_url pointing at a link ANYONE can open (Canva: Share > anyone with the link can view, or a template link). The template's own page 2 teaches File > Make a copy.",
+  "template_title": "Reels Editing Engine: Your Style Pack",
+  "template_url": "https://canva.link/reels-editing-engine-your-style-pack",
+  "copy_title_hint": "My Style Pack",
+  "style_me_color": "#8f4dff",
+  "template_tags": [
+    "STYLE ME",
+    "BUILD HERE"
+  ]
+}

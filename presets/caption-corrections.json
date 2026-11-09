@@ -1,0 +1,47 @@
+{
+ "about": [
+  "Word fixes shared by every reel: how the transcriber wrote a word, and how it should read.",
+  "They are laid in as the rough cut writes outputs/<job>.transcript.json, the script captions, the graphics plan and every format read. The raw transcript/words.json keeps what was heard.",
+  "\"words\": one word as heard -> the word it should be. Capitals do not matter, its punctuation is kept.",
+  "\"phrases\": several words as heard -> what they should read, for a name no single word can carry (\"chat gpt\": \"ChatGPT\").",
+  "\"check\": real words that are sometimes a mishear. Nothing is changed; each run lists them so someone reads them where they were said.",
+  "Two more tables take the same three parts and are laid over this one: _local/caption-corrections.json for words that are yours alone (never shipped, never updated), and projects/<job>/word-fixes.json for a fix that is only right in one video.",
+  "After a cut, flag-words.py <job> lists the few words worth reading twice; respell.sh <job> rewrites that job's script with the fixes as they stand, without touching the cut.",
+  "The mishears in your brand kit are written in here. An update keeps your entries, and yours win on a word both name. The entries that come with the engine are platform and tool names and the misspellings seen most in real reels."
+ ],
+ "words": {
+  "instagram": "Instagram",
+  "ig": "IG",
+  "tiktok": "TikTok",
+  "youtube": "YouTube",
+  "facebook": "Facebook",
+  "pinterest": "Pinterest",
+  "dm": "DM",
+  "dms": "DMs",
+  "capcut": "CapCut",
+  "canva": "Canva",
+  "iphone": "iPhone",
+  "chatgpt": "ChatGPT",
+  "claude": "Claude",
+  "claud": "Claude",
+  "klaud": "Claude",
+  "kajabi": "Kajabi",
+  "manychat": "ManyChat",
+  "shopify": "Shopify",
+  "etsy": "Etsy",
+  "ai": "AI",
+  "sahm": "SAHM",
+  "sahms": "SAHMs",
+  "diy": "DIY",
+  "pdf": "PDF",
+  "llc": "LLC",
+  "ceo": "CEO"
+ },
+ "phrases": {},
+ "check": [
+  "notion",
+  "clawed",
+  "cloud",
+  "clod"
+ ]
+}

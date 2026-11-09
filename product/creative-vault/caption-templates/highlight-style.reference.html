@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=1080, height=1920"/>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+@font-face{font-family:'PkCap';src:url('fonts/Helvetica.ttf');}
+@font-face{font-family:'PkBld';src:url('fonts/UglyDave.otf');}
+@font-face{font-family:'Acc';src:url('fonts/InstrumentSerif-Italic.ttf');}
+.tfx{display:inline-block;font-style:normal;will-change:transform,opacity,filter;}.tfxm{display:inline-block;overflow:hidden;vertical-align:top;font-style:normal;}.tfxm>.tfx{display:block;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:1080px;height:1920px;overflow:hidden;background:transparent;}
+#root{position:absolute;inset:0;}
+/* Layouts are FIXED; fonts/colors/sizes come from the STYLE PACK tokens above (swappable per pack).
+   IG REELS SAFE ZONE: all text inside x 150..930 (clear of the right rail ~960+) and y 270..1620. */
+.cap{position:absolute;left:110px;right:110px;top:1388px;transform:translateY(-50%);text-align:center;font-family:'PkCap';
+  font-weight:600;font-size:72px;color:#ffffff;text-shadow:0 6px 32px rgba(0,0,0,.55);letter-spacing:-1px;}
+.cap.kw{color:#FAE38E;}
+/* the accented word: the serif, in butter, and BIGGER on purpose - a serif reads smaller
+   than Helvetica at the same px, so matching the number makes it look like a mistake. */
+.cap.acc{font-family:'Acc';font-weight:400;font-size:104px;color:#FAE38E;letter-spacing:0;}
+.build-wrap{position:absolute;left:160px;right:160px;top:1181px;transform:translateY(-50%);text-align:center;}
+.build-wrap .inner{font-family:'PkBld';font-size:84px;color:#ffffff;line-height:1.02;text-shadow:0 6px 32px rgba(0,0,0,.55);}
+.build-wrap .inner span{display:inline;}
+/* hero = the single most prominent line ("this is the life. this is it."): biggest (lowercase), "life" butter */
+</style></head>
+<body>
+<div id="root" data-composition-id="reel" data-start="0" data-duration="72.95" data-width="1080" data-height="1920">
+<div class="clip cap" data-start="0.10" data-duration="0.16" data-track-index="1">this</div>
+<div class="clip cap" data-start="0.26" data-duration="0.36" data-track-index="1">website</div>
+<div class="clip cap" data-start="0.62" data-duration="0.10" data-track-index="1">is</div>
+<div class="clip cap" data-start="0.72" data-duration="0.10" data-track-index="1">one</div>
+<div class="clip cap" data-start="0.82" data-duration="0.08" data-track-index="1">of</div>
+<div class="clip cap" data-start="0.90" data-duration="0.12" data-track-index="1">my</div>
+<div class="clip cap acc" data-start="1.02" data-duration="0.26" data-track-index="1">favorite</div>
+<div class="clip cap" data-start="1.28" data-duration="0.22" data-track-index="1">things</div>
+<div class="clip cap" data-start="1.50" data-duration="0.15" data-track-index="1">that</div>
+<div class="clip cap" data-start="1.65" data-duration="0.17" data-track-index="1">i&#x27;ve</div>
+<div class="clip cap" data-start="1.82" data-duration="0.17" data-track-index="1">made</div>
+<div class="clip cap" data-start="1.99" data-duration="0.13" data-track-index="1">all</div>
+<div class="clip cap" data-start="2.12" data-duration="0.35" data-track-index="1">year</div>
+<div class="clip cap" data-start="2.47" data-duration="0.14" data-track-index="1">and</div>
+<div class="clip cap" data-start="4.71" data-duration="0.26" data-track-index="1">things</div>
+<div class="clip cap" data-start="4.97" data-duration="0.16" data-track-index="1">that</div>
+<div class="clip cap" data-start="5.13" data-duration="0.14" data-track-index="1">i</div>
+<div class="clip cap" data-start="5.27" data-duration="0.20" data-track-index="1">said</div>
+<div class="clip cap" data-start="5.47" data-duration="0.12" data-track-index="1">to</div>
+<div class="clip cap" data-start="5.59" data-duration="0.40" data-track-index="1">claude</div>
+<div class="clip cap" data-start="5.99" data-duration="0.16" data-track-index="1">so</div>
+<div class="clip cap" data-start="6.15" data-duration="0.18" data-track-index="1">you</div>
+<div class="clip cap" data-start="6.33" data-duration="0.16" data-track-index="1">can</div>
+<div class="clip cap" data-start="6.49" data-duration="0.18" data-track-index="1">do</div>
+<div class="clip cap" data-start="6.67" data-duration="0.22" data-track-index="1">it</div>
+<div class="clip cap" data-start="6.89" data-duration="0.51" data-track-index="1">too</div>
+<div class="clip cap" data-start="7.40" data-duration="0.12" data-track-index="1">i</div>
+<div class="clip cap" data-start="7.52" data-duration="0.26" data-track-index="1">trained</div>
+<div class="clip cap acc" data-start="7.78" data-duration="0.24" data-track-index="1">claude</div>
+<div class="clip cap" data-start="8.02" data-duration="0.10" data-track-index="1">to</div>
+<div class="clip cap" data-start="8.12" data-duration="0.20" data-track-index="1">edit</div>
+<div class="clip cap" data-start="8.32" data-duration="0.14" data-track-index="1">my</div>
+<div class="clip cap" data-start="8.46" data-duration="0.30" data-track-index="1">reels</div>
+<div class="clip cap" data-start="8.76" data-duration="0.10" data-track-index="1">and</div>
+<div class="clip cap" data-start="8.86" data-duration="0.12" data-track-index="1">my</div>
+<div class="clip cap" data-start="8.98" data-duration="0.24" data-track-index="1">launch</div>
+<div class="clip cap" data-start="9.22" data-duration="0.48" data-track-index="1">website</div>
+<div class="clip cap" data-start="9.70" data-duration="0.20" data-track-index="1">was</div>
+<div class="clip cap" data-start="9.90" data-duration="0.46" data-track-index="1">live</div>
+<div class="clip cap" data-start="10.36" data-duration="0.28" data-track-index="1">in</div>
+<div class="clip cap" data-start="10.64" data-duration="0.22" data-track-index="1">one</div>
+<div class="clip cap acc" data-start="10.86" data-duration="0.55" data-track-index="1">afternoon</div>
+<div class="clip cap" data-start="11.41" data-duration="0.29" data-track-index="1">and</div>
+<div class="clip cap" data-start="11.70" data-duration="0.16" data-track-index="1">i&#x27;m</div>
+<div class="clip cap" data-start="11.86" data-duration="0.08" data-track-index="1">a</div>
+<div class="clip cap" data-start="11.94" data-duration="0.34" data-track-index="1">mom</div>
+<div class="clip cap" data-start="12.28" data-duration="0.22" data-track-index="1">not</div>
+<div class="clip cap" data-start="12.50" data-duration="0.04" data-track-index="1">a</div>
+<div class="clip cap" data-start="12.54" data-duration="0.54" data-track-index="1">developer</div>
+<div class="clip cap" data-start="13.08" data-duration="0.16" data-track-index="1">through</div>
+<div class="clip cap" data-start="13.24" data-duration="0.08" data-track-index="1">i</div>
+<div class="clip cap" data-start="13.32" data-duration="0.30" data-track-index="1">first</div>
+<div class="clip cap" data-start="13.62" data-duration="0.40" data-track-index="1">connected</div>
+<div class="clip cap" data-start="14.02" data-duration="0.30" data-track-index="1">claude</div>
+<div class="clip cap" data-start="14.32" data-duration="0.14" data-track-index="1">to</div>
+<div class="clip cap" data-start="14.46" data-duration="0.46" data-track-index="1">kajabi</div>
+<div class="clip cap" data-start="14.92" data-duration="0.22" data-track-index="1">through</div>
+<div class="clip cap" data-start="15.14" data-duration="0.26" data-track-index="1">something</div>
+<div class="clip cap" data-start="15.40" data-duration="0.20" data-track-index="1">called</div>
+<div class="clip cap" data-start="15.60" data-duration="0.16" data-track-index="1">an</div>
+<div class="clip cap acc" data-start="15.76" data-duration="0.57" data-track-index="1">MCP</div>
+<div class="clip cap" data-start="16.33" data-duration="0.22" data-track-index="1">just</div>
+<div class="clip cap" data-start="16.55" data-duration="0.14" data-track-index="1">go</div>
+<div class="clip cap" data-start="16.69" data-duration="0.06" data-track-index="1">to</div>
+<div class="clip cap" data-start="16.75" data-duration="0.40" data-track-index="1">claude</div>
+<div class="clip cap" data-start="17.15" data-duration="0.47" data-track-index="1">settings</div>
+<div class="clip cap" data-start="17.62" data-duration="0.69" data-track-index="1">connectors</div>
+<div class="clip cap" data-start="18.31" data-duration="0.18" data-track-index="1">and</div>
+<div class="clip cap" data-start="18.49" data-duration="0.16" data-track-index="1">add</div>
+<div class="clip cap" data-start="18.65" data-duration="0.62" data-track-index="1">kajabi</div>
+<div class="clip cap" data-start="19.27" data-duration="0.10" data-track-index="1">and</div>
+<div class="clip cap" data-start="19.37" data-duration="0.14" data-track-index="1">then</div>
+<div class="clip cap" data-start="19.51" data-duration="0.22" data-track-index="1">from</div>
+<div class="clip cap" data-start="19.73" data-duration="0.40" data-track-index="1">there</div>
+<div class="clip cap" data-start="20.13" data-duration="0.26" data-track-index="1">on</div>
+<div class="clip cap" data-start="20.39" data-duration="0.38" data-track-index="1">everything</div>
+<div class="clip cap" data-start="20.77" data-duration="0.10" data-track-index="1">i</div>
+<div class="clip cap" data-start="20.87" data-duration="0.34" data-track-index="1">said</div>
+<div class="clip cap" data-start="21.21" data-duration="0.18" data-track-index="1">got</div>
+<div class="clip cap" data-start="21.39" data-duration="0.22" data-track-index="1">built</div>
+<div class="clip cap" data-start="21.61" data-duration="0.20" data-track-index="1">into</div>
+<div class="clip cap" data-start="21.81" data-duration="0.14" data-track-index="1">my</div>
+<div class="clip cap" data-start="21.95" data-duration="0.27" data-track-index="1">site</div>
+<div class="clip cap" data-start="22.22" data-duration="0.22" data-track-index="1">just</div>
+<div class="clip cap" data-start="22.44" data-duration="0.20" data-track-index="1">like</div>
+<div class="clip cap acc" data-start="22.64" data-duration="0.40" data-track-index="1">this</div>
+<div class="clip cap" data-start="23.04" data-duration="0.26" data-track-index="1">cream</div>
+<div class="clip cap" data-start="23.30" data-duration="0.59" data-track-index="1">page</div>
+<div class="clip cap" data-start="23.89" data-duration="0.13" data-track-index="1">one</div>
+<div class="clip cap" data-start="24.02" data-duration="0.27" data-track-index="1">red</div>
+<div class="clip cap" data-start="24.29" data-duration="0.37" data-track-index="1">accent</div>
+<div class="clip cap acc" data-start="24.66" data-duration="0.21" data-track-index="1">hair</div>
+<div class="clip cap acc" data-start="24.87" data-duration="0.18" data-track-index="1">line</div>
+<div class="clip cap" data-start="25.05" data-duration="0.34" data-track-index="1">between</div>
+<div class="clip cap" data-start="25.39" data-duration="0.53" data-track-index="1">sections</div>
+<div class="clip cap" data-start="25.92" data-duration="0.34" data-track-index="1">serif</div>
+<div class="clip cap" data-start="26.26" data-duration="0.60" data-track-index="1">headlines</div>
+<div class="clip cap acc" data-start="26.86" data-duration="0.62" data-track-index="1">italicize</div>
+<div class="clip cap" data-start="27.48" data-duration="0.10" data-track-index="1">the</div>
+<div class="clip cap acc" data-start="27.58" data-duration="0.40" data-track-index="1">emphasis</div>
+<div class="clip cap acc" data-start="27.98" data-duration="0.35" data-track-index="1">words</div>
+<div class="clip cap" data-start="28.33" data-duration="0.12" data-track-index="1">my</div>
+<div class="clip cap acc" data-start="28.45" data-duration="0.20" data-track-index="1">best</div>
+<div class="clip cap acc" data-start="28.65" data-duration="0.44" data-track-index="1">performing</div>
+<div class="clip cap" data-start="29.09" data-duration="0.46" data-track-index="1">reel</div>
+<div class="clip cap" data-start="29.55" data-duration="0.12" data-track-index="1">in</div>
+<div class="clip cap" data-start="29.67" data-duration="0.06" data-track-index="1">a</div>
+<div class="clip cap" data-start="29.73" data-duration="0.44" data-track-index="1">phone</div>
+<div class="clip cap" data-start="30.17" data-duration="0.26" data-track-index="1">proof</div>
+<div class="clip cap" data-start="30.43" data-duration="0.28" data-track-index="1">card</div>
+<div class="clip cap" data-start="30.71" data-duration="0.20" data-track-index="1">with</div>
+<div class="clip cap" data-start="30.91" data-duration="0.24" data-track-index="1">real</div>
+<div class="clip cap" data-start="31.15" data-duration="0.45" data-track-index="1">numbers</div>
+<div class="clip cap acc" data-start="31.60" data-duration="0.32" data-track-index="1">counting</div>
+<div class="clip cap acc" data-start="31.92" data-duration="0.08" data-track-index="1">up</div>
+<div class="clip cap" data-start="32.00" data-duration="0.16" data-track-index="1">from</div>
+<div class="clip cap" data-start="32.16" data-duration="0.43" data-track-index="1">zero</div>
+<div class="clip cap" data-start="32.59" data-duration="0.11" data-track-index="1">on</div>
+<div class="clip cap" data-start="32.70" data-duration="0.27" data-track-index="1">load</div>
+<div class="clip cap acc" data-start="32.97" data-duration="0.36" data-track-index="1">before</div>
+<div class="clip cap" data-start="33.33" data-duration="0.10" data-track-index="1">and</div>
+<div class="clip cap acc" data-start="33.43" data-duration="0.22" data-track-index="1">after</div>
+<div class="clip cap" data-start="33.65" data-duration="0.38" data-track-index="1">clips</div>
+<div class="clip cap" data-start="34.03" data-duration="0.28" data-track-index="1">mocked</div>
+<div class="clip cap" data-start="34.31" data-duration="0.10" data-track-index="1">up</div>
+<div class="clip cap" data-start="34.41" data-duration="0.08" data-track-index="1">in</div>
+<div class="clip cap" data-start="34.49" data-duration="0.06" data-track-index="1">a</div>
+<div class="clip cap" data-start="34.55" data-duration="0.33" data-track-index="1">phone</div>
+<div class="clip cap" data-start="34.88" data-duration="0.48" data-track-index="1">crossfade</div>
+<div class="clip cap" data-start="35.36" data-duration="0.12" data-track-index="1">on</div>
+<div class="clip cap acc" data-start="35.48" data-duration="0.53" data-track-index="1">toggle</div>
+<div class="clip cap acc" data-start="36.01" data-duration="0.42" data-track-index="1">autoflip</div>
+<div class="clip cap" data-start="36.43" data-duration="0.08" data-track-index="1">to</div>
+<div class="clip cap" data-start="36.51" data-duration="0.30" data-track-index="1">finish</div>
+<div class="clip cap" data-start="36.81" data-duration="0.16" data-track-index="1">when</div>
+<div class="clip cap" data-start="36.97" data-duration="0.10" data-track-index="1">it</div>
+<div class="clip cap" data-start="37.07" data-duration="0.22" data-track-index="1">hits</div>
+<div class="clip cap" data-start="37.29" data-duration="0.10" data-track-index="1">the</div>
+<div class="clip cap acc" data-start="37.39" data-duration="0.54" data-track-index="1">viewport</div>
+<div class="clip cap" data-start="37.93" data-duration="0.22" data-track-index="1">two</div>
+<div class="clip cap" data-start="38.15" data-duration="0.24" data-track-index="1">rows</div>
+<div class="clip cap" data-start="38.39" data-duration="0.14" data-track-index="1">of</div>
+<div class="clip cap acc" data-start="38.53" data-duration="0.40" data-track-index="1">example</div>
+<div class="clip cap acc" data-start="38.93" data-duration="0.42" data-track-index="1">prompts</div>
+<div class="clip cap" data-start="39.35" data-duration="0.36" data-track-index="1">sliding</div>
+<div class="clip cap" data-start="39.71" data-duration="0.10" data-track-index="1">in</div>
+<div class="clip cap" data-start="39.81" data-duration="0.34" data-track-index="1">opposite</div>
+<div class="clip cap" data-start="40.15" data-duration="0.62" data-track-index="1">directions</div>
+<div class="clip cap" data-start="40.77" data-duration="0.42" data-track-index="1">pause</div>
+<div class="clip cap" data-start="41.19" data-duration="0.14" data-track-index="1">on</div>
+<div class="clip cap acc" data-start="41.33" data-duration="0.36" data-track-index="1">hover</div>
+<div class="clip cap" data-start="41.69" data-duration="0.18" data-track-index="1">add</div>
+<div class="clip cap" data-start="41.87" data-duration="0.06" data-track-index="1">a</div>
+<div class="clip cap acc" data-start="41.93" data-duration="0.57" data-track-index="1">slider</div>
+<div class="clip cap" data-start="42.50" data-duration="0.18" data-track-index="1">give</div>
+<div class="clip cap" data-start="42.68" data-duration="0.10" data-track-index="1">the</div>
+<div class="clip cap" data-start="42.78" data-duration="0.34" data-track-index="1">knob</div>
+<div class="clip cap" data-start="43.12" data-duration="0.14" data-track-index="1">a</div>
+<div class="clip cap acc" data-start="43.26" data-duration="0.26" data-track-index="1">little</div>
+<div class="clip cap acc" data-start="43.52" data-duration="0.22" data-track-index="1">nudge</div>
+<div class="clip cap" data-start="43.74" data-duration="0.14" data-track-index="1">when</div>
+<div class="clip cap" data-start="43.88" data-duration="0.08" data-track-index="1">it</div>
+<div class="clip cap" data-start="43.96" data-duration="0.34" data-track-index="1">shows</div>
+<div class="clip cap" data-start="44.30" data-duration="0.09" data-track-index="1">up</div>
+<div class="clip cap" data-start="44.39" data-duration="0.18" data-track-index="1">so</div>
+<div class="clip cap" data-start="44.57" data-duration="0.18" data-track-index="1">she</div>
+<div class="clip cap" data-start="44.75" data-duration="0.30" data-track-index="1">knows</div>
+<div class="clip cap" data-start="45.05" data-duration="0.10" data-track-index="1">to</div>
+<div class="clip cap acc" data-start="45.15" data-duration="0.26" data-track-index="1">drag</div>
+<div class="clip cap acc" data-start="45.41" data-duration="0.22" data-track-index="1">it</div>
+<div class="clip cap" data-start="45.63" data-duration="0.08" data-track-index="1">a</div>
+<div class="clip cap acc" data-start="45.71" data-duration="0.26" data-track-index="1">film</div>
+<div class="clip cap acc" data-start="45.97" data-duration="0.26" data-track-index="1">strip</div>
+<div class="clip cap" data-start="46.23" data-duration="0.10" data-track-index="1">of</div>
+<div class="clip cap" data-start="46.33" data-duration="0.16" data-track-index="1">my</div>
+<div class="clip cap" data-start="46.49" data-duration="0.52" data-track-index="1">reels</div>
+<div class="clip cap" data-start="47.01" data-duration="0.50" data-track-index="1">scrolling</div>
+<div class="clip cap" data-start="47.51" data-duration="0.08" data-track-index="1">on</div>
+<div class="clip cap" data-start="47.59" data-duration="0.26" data-track-index="1">their</div>
+<div class="clip cap" data-start="47.85" data-duration="0.46" data-track-index="1">own</div>
+<div class="clip cap" data-start="48.31" data-duration="0.48" data-track-index="1">looping</div>
+<div class="clip cap" data-start="48.79" data-duration="0.86" data-track-index="1">forever</div>
+<div class="clip cap" data-start="49.65" data-duration="0.40" data-track-index="1">fading</div>
+<div class="clip cap" data-start="50.05" data-duration="0.10" data-track-index="1">at</div>
+<div class="clip cap" data-start="50.15" data-duration="0.16" data-track-index="1">the</div>
+<div class="clip cap" data-start="50.31" data-duration="0.45" data-track-index="1">edges</div>
+<div class="clip cap" data-start="50.76" data-duration="0.22" data-track-index="1">look</div>
+<div class="clip cap" data-start="50.98" data-duration="0.30" data-track-index="1">that&#x27;s</div>
+<div class="clip cap" data-start="51.28" data-duration="0.12" data-track-index="1">the</div>
+<div class="clip cap" data-start="51.40" data-duration="0.20" data-track-index="1">whole</div>
+<div class="clip cap" data-start="51.60" data-duration="0.40" data-track-index="1">build</div>
+<div class="clip cap" data-start="54.52" data-duration="0.14" data-track-index="1">i</div>
+<div class="clip cap" data-start="54.66" data-duration="0.56" data-track-index="1">genuinely</div>
+<div class="clip cap" data-start="55.22" data-duration="0.27" data-track-index="1">would</div>
+<div class="clip cap" data-start="55.49" data-duration="0.28" data-track-index="1">not</div>
+<div class="clip cap" data-start="55.77" data-duration="0.19" data-track-index="1">be</div>
+<div class="clip cap" data-start="55.96" data-duration="0.20" data-track-index="1">able</div>
+<div class="clip cap" data-start="56.16" data-duration="0.28" data-track-index="1">to</div>
+<div class="clip cap" data-start="56.44" data-duration="0.22" data-track-index="1">own</div>
+<div class="clip cap" data-start="56.66" data-duration="0.22" data-track-index="1">and</div>
+<div class="clip cap" data-start="56.88" data-duration="0.42" data-track-index="1">operate</div>
+<div class="clip cap" data-start="57.30" data-duration="0.26" data-track-index="1">my</div>
+<div class="clip cap" data-start="57.56" data-duration="0.24" data-track-index="1">own</div>
+<div class="clip cap" data-start="57.80" data-duration="0.32" data-track-index="1">online</div>
+<div class="clip cap" data-start="58.12" data-duration="0.58" data-track-index="1">business</div>
+<div class="clip cap" data-start="58.70" data-duration="0.14" data-track-index="1">as</div>
+<div class="clip cap" data-start="58.84" data-duration="0.06" data-track-index="1">a</div>
+<div class="clip cap" data-start="58.90" data-duration="0.24" data-track-index="1">busy</div>
+<div class="clip cap" data-start="59.14" data-duration="0.40" data-track-index="1">mom</div>
+<div class="clip cap" data-start="59.54" data-duration="0.46" data-track-index="1">without</div>
+<div class="clip cap acc" data-start="60.00" data-duration="0.61" data-track-index="1">kajabi</div>
+<div class="clip cap" data-start="60.61" data-duration="0.10" data-track-index="1">and</div>
+<div class="clip cap" data-start="60.71" data-duration="0.10" data-track-index="1">if</div>
+<div class="clip cap" data-start="60.81" data-duration="0.10" data-track-index="1">you</div>
+<div class="clip cap" data-start="60.91" data-duration="0.12" data-track-index="1">want</div>
+<div class="clip cap" data-start="61.03" data-duration="0.06" data-track-index="1">to</div>
+<div class="clip cap" data-start="61.09" data-duration="0.18" data-track-index="1">build</div>
+<div class="clip cap" data-start="61.27" data-duration="0.20" data-track-index="1">your</div>
+<div class="clip cap" data-start="61.47" data-duration="0.18" data-track-index="1">own</div>
+<div class="clip cap" data-start="61.65" data-duration="0.32" data-track-index="1">comment</div>
+<div class="clip cap acc" data-start="61.97" data-duration="0.70" data-track-index="1">website</div>
+<div class="clip cap" data-start="62.67" data-duration="0.08" data-track-index="1">i</div>
+<div class="clip cap" data-start="62.75" data-duration="0.16" data-track-index="1">will</div>
+<div class="clip cap" data-start="62.91" data-duration="0.20" data-track-index="1">send</div>
+<div class="clip cap" data-start="63.11" data-duration="0.14" data-track-index="1">you</div>
+<div class="clip cap" data-start="63.25" data-duration="0.24" data-track-index="1">my</div>
+<div class="clip cap" data-start="63.49" data-duration="0.24" data-track-index="1">free</div>
+<div class="clip cap" data-start="63.73" data-duration="0.28" data-track-index="1">getting</div>
+<div class="clip cap" data-start="64.01" data-duration="0.38" data-track-index="1">started</div>
+<div class="clip cap" data-start="64.39" data-duration="0.28" data-track-index="1">guide</div>
+<div class="clip cap" data-start="64.67" data-duration="0.18" data-track-index="1">with</div>
+<div class="clip cap" data-start="64.85" data-duration="0.52" data-track-index="1">exactly</div>
+<div class="clip cap" data-start="65.37" data-duration="0.08" data-track-index="1">how</div>
+<div class="clip cap" data-start="65.45" data-duration="0.08" data-track-index="1">to</div>
+<div class="clip cap" data-start="65.53" data-duration="0.28" data-track-index="1">connect</div>
+<div class="clip cap" data-start="65.81" data-duration="0.30" data-track-index="1">claude</div>
+<div class="clip cap" data-start="66.11" data-duration="0.12" data-track-index="1">to</div>
+<div class="clip cap" data-start="66.23" data-duration="0.54" data-track-index="1">kajabi</div>
+<div class="clip cap" data-start="66.77" data-duration="0.52" data-track-index="1">plus</div>
+<div class="clip cap" data-start="67.29" data-duration="0.10" data-track-index="1">a</div>
+<div class="clip cap acc" data-start="67.39" data-duration="0.16" data-track-index="1">free</div>
+<div class="clip cap" data-start="67.55" data-duration="0.40" data-track-index="1">30-day</div>
+<div class="clip cap" data-start="67.95" data-duration="0.33" data-track-index="1">trial</div>
+<div class="clip cap" data-start="68.28" data-duration="0.16" data-track-index="1">and</div>
+<div class="clip cap" data-start="68.44" data-duration="0.33" data-track-index="1">follow</div>
+<div class="clip cap" data-start="68.77" data-duration="0.34" data-track-index="1">along</div>
+<div class="clip cap" data-start="69.11" data-duration="0.34" data-track-index="1">because</div>
+<div class="clip cap" data-start="69.45" data-duration="0.12" data-track-index="1">i&#x27;m</div>
+<div class="clip cap" data-start="69.57" data-duration="0.34" data-track-index="1">building</div>
+<div class="clip cap" data-start="69.91" data-duration="0.20" data-track-index="1">a</div>
+<div class="clip cap acc" data-start="70.11" data-duration="0.26" data-track-index="1">real</div>
+<div class="clip cap acc" data-start="70.37" data-duration="0.70" data-track-index="1">business</div>
+<div class="clip cap" data-start="71.07" data-duration="0.10" data-track-index="1">in</div>
+<div class="clip cap" data-start="71.17" data-duration="0.18" data-track-index="1">the</div>
+<div class="clip cap" data-start="71.35" data-duration="0.52" data-track-index="1">margins</div>
+<div class="clip cap" data-start="71.87" data-duration="0.14" data-track-index="1">of</div>
+<div class="clip cap acc" data-start="72.01" data-duration="0.90" data-track-index="1">motherhood</div>
+</div>
+<script>
+/* Captions are timed NATIVELY: every word is a `.clip` with data-start/data-duration and the
+   renderer shows it for its own window - GSAP drives nothing. The registry is still required by
+   the composition contract, so it is declared even when empty.
+
+   NOTE for whoever renders this: `hyperframes check` cannot evaluate a natively-timed
+   composition. Its static-sweep seeks the GSAP timeline, which here has nothing on it, so it
+   reads the comp as frozen and refuses - while the actual render is correct. Render caption
+   overlays with `hyperframes render` directly and verify them by eye, rather than weakening the
+   gate for every other composition. */
+window.__timelines=window.__timelines||{};
+const tl=gsap.timeline({paused:true});
+
+window.__timelines["reel"]=tl;
+</script>
+</body></html>

@@ -1,0 +1,192 @@
+{
+  "permissions": {
+    "deny": [
+      "Skill(anthropic-skills:setup-claude)",
+      "Read(~/.ssh/**)",
+      "Edit(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Edit(~/.aws/**)",
+      "Read(~/.gnupg/**)",
+      "Edit(~/.gnupg/**)",
+      "Read(~/.config/gcloud/**)",
+      "Edit(~/.config/gcloud/**)",
+      "Read(~/Library/Keychains/**)",
+      "Edit(~/Library/Keychains/**)",
+      "Read(~/Library/Application Support/Google/Chrome/**)",
+      "Edit(~/Library/Application Support/Google/Chrome/**)",
+      "Read(~/Library/Safari/**)",
+      "Edit(~/Library/Safari/**)",
+      "Read(~/Library/Application Support/Firefox/**)",
+      "Edit(~/Library/Application Support/Firefox/**)",
+      "Read(~/AppData/Local/Google/Chrome/User Data/**)",
+      "Edit(~/AppData/Local/Google/Chrome/User Data/**)",
+      "Read(~/AppData/Roaming/Mozilla/Firefox/**)",
+      "Edit(~/AppData/Roaming/Mozilla/Firefox/**)",
+      "Bash(rm -rf /)",
+      "Bash(rm -rf ~)",
+      "Bash(rm -rf ~/)",
+      "Bash(rm -rf $HOME)",
+      "Bash(rm -rf $HOME/)",
+      "Bash(npx hyperframes usage*)",
+      "Bash(npx hyperframes@* usage*)",
+      "Bash(npx --yes hyperframes usage*)",
+      "Bash(npx --yes hyperframes@* usage*)",
+      "Bash(npx.cmd hyperframes usage*)",
+      "Bash(npx.cmd hyperframes@* usage*)",
+      "Bash(npx hyperframes feedback*)",
+      "Bash(npx hyperframes@* feedback*)",
+      "Bash(npx --yes hyperframes feedback*)",
+      "Bash(npx --yes hyperframes@* feedback*)",
+      "Bash(npx.cmd hyperframes feedback*)",
+      "Bash(npx.cmd hyperframes@* feedback*)",
+      "Bash(npx hyperframes billing*)",
+      "Bash(npx hyperframes@* billing*)",
+      "Bash(npx --yes hyperframes billing*)",
+      "Bash(npx --yes hyperframes@* billing*)",
+      "Bash(npx.cmd hyperframes billing*)",
+      "Bash(npx.cmd hyperframes@* billing*)",
+      "Bash(npx hyperframes media-use generate*)",
+      "Bash(npx hyperframes@* media-use generate*)",
+      "Bash(npx --yes hyperframes media-use generate*)",
+      "Bash(npx --yes hyperframes@* media-use generate*)",
+      "Bash(npx.cmd hyperframes media-use generate*)",
+      "Bash(npx.cmd hyperframes@* media-use generate*)",
+      "Bash(npx hyperframes transcribe*--engine*heygen*)",
+      "Bash(npx hyperframes@* transcribe*--engine*heygen*)",
+      "Bash(npx --yes hyperframes transcribe*--engine*heygen*)",
+      "Bash(npx --yes hyperframes@* transcribe*--engine*heygen*)",
+      "Bash(npx.cmd hyperframes transcribe*--engine*heygen*)",
+      "Bash(npx.cmd hyperframes@* transcribe*--engine*heygen*)",
+      "Bash(npx hyperframes audio*--read*)",
+      "Bash(npx hyperframes@* audio*--read*)",
+      "Bash(npx --yes hyperframes audio*--read*)",
+      "Bash(npx --yes hyperframes@* audio*--read*)",
+      "Bash(npx.cmd hyperframes audio*--read*)",
+      "Bash(npx.cmd hyperframes@* audio*--read*)",
+      "Bash(npx hyperframes reverse*)",
+      "Bash(npx hyperframes@* reverse*)",
+      "Bash(npx --yes hyperframes reverse*)",
+      "Bash(npx --yes hyperframes@* reverse*)",
+      "Bash(npx.cmd hyperframes reverse*)",
+      "Bash(npx.cmd hyperframes@* reverse*)"
+    ],
+    "allow": [
+      "Bash(ffmpeg *)",
+      "Bash(ffprobe *)",
+      "Bash(./check-setup.sh*)",
+      "Bash(bash scripts/*)",
+      "Bash(python3 scripts/*)"
+    ]
+  },
+  "env": {
+    "HYPERFRAMES_NO_TELEMETRY": "1",
+    "DO_NOT_TRACK": "1",
+    "HYPERFRAMES_SKIP_SKILLS": "1"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"${CLAUDE_PROJECT_DIR:-.}\" && bash \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/machine-fingerprint.sh\"",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "cd \"${CLAUDE_PROJECT_DIR:-.}\" && bash \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/onboarding-nudge.sh\"",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "cd \"${CLAUDE_PROJECT_DIR:-.}\" && bash \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/update-check.sh\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash|Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/protect-capcut-drafts.sh\"",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "AskUserQuestion",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/chime.sh\"",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/editor-says.sh\" ask",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "permission_prompt|idle_prompt|elicitation_dialog",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/chime.sh\"",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "permission_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/editor-says.sh\" permission",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "elicitation_dialog",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/editor-says.sh\" ask",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "AskUserQuestion",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/editor-says.sh\" answered",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/editor-says.sh\" answered",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

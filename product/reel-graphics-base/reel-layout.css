@@ -1,0 +1,37 @@
+/* reel-layout.css — the shared Layer-1 layout primitives EVERY rendered reel composition includes.
+   One centering primitive + one content-sized card primitive, so geometry is never hand-written per
+   element and never drifts per pack. Dressing (font/color/radius/shadow) is layered ON TOP by the pack;
+   this file only decides WHERE and HOW BIG-shaped, never how it looks.
+
+   The composition sets these vars from the resolved LayoutContext (reel_layout.py) at author time:
+     --rl-canvas-w / --rl-canvas-h   the REAL draft canvas (read from canvas_config, never assumed)
+     --rl-safe-l / --rl-safe-r / --rl-safe-t / --rl-safe-b   the scaled safe box edges (px)
+     --rl-safe-w                     safe content width (px) — the max width any card may reach
+*/
+
+/* CENTER PRIMITIVE — the ONLY sanctioned way to horizontally center.
+   NEVER `transform: translateX(-50%)`: GSAP tweens the transform and overwrites the centering
+   (frame-worker-core.md:74 gsap_css_transform_conflict). inset+margin survives any transform tween. */
+.rl-center{
+  position:absolute;
+  left:0; right:0;
+  margin-inline:auto;
+  width:fit-content;
+}
+
+/* CARD PRIMITIVE — text cards are CONTENT-sized (hug the text), never author-sized.
+   Children stack explicitly (column + center) so a fit-content box can never lay two inline siblings
+   side-by-side and throw the content off-center (§2.6 trap). max-width clamps to the safe width. */
+.rl-card{
+  width:fit-content;
+  max-width:var(--rl-safe-w, 900px);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  box-sizing:border-box;
+}
+
+/* Fixed widths are permitted ONLY for genuinely dimensional graphics (a scrubber, a meter, a divider).
+   Tag them so the gate's fill-target check knows they are intentional, not a small-card defect. */
+.rl-dimensional{ /* author sets width explicitly; exempt from content-sizing */ }

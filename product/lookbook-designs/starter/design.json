@@ -1,0 +1,8 @@
+{
+  "name": "Starter card",
+  "about": "A small line over big words on a card. Copy this folder to start a new design.",
+  "kind": "Card",
+  "slots": ["line1", "line2"],
+  "first_max": 4,
+  "fit": {"line2": {"role": "headline", "box_w": 780, "max_px": 120, "max_lines": 3}}
+}

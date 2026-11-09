@@ -1,0 +1,32 @@
+<!doctype html><meta charset=utf-8><link rel=stylesheet href="/editor/slide.css">
+<style>body{margin:0}.wrap{position:relative;width:1080px}</style>
+<script src="/editor/slide.js"></script>
+<pre id=out></pre>
+<script>
+// Lays every slide out once and reports text that runs off the safe area or sits on the face.
+fetch("/state", {cache: "no-store"}).then(r => r.json()).then(async s => {
+  const z = s.safe || {l: 50, t: 50, r: 1030, b: 1300}, hgt = (s.size || {}).h || 1350;
+  const wraps = s.slides.map((_, i) => { const w = document.createElement("div"); w.className = "wrap"; w.style.height = hgt + "px"; w.append(buildSlide(s, i)); document.body.append(w); return w; });
+  await document.fonts.ready;
+  await Promise.all([...document.images].map(i => i.complete ? 0 : new Promise(r => i.onload = i.onerror = r)));
+  // load every family explicitly: an unused face is never fetched, and a missing file only shows up on load
+  const fams = Object.keys(s.theme.fonts);
+  await Promise.all(fams.map(f => document.fonts.load(`40px ${f}`).catch(() => [])));
+  const missing = fams.filter(f => !document.fonts.check(`40px ${f}`));
+  const report = wraps.map((w, i) => {
+    const o = w.getBoundingClientRect(), flags = [], d = s.slides[i]; let overlap = 0;
+    w.querySelectorAll(".eye,.d,.b,.it,.hl,.shot,.n,.stk").forEach(n => {
+      const g = document.createRange(); g.selectNodeContents(n);
+      const r = n.matches(".hl,.btn,.shot,.stk,.nbtn,.nh") ? n.getBoundingClientRect() : g.getBoundingClientRect();
+      const l = r.left - o.left, t = r.top - o.top, rr = l + r.width, b = t + r.height, txt = (n.matches(".stk") ? "the sticker space" : (n.textContent || "img").trim().slice(0, 30));
+      if (l < z.l || rr > z.r || t < z.t || b > z.b) flags.push(`"${txt}" runs past the safe edge` + (s.format === "story" ? " (under Instagram's buttons)" : ""));
+      const f = d.crop && d.crop.face;
+      if (f && d.kind === "photo" && !(rr < f[0] || l > f[0] + f[2] || b < f[1] || t > f[1] + f[3])) { flags.push(`"${txt}" covers the face`); overlap = Math.max(overlap, f[1] + f[3] - t); }
+    });
+    w.querySelectorAll("img").forEach(im => { if (!im.naturalWidth) flags.push(`a ${im.matches(".ph") ? "photo" : "screenshot"} did not load (${decodeURIComponent((im.src.split("/").pop() || ""))}), so it would export blank`); });
+    return {n: i + 1, flags, overlap: Math.round(overlap)};
+  });
+  document.getElementById("out").textContent = JSON.stringify({missing_fonts: missing, slides: report});
+  document.body.dataset.done = "1";
+});
+</script>

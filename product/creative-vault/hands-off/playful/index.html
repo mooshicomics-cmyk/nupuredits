@@ -1,0 +1,62 @@
+<!doctype html><html><head><meta charset="UTF-8"/>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+@font-face{font-family:Soup;src:url('soup.ttf');}@font-face{font-family:Noto;src:url('noto.ttf');}@font-face{font-family:Ugly;src:url('uglydave.otf');}
+:root{--cream:#F2EDE4;--ink:#1C2418;--green:#1F8A4C;--pink:#FF6B8A;--orange:#E85A1F;--yellow:#F5C518;--sage:#7A8C6A;}
+*{margin:0;padding:0;box-sizing:border-box;}html,body{width:1080px;height:1920px;overflow:hidden;background:#000;}
+.frame{position:absolute;inset:0;container-type:size;overflow:hidden;}
+.soup{font-family:Soup,sans-serif;line-height:0.9;}
+.noto{font-family:Noto,sans-serif;text-transform:uppercase;letter-spacing:0.14em;font-weight:700;}
+.ugly{font-family:Ugly,cursive;}
+.center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 9cqw;text-align:center;}
+.block{border:9px solid var(--ink);box-shadow:16px 16px 0 var(--ink);padding:6cqw 7cqw;}
+.foot{position:absolute;bottom:5cqw;left:6cqw;right:6cqw;display:flex;justify-content:space-between;font-family:Noto;text-transform:uppercase;letter-spacing:0.14em;font-weight:700;font-size:2.1cqw;}
+</style></head><body>
+<div id="root" data-composition-id="pf-reel" data-start="0" data-duration="9" data-width="1080" data-height="1920">
+
+<!-- 1 · COVER — cream, pink color-block with ink border + hard offset shadow, Soup headline -->
+<div class="clip" id="pf-cover" data-start="0" data-duration="2.4" data-track-index="0"><div class="frame" style="background:var(--cream);">
+  <div class="center">
+    <div class="ugly" id="p1k" style="color:var(--orange);font-size:6cqw;transform:rotate(-3deg);margin-bottom:3cqw;">made in naptime</div>
+    <div class="block" id="p1b" style="background:var(--pink);"><div class="soup" style="color:var(--ink);font-size:15cqw;">NAPTIME<br>CREATOR</div></div>
+  </div>
+  <div class="foot" style="color:var(--ink);"><span>Playful</span><span>01 / 04</span></div>
+</div></div>
+
+<!-- 2 · CLAIM — full green block, cream Soup -->
+<div class="clip" id="pf-claim" data-start="2.4" data-duration="2.2" data-track-index="0"><div class="frame" style="background:var(--green);">
+  <div class="center">
+    <div class="soup" id="p2h" style="color:var(--cream);font-size:16cqw;">you are<br>allowed<br>to rest</div>
+  </div>
+  <div class="foot" style="color:var(--cream);"><span>The permission</span><span>02 / 04</span></div>
+</div></div>
+
+<!-- 3 · STAT — cream, yellow stat block with ink border + hard offset shadow, Soup $300 -->
+<div class="clip" id="pf-stat" data-start="4.6" data-duration="2.4" data-track-index="0"><div class="frame" style="background:var(--cream);">
+  <div class="center">
+    <div class="noto" id="p3t" style="color:var(--green);font-size:2.8cqw;margin-bottom:4cqw;">made during one nap</div>
+    <div class="block" id="p3b" style="background:var(--yellow);"><div class="soup" id="p3n" style="color:var(--ink);font-size:26cqw;">$300</div></div>
+  </div>
+  <div class="foot" style="color:var(--ink);"><span>One session</span><span>03 / 04</span></div>
+</div></div>
+
+<!-- 4 · CLOSER — orange, Soup wordmark + pink circle stamp. The tagline is cream: yellow on orange is 2.18:1, cream
+     clears the 3:1 large-type floor (3.05:1), the nearest pack color that does. -->
+<div class="clip" id="pf-closer" data-start="7.0" data-duration="2.0" data-track-index="0"><div class="frame" style="background:var(--orange);">
+  <div class="center">
+    <div id="p4s" style="width:24cqw;height:24cqw;border-radius:50%;background:var(--pink);border:9px solid var(--ink);box-shadow:12px 12px 0 var(--ink);display:flex;align-items:center;justify-content:center;margin-bottom:5cqw;"><span class="soup" style="color:var(--ink);font-size:9cqw;">NC</span></div>
+    <div class="soup" id="p4w" style="color:var(--cream);font-size:7cqw;">naptime creator studio</div>
+    <div class="ugly" id="p4t" style="color:var(--cream);font-size:5.5cqw;margin-top:2cqw;transform:rotate(-2deg);">in the margins of motherhood</div>
+  </div>
+</div></div>
+
+</div>
+<script>
+window.__timelines=window.__timelines||{};const tl=gsap.timeline({paused:true});const B="back.out(1.7)";
+tl.from("#p1k",{autoAlpha:0,y:-16,rotation:-14,duration:0.4,ease:B},0.1).from("#p1b",{autoAlpha:0,scale:0.7,duration:0.5,ease:B},0.3);
+tl.from("#p2h",{autoAlpha:0,y:30,duration:0.5,ease:"power3.out"},2.6);
+tl.from("#p3t",{autoAlpha:0,y:-10,duration:0.4},4.75).from("#p3b",{autoAlpha:0,scale:0.7,duration:0.5,ease:B},4.9);
+const o={v:0};tl.to(o,{v:300,duration:1.0,ease:"power2.out",onUpdate:()=>{document.getElementById("p3n").textContent="$"+Math.round(o.v)}},5.2);
+tl.from("#p4s",{autoAlpha:0,scale:0.5,rotation:-20,duration:0.5,ease:B},7.15).from("#p4w",{autoAlpha:0,y:16,duration:0.45},7.5).from("#p4t",{autoAlpha:0,rotation:-12,duration:0.5,ease:B},7.75);
+tl.set({},{},9);window.__timelines["pf-reel"]=tl;
+</script></body></html>

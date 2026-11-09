@@ -1,0 +1,49 @@
+/* Carousel slide styles. Every color and font is a CSS variable set per slide from the style pack (slide.js). */
+.s{position:relative;width:var(--W,1080px);height:var(--H,1350px);overflow:hidden;font-family:CBody;color:var(--photo-text);background:#111;--ov:1;--sh:.28}
+.s *{margin:0;box-sizing:border-box}
+.s.ground{background:var(--ground);color:var(--ground-ink)}
+.s.card{background:var(--card);color:var(--card-ink)}
+.s .ph{position:absolute;max-width:none;user-select:none;-webkit-user-drag:none}
+.s .scrim{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom,rgba(var(--scrim),0) 0%,rgba(var(--scrim),0) 36%,
+  rgba(var(--scrim),calc(.18*var(--ov))) 44%,rgba(var(--scrim),calc(.45*var(--ov))) 54%,rgba(var(--scrim),calc(.66*var(--ov))) 66%,
+  rgba(var(--scrim),calc(.78*var(--ov))) 80%,rgba(var(--scrim),calc(.84*var(--ov))) 100%)}
+.s .txt{position:absolute;left:var(--pad,90px);right:var(--pad,90px);bottom:var(--txt-b,100px)}
+.s .mid{position:absolute;inset:var(--mid-t,0) 0 var(--mid-b,0);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 var(--pad,90px)}
+.s .mid.l{align-items:flex-start;text-align:left}
+.s.photo .txt{text-shadow:0 2px 18px rgba(0,0,0,var(--sh))}
+.s .c{text-align:center}
+.s .eye{font-family:CEye;font-size:76px;line-height:var(--eye-lh,1.05);margin-bottom:var(--eye-gap,22px);font-weight:var(--eye-weight);letter-spacing:var(--eye-track)}
+.s.photo .eye{color:var(--photo-eye)}.s.ground .eye{color:var(--ground-eye)}.s.card .eye{color:var(--card-eye)}
+.s .d{font-family:CDisp;text-transform:var(--disp-case);letter-spacing:var(--disp-track);line-height:var(--disp-lh);font-weight:var(--disp-weight);color:var(--photo-disp)}
+.s.ground .d{color:var(--ground-disp)}.s.card .d{color:var(--card-disp)}
+.s .b{font-size:46px;line-height:1.3;letter-spacing:-.01em;font-weight:var(--body-weight)}
+.s .it{font-family:CTurn;font-size:104px;line-height:1.04}
+.s.photo .it{color:var(--photo-text)}.s.ground .it{color:var(--ground-disp)}.s.card .it{color:var(--card-disp)}
+.s .hl{background:var(--accent);color:var(--accent-ink);padding:.32em .55em;text-box:trim-both cap alphabetic;border-radius:var(--chip-r);display:inline-block;text-shadow:none;border:var(--chip-border);box-shadow:var(--chip-shadow)}
+/* trim the line box to cap height + baseline so the word sits optically centered in any font */
+.s .d.btn{display:inline-block;background:var(--accent);color:var(--accent-ink);padding:.2em .34em;text-box:trim-both cap alphabetic;line-height:1;border-radius:var(--chip-r);text-shadow:none;border:var(--chip-border);box-shadow:var(--chip-shadow)}
+.s .shot{display:block;max-width:100%;height:auto;border-radius:24px;box-shadow:0 22px 50px rgba(0,0,0,.28);margin:10px auto 44px}
+.s .pill{background:var(--card);color:var(--card-ink);border-radius:60px;padding:24px 34px 24px 80px;font-size:40px;position:relative;margin-top:18px;text-shadow:none}
+.s .chip{display:inline-block;border:5px solid currentColor;border-radius:60px;padding:14px 34px;font-size:44px;margin:0 14px 18px 0}
+
+/* ---- stories: words sit inside Instagram's safe zone (the --mid/--txt variables), spaced by gap ---- */
+.s.story .txt{display:flex;flex-direction:column;align-items:center;gap:26px}
+.s.story .mid{gap:30px}
+.s.story .eye{margin-bottom:0}
+/* native look: Instagram's Classic text */
+.s .n{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-weight:700;
+  font-size:68px;line-height:1.2;color:#fff;letter-spacing:-.01em;overflow-wrap:anywhere}
+.s.ground .n{color:var(--ground-ink)}.s.card .n{color:var(--card-ink)}
+.s .nw{line-height:1.62}
+.s .n.nh{display:inline;background:#fff;color:#111;padding:8px 18px;border-radius:14px;-webkit-box-decoration-break:clone;box-decoration-break:clone;text-shadow:none}
+.s.ground .n.nh{background:var(--ground-ink);color:var(--ground)}.s.card .n.nh{background:var(--card-ink);color:var(--card)}
+.s .n.nbig{font-size:200px;letter-spacing:-.04em;line-height:1}
+.s .n.nbtn{display:inline-block;font-size:130px;line-height:1;padding:.12em .3em;border-radius:24px;background:#fff;color:#111;text-shadow:none}
+.s.ground .n.nbtn{background:var(--ground-ink);color:var(--ground)}.s.card .n.nbtn{background:var(--card-ink);color:var(--card)}
+/* a sticker she adds in Instagram: a held space, never exported */
+.s .stk{width:640px;min-height:260px;border:5px dashed currentColor;border-radius:36px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:10px;padding:24px;font:600 36px/1.25 -apple-system,"Segoe UI",Roboto,Helvetica,sans-serif;opacity:.8;text-shadow:none}
+.s .stk small{font-size:27px;font-weight:500;opacity:.85;text-align:center}
+.s .stk.link{width:520px;min-height:130px}.s .stk.slider{min-height:200px}.s .stk.question{min-height:320px}
+.s.photo .stk{color:#fff}.s.ground .stk{color:var(--ground-ink)}.s.card .stk{color:var(--card-ink)}
+.s .b,.s .n,.s .nw,.s .it{text-wrap:balance}   /* no lonely last word in body lines either */

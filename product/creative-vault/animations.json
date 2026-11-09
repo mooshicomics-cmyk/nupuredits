@@ -1,0 +1,44 @@
+{
+  "_doc": "CREATIVE DIRECTION VAULT — animation registry. the creator's real CapCut text animations (name -> resource_id), extracted from your own drafts 2026-07-29. Builds patch these resource_ids onto text material_animations to apply your EXACT animations (engine enum names ≠ CapCut names, so ID-patching is the only reliable way — same trick as fonts). No more Bounce_In stand-ins.",
+  "clean_yap_text_animations": {
+    "_rule": "ROTATE for VARIETY (the creator) — never the same animation on every element. Hook usually Random Typewriter. Thoughts rotate across the sets below.",
+    "in_rotation": {
+      "Chalky Scribble": "7540595903808277777",
+      "Slide Left": "6798332871267324423",
+      "Slide Right": "6798333076469453320",
+      "Cheeky Bounce": "7527870705392717057",
+      "Cursor Drag-In": "7628816706219052308",
+      "Random Typewriter": "7145435525799744002"
+    },
+    "out_rotation": {
+      "Slide Left": "6763873602476446221",
+      "Slide Right": "6798333350487527950",
+      "Erase": "7642247005737061652",
+      "Text Fade": "7646372829113371912"
+    },
+    "_needs_confirm": "‘click in’ — closest in your vocab is Cursor Drag-In (7628816706219052308); confirm or point me at the one you mean."
+  },
+  "all_in": {
+    "Bounce Bigger": "7628624411137969416", "Bounce In": "6887766069587481090", "Bounce Left": "7314651687149376001",
+    "Bouncy Entrance": "7598060819145919760", "Chalky Scribble": "7540595903808277777", "Cheeky Bounce": "7527870705392717057",
+    "Cheeky Unroll": "7583753907202002192", "Cursor Drag-In": "7628816706219052308", "Down": "7597491235401649425",
+    "Drop down": "7338706736871641601", "Flash In": "7211044701367964162", "Left": "7597700024860036353",
+    "Lift In": "7648939535849590036", "Random Typewriter": "7145435525799744002", "Right": "7597674120737787153",
+    "Rise Fade-In": "7648939647032200469", "Rock Horizontally": "6739418540421419524", "Rock Vertically": "6739418390030455300",
+    "Roll Landing": "7565842231504948481", "School Trip": "7597009340931034375", "Shake 3": "6781683302672634382",
+    "Showing Up": "7149113228788765186", "Slide Down": "7403256520537805329", "Slide Left": "6798332871267324423",
+    "Slide Right": "6798333076469453320", "Spring": "7428455252141034757", "Stretch Right": "7597909774037978384",
+    "Swing": "6803260897117606414", "Text Fill": "7568416441741970689", "Text Sprout": "7514905678301957393",
+    "Throw Out": "7233110260204966402", "Tiny Jump": "7563492361758690577", "Twinkle In": "7647898204687600903",
+    "Type 1": "6724920249654710791", "Typewriter": "7210980292243231233", "Up": "7597653957040786705",
+    "Wiper": "6802871256849846791", "Zoom In": "7428455170469580037"
+  },
+  "all_out": {
+    "Bounce Out": "6887765964515971585", "Bouncy Exit": "7546412486296112400", "Diminish": "7648939068872559893",
+    "Down": "7597776480067718416", "Erase": "7642247005737061652", "Gradual Drop": "7509022932040043793",
+    "Hyper Retreat": "7546443834452872449", "Slide Down": "6798333787986989576", "Slide Left": "6763873602476446221",
+    "Slide Right": "6798333350487527950", "Slide Up": "6798333612958683656", "Sliding Drop": "7511931646191340817",
+    "Stretched Out": "7548872560352513281", "Suck Away": "7646376478111698184", "Sweep Away": "7646374876479048981",
+    "Text Fade": "7646372829113371912", "Up": "7597878321166290177", "Zoom Out": "6798332648814023181"
+  }
+}

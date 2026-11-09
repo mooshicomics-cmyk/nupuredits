@@ -1,0 +1,42 @@
+{
+  "_doc": "Super Yap SPEC — the LOADED yap. Engine: superyap.py. Human doc: SUPERYAP.md (which builder per doneness + the driver recipe). Clean Yap counterpart: cleanyap.json. Composes from the full component menu (creative-vault/components/) — I act as creative director, not a template-filler.",
+  "format": {
+    "name": "Super Yap",
+    "family": "YAPS (on-camera talking head)",
+    "definition": "the loaded version: everything Clean Yap PLUS doodle-sticker layers, full-screen takeover, stat cards, b-roll cutaways/bursts, punch-ins, heavy animations, and CUSTOM motion graphics composed per content.",
+    "canvas": {"w": 1080, "h": 1920, "aspect": "9:16"},
+    "ask_up_front": "animation style (per the creator's rule — ask at the START of each Super Yap)",
+    "doneness": {
+      "_axis_note": "Doneness (how baked) is a SEPARATE axis from format — it applies to Clean Yap too, not just Super Yap (locked). Pick per reel.",
+      "raw": "editable CapCut text + native Auto Captions (superyap.py editable-text path).",
+      "medium_well": "rendered effects on NAMED .mov layers over her editable cut (build-reel-type.py -> separate_layers.sh -> CapCut; SUPERYAP.md Medium); footage / graphics / SFX editable.",
+      "well_done": "fully baked flat MP4, nothing editable (build-reel-type.py)."
+    }
+  },
+  "creative_direction_pass": {
+    "REQUIRED": true,
+    "_note": "Customize every video per content. Pitch suggestions. Be a world-class creative director — soft touches, custom cards, custom motion graphics that make sense for the content. Visual storytelling that's captivating. Use your FULL capabilities, not my limited understanding of what's possible.",
+    "steps": [
+      "1. Read the finished-script transcript beat by beat.",
+      "2. For each beat, ask: would a custom card / motion graphic make the STORY land harder here? (Not decoration — storytelling.)",
+      "3. Pitch the per-beat plan to the creator with specific components (from creative-vault/components/) + any NEW custom idea.",
+      "4. the creator approves/adjusts. Then build once, patch after (never full rebuild)."
+    ],
+    "restraint": "Not every beat gets a graphic. Earn each one. But DO reach beyond the known menu — pitch new components."
+  },
+  "component_menu": "creative-vault/components/README.md — compose from the FULL menu; add new components as we invent them.",
+  "full_capabilities": {
+    "_note": "CONTINUING to add motion graphics to Super Yaps — this list grows. Utilize the whole engine.",
+    "hyperframes": "Render rich motion graphics as .mov overlays via HyperFrames 0.9.6 (48 animation rules, 22 blueprints, AI image/video gen). Use for: full-screen ILLUSTRATIVE takeovers with a storyline, chat threads, callouts, notes/journal cards, search-bar reveals, animated diagrams.",
+    "animate_her_assets": "Grab from ~/brand-assets (55-icon doodle pack, product covers, GROW screenshots, b-roll) and animate them ON screen as INDIVIDUAL editable layers (slide/zoom/pop) — never baked.",
+    "illustrative_storyline": "A rendered illustrated scene under the VO that tells a mini-story (not just words on screen).",
+    "editable_first": "Base + her assets stay individually editable in CapCut; HyperFrames pieces import as finished .mov clips. Never compound/group."
+  },
+  "inherits_from_clean_yap": ["hook card", "Ugly Dave thoughts (rotate + paired sound)", "jump cuts", "slow zoom-in opener", "native Auto Captions", "HER sfx palette only", "sound-matches-motion pairing", "main-track ripple (magnet + default-named audio)"],
+  "rules": {
+    "always_patch_never_rebuild": true,
+    "never_revert_her_edits": true,
+    "sfx_from_her_palette_only": true,
+    "no_em_dash_in_copy": true
+  }
+}

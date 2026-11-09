@@ -1,0 +1,8 @@
+{
+  "engine": "ai-edit-engine",
+  "name": "The Reels Editing Engine",
+  "version": "2.5.4",
+  "hyperframes": "0.9.6",
+  "update_url": "https://startupmom-updates.netlify.app/u/7bb4459b496d0a9ec4b7f3bf09d98082/v2",
+  "course_guide_url": "https://startupmom-updates.netlify.app/cg/549ef3c7fc0dfb6a3f9c9df18c43010c/the-reels-editing-engine.json"
+}

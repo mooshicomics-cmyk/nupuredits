@@ -1,0 +1,76 @@
+<!doctype html><html><head><meta charset="UTF-8"/>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+/* Fonts bundled locally (offline, deterministic render — no CDN at render time).
+   Playfair Display + Poppins are OFL and ship co-located. Playfair is a STATIC instance
+   (headless @font-face needs static faces, not variable fonts). Prosecco is licensed and
+   staged separately from the buyer's CapCut. */
+@font-face{font-family:'Playfair Display';src:url('playfair.ttf');}
+@font-face{font-family:'Poppins';src:url('poppins.ttf');}
+@font-face{font-family:Prosecco;src:url('prosecco.ttf');}
+:root{--green:#1C2418;--green-lite:#3a5a36;--pink:#FF6B8A;--cream:#F2EDE4;--sage:#7A8C6A;--ink:#1a1a17;
+  /* Text on the CREAM ground needs its own shades to stay readable (HyperFrames' contrast check, WCAG AA).
+     --pink-deep: the same pink darkened just enough for large type on cream (3.03:1; no pack pink clears 3:1
+     there, #d27e96 is 2.51:1). The bright --pink stays for the green frames, hairlines and fills.
+     Small footer type on cream uses the pack's green-lite (6.68:1); sage is 3.11:1, fine only for large type. */
+  --pink-deep:#de5d78;}
+*{margin:0;padding:0;box-sizing:border-box;}html,body{width:1080px;height:1920px;overflow:hidden;background:#000;}
+.frame{position:absolute;inset:0;container-type:size;overflow:hidden;}
+.serif{font-family:'Playfair Display',serif;font-weight:600;letter-spacing:-0.02em;}
+.script{font-family:Prosecco,cursive;}
+.mono{font-family:'Poppins',sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:0.18em;}
+.topbar{position:absolute;top:5cqw;left:5cqw;right:5cqw;display:flex;justify-content:space-between;align-items:center;font-family:'Poppins',sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:0.18em;font-size:2.4cqw;}
+.mono-circle{width:8cqw;height:8cqw;border:2px solid var(--pink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Poppins';font-size:2.6cqw;}
+.foot{position:absolute;bottom:5cqw;left:5cqw;right:5cqw;display:flex;justify-content:space-between;font-family:'Poppins',sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:0.14em;font-size:2.1cqw;}
+.center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 8cqw;text-align:center;}
+.rule{height:2px;background:var(--pink);}
+</style></head><body>
+<div id="root" data-composition-id="ed-reel" data-start="0" data-duration="9" data-width="1080" data-height="1920">
+
+<div class="clip" id="ed-cover" data-start="0" data-duration="2.4" data-track-index="0"><div class="frame" style="background:var(--cream);color:var(--green);">
+  <div class="topbar" style="color:var(--sage);"><span id="t1">Naptime Creator Studio</span><span class="mono-circle" style="color:var(--pink-deep);border-color:var(--pink-deep);" id="m1">NC</span></div>
+  <div class="center">
+    <div class="mono" id="c1k" style="color:var(--sage);font-size:2.6cqw;margin-bottom:4cqw;">A quiet manifesto</div>
+    <div class="serif" id="c1h" style="font-size:9.5cqw;line-height:1.0;">you can <span class="script" style="color:var(--pink-deep);font-weight:400;">love</span><br>being home</div>
+    <div class="rule" id="c1r" style="width:20cqw;margin-top:5cqw;"></div>
+  </div>
+  <div class="foot" style="color:var(--green-lite);"><span>Editorial</span><span>01 / 04</span></div>
+</div></div>
+
+<div class="clip" id="ed-tension" data-start="2.4" data-duration="2.2" data-track-index="0"><div class="frame" style="background:var(--green);color:var(--cream);">
+  <div class="topbar" style="color:var(--sage);"><span>The tension</span><span class="mono-circle" style="color:var(--pink);border-color:var(--pink);">NC</span></div>
+  <div class="center">
+    <div class="serif" id="c2h" style="font-size:8.5cqw;line-height:1.02;">and still <span class="script" style="color:var(--pink);font-weight:400;">miss</span><br>who you<br>used to be</div>
+  </div>
+  <div class="foot" style="color:var(--sage);"><span>Business in the margins</span><span>02 / 04</span></div>
+</div></div>
+
+<div class="clip" id="ed-proof" data-start="4.6" data-duration="2.4" data-track-index="0"><div class="frame" style="background:var(--cream);color:var(--green);">
+  <div class="topbar" style="color:var(--sage);"><span>The proof</span><span class="mono-circle" style="color:var(--pink-deep);border-color:var(--pink-deep);">NC</span></div>
+  <div class="center">
+    <div class="rule" id="c3r" style="width:16cqw;background:var(--pink);margin-bottom:4cqw;"></div>
+    <div class="mono" id="c3t" style="color:var(--sage);font-size:2.6cqw;margin-bottom:3cqw;">Made during one nap</div>
+    <div class="serif" id="c3n" style="font-size:26cqw;line-height:0.9;">$300</div>
+  </div>
+  <div class="foot" style="color:var(--green-lite);"><span>One session</span><span>03 / 04</span></div>
+</div></div>
+
+<div class="clip" id="ed-closer" data-start="7.0" data-duration="2.0" data-track-index="0"><div class="frame" style="background:var(--green);color:var(--cream);">
+  <div class="center">
+    <div class="mono-circle" id="c4m" style="color:var(--pink);border-color:var(--pink);width:16cqw;height:16cqw;font-size:5cqw;margin-bottom:5cqw;">NC</div>
+    <div class="mono" id="c4w" style="color:var(--cream);font-size:3.2cqw;">Naptime Creator Studio</div>
+    <div class="script" id="c4t" style="font-size:7cqw;color:var(--pink);margin-top:3cqw;">in the margins of motherhood</div>
+  </div>
+</div></div>
+
+</div>
+<script>
+window.__timelines=window.__timelines||{};const tl=gsap.timeline({paused:true});const E="power3.out";
+tl.from("#t1",{autoAlpha:0,duration:0.4},0.1).from("#m1",{autoAlpha:0,scale:0.5,duration:0.4,ease:"back.out(2)"},0.2);
+tl.from("#c1k",{autoAlpha:0,y:-12,duration:0.4},0.35).from("#c1h",{autoAlpha:0,y:26,duration:0.55,ease:E},0.5).fromTo("#c1r",{width:0},{width:"20cqw",duration:0.5,ease:E},0.9);
+tl.from("#c2h",{autoAlpha:0,y:26,duration:0.55,ease:E},2.6);
+tl.fromTo("#c3r",{width:0},{width:"16cqw",duration:0.4,ease:E},4.75).from("#c3t",{autoAlpha:0,y:-10,duration:0.4},4.9);
+const o={v:0};tl.from("#c3n",{autoAlpha:0,y:30,duration:0.4,ease:E},5.1).to(o,{v:300,duration:1.0,ease:"power2.out",onUpdate:()=>{document.getElementById("c3n").textContent="$"+Math.round(o.v)}},5.15);
+tl.from("#c4m",{autoAlpha:0,scale:0.6,duration:0.5,ease:"back.out(2)"},7.15).from("#c4w",{autoAlpha:0,y:16,duration:0.45},7.5).from("#c4t",{autoAlpha:0,y:10,duration:0.5},7.75);
+tl.set({},{},9);window.__timelines["ed-reel"]=tl;
+</script></body></html>

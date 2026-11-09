@@ -1,0 +1,301 @@
+{
+ "_doc": "STYLE PACKS — the swappable font layer, cloned EXACTLY from the creator's 'Font Pack' CapCut mockup (2026-07-31). 3 launch packs (Editorial · Playful · Butter), all in the kit. Each element (headline/takeover/caption/thought_bubble/accent_caption) has its font + size + tracking(letter-spacing) + line_height + y(up+), per pack. The LAYOUT is the pattern; fonts/sizes are per-pack. Engine reads this: pick a pack -> apply. Both build modes (kinetic HF overlay + native CapCut) use it. Roles: main=headline+takeover(usually), accent=thought_bubble+accent_caption(the personality font), caption=read-along(quiet). Sizes are per-font on purpose (accent runs 2 lines on some, 3 on others). Drop shadow = a legibility FLOOR (always ON for rendered text over footage; a pack TUNES its value via welldone.text_shadow, but can never remove it — resolved by stylepack.text_shadow()). See style-pack-architecture memory, font-picking-guardrails.md, fonts.json.",
+ "builds": [
+  "kinetic",
+  "capcut"
+ ],
+ "caption_layouts": [
+  "single_word_snap",
+  "karaoke_line_build"
+ ],
+ "captions": {
+  "read_along_style": {
+   "user_choice": true,
+   "options": [
+    "karaoke_line_build",
+    "single_word_snap"
+   ],
+   "_doc": "USER picks per reel. karaoke_line_build = words build in place (fixed positions) with a MOVING sweep; single_word_snap = one word at a time, centered, replacing."
+  },
+  "accent_caption_style": "karaoke_line_build_ALWAYS",
+  "_accent_caption_doc": "Accent captions ALWAYS appear karaoke line-build (moving sweep, word-by-word, fixed positions) — never snap, never static block (locked).",
+  "highlight": {
+   "accent_color_optional": true,
+   "default_on": true,
+   "_doc": "The accent-color highlight on the currently-swept word is OPTIONAL. It is ALWAYS available, but the user can keep captions plain white (no color)."
+  }
+ },
+ "accent_color": {
+  "user_customizable": true,
+  "default": "#FFFFFF",
+  "_doc": "Accent = the CLIENT's chosen color, never an imposed default (the creator: not my butter yellow). Each pack sets its own accent; a buyer overrides per-brand. Unset falls back to WHITE (neutral), never a yellow. the creator's personal butter #FFFFC2 is passed explicitly on her own reels only."
+ },
+ "font_dir": "assets/fonts",
+ "system_fonts": {
+  "Helvetica Neue": "/System/Library/Fonts/HelveticaNeue.ttc"
+ },
+ "packs": {
+  "Editorial": {
+   "vibe": "literary + editorial (green/pink/cream · Playfair · Poppins chrome · Prosecco accent)",
+   "in_launch_kit": true,
+   "subhead_source": "accent_caption",
+   "welldone": {
+    "eyebrow_scale": 1.35,
+    "build_scale": 0.8,
+    "single_scale": 0.765,
+    "single_tracking": -0.02,
+    "karaoke_weight": "400",
+    "headline_weight": "800",
+    "subhead_weight": "normal",
+    "text_shadow": "0 3px 14px rgba(0,0,0,.72)"
+   },
+   "fonts": {
+    "main": "Playfair Display",
+    "accent": "Prosecco and Baguette",
+    "caption": "Poppins"
+   },
+   "elements": {
+    "headline": {
+     "font": "Playfair Display",
+     "file": "PlayfairDisplay-VF.ttf",
+     "size": 20,
+     "tracking": -0.05,
+     "line_height": -0.18,
+     "y": 0.56,
+     "case": "lower"
+    },
+    "takeover": {
+     "font": "Prosecco and Baguette",
+     "file": "Prosecco.ttf",
+     "size": 26,
+     "tracking": 0.0,
+     "line_height": 0.02,
+     "y": 0.0,
+     "case": "lower",
+     "step": 0.148,
+     "fallback_file": "PinyonScript-Regular.ttf"
+    },
+    "caption": {
+     "font": "Poppins",
+     "file": "Poppins-SemiBold.ttf",
+     "size": 10,
+     "tracking": 0.0,
+     "line_height": 0.02,
+     "y": -0.17,
+     "case": "lower"
+    },
+    "thought_bubble": {
+     "font": "Prosecco and Baguette",
+     "file": "Prosecco.ttf",
+     "size": 10,
+     "tracking": 0.0,
+     "line_height": 0.02,
+     "y": 0.681,
+     "case": "lower",
+     "fallback_file": "PinyonScript-Regular.ttf"
+    },
+    "accent_caption": {
+     "font": "Prosecco and Baguette",
+     "file": "Prosecco.ttf",
+     "size": 14,
+     "tracking": 0.0,
+     "line_height": 0.02,
+     "y": -0.23,
+     "case": "lower",
+     "fallback_file": "PinyonScript-Regular.ttf"
+    }
+   },
+   "accent_color": "#ffadbf",
+   "capcut": {
+    "headline_size": 28,
+    "headline_tracking": -0.06,
+    "headline_line_spacing": -0.27,
+    "subhead_size": 11,
+    "single_headline_size": 22,
+    "hook_color": "white"
+   }
+  },
+  "Butter": {
+   "vibe": "modern + minimal",
+   "in_launch_kit": true,
+   "fonts": {
+    "main": "Inter",
+    "accent": "Bloop",
+    "caption": "Inter",
+    "label": "Space Grotesk"
+   },
+   "elements": {
+    "headline": {
+     "font": "Inter",
+     "file": "Inter-Black.otf",
+     "size": 25,
+     "tracking": -0.03,
+     "line_height": -0.28,
+     "y": 0.59,
+     "case": "upper"
+    },
+    "takeover": {
+     "font": "Inter",
+     "file": "Inter-Black.otf",
+     "size": 34,
+     "tracking": 0.0,
+     "line_height": 0.02,
+     "y": 0.0,
+     "case": "upper",
+     "step": 0.174
+    },
+    "caption": {
+     "font": "Inter",
+     "file": "Inter-SemiBold.ttf",
+     "size": 12,
+     "tracking": 0.0,
+     "line_height": 0.02,
+     "y": -0.2,
+     "case": "lower"
+    },
+    "thought_bubble": {
+     "font": "Bloop",
+     "file": "Bloop.ttf",
+     "size": 10,
+     "tracking": 0.0,
+     "line_height": 0.02,
+     "y": 0.69,
+     "case": "lower",
+     "fallback_file": "Inter-Bold.otf"
+    },
+    "accent_caption": {
+     "font": "Bloop",
+     "file": "Bloop.ttf",
+     "size": 14,
+     "tracking": 0.0,
+     "line_height": 0.02,
+     "y": -0.23,
+     "case": "lower",
+     "fallback_file": "Inter-Bold.otf"
+    }
+   },
+   "accent_color": "#fdc341",
+   "capcut": {
+    "hook_color": "white"
+   },
+   "subhead_source": "caption",
+   "subhead_font_file": "Bloop.ttf",
+   "subhead_font_name": "Bloop",
+   "subhead_weight": "600",
+   "karaoke_font_file": "Inter-SemiBold.ttf",
+   "karaoke_font_name": "Inter",
+   "welldone": {
+    "text_shadow": "0 0 1.5px rgba(0,0,0,.7), 0 2px 3px rgba(0,0,0,.45), 0 4px 12px rgba(0,0,0,.3)",
+    "karaoke_weight": "500",
+    "single_weight": "500",
+    "headline_tracking": -0.05,
+    "subhead_weight": "normal",
+    "subhead_tracking": 0,
+    "hook_color": "#FBE96B",
+    "hook_maxw": 950,
+    "build_scale": 0.85,
+    "single_scale": 0.85,
+    "eyebrow_scale": 1.35,
+    "subhead_color": "#ffffff",
+    "head_one_min": 80,
+    "single_tracking": -0.02
+   }
+  },
+  "Playful": {
+   "vibe": "brutalist playful (color-blocks + ink borders + hard offset shadows · Soup Du Jour · Ugly Dave · Noto)",
+   "in_launch_kit": true,
+   "subhead_source": "accent_caption",
+   "subhead_font_file": "UglyDaveAlternates.otf",
+   "subhead_font_name": "Ugly Dave",
+   "capcut": {
+    "headline_size": 23,
+    "subhead_size": 11,
+    "caption_size": 10,
+    "hook_color": "white",
+    "single_headline_size": 28
+   },
+   "welldone": {
+    "headline_maxh": 0.9,
+    "eyebrow_scale": 1.5,
+    "caption_scale": 1.45,
+    "line_height": 0.78,
+    "eyebrow_gap": 18,
+    "text_shadow": "0 3px 30px rgba(0,0,0,.55)",
+    "takeover_scale": 1.0,
+    "takeover_white": true,
+    "subhead_weight": "normal",
+    "build_scale": 1.34,
+    "karaoke_weight": "400",
+    "single_weight": "400",
+    "hook_maxw": 840,
+    "single_scale": 1.58
+   },
+   "fonts": {
+    "main": "Soup Du Jour",
+    "accent": "Ugly Dave",
+    "caption": "Noto Sans Adlam",
+    "subhead": "Ugly Dave"
+   },
+   "elements": {
+    "headline": {
+     "font": "Soup Du Jour",
+     "file": "SoupDuJour.ttf",
+     "size": 31,
+     "tracking": 0.0,
+     "line_height": -0.18,
+     "y": 0.594,
+     "case": "lower",
+     "fallback_file": "Shrikhand-Regular.ttf"
+    },
+    "takeover": {
+     "font": "Soup Du Jour",
+     "file": "SoupDuJourHollow.ttf",
+     "size": 36,
+     "tracking": 0.0,
+     "line_height": 0.02,
+     "y": 0.0,
+     "case": "upper",
+     "step": 0.175,
+     "fallback_file": "Shrikhand-Regular.ttf"
+    },
+    "caption": {
+     "font": "Ugly Dave",
+     "file": "UglyDaveAlternates.otf",
+     "size": 9,
+     "tracking": 0.0,
+     "line_height": 0.02,
+     "y": -0.186,
+     "case": "lower",
+     "bold": true,
+     "fallback_file": "NotoSansAdlam.ttf"
+    },
+    "thought_bubble": {
+     "font": "Soup Du Jour",
+     "file": "SoupDuJour.ttf",
+     "size": 10,
+     "tracking": 0.0,
+     "line_height": 0.02,
+     "y": 0.632,
+     "case": "lower",
+     "fallback_file": "Shrikhand-Regular.ttf"
+    },
+    "accent_caption": {
+     "font": "Ugly Dave",
+     "file": "UglyDaveAlternates.otf",
+     "size": 11,
+     "tracking": 0.0,
+     "line_height": 0.02,
+     "y": -0.23,
+     "case": "lower",
+     "fallback_file": "NotoSansAdlam.ttf"
+    }
+   },
+   "accent_color": "#F5C518",
+   "line_height_override": 0.9,
+   "_playful_default_note": "Solid Soup Du Jour hook in mustard #F5C518 + white solid subhead; HOLLOW Soup Du Jour is takeover-only (large, one word per line). Inspired by a mustard-yellow reference reel; shade shifted so it is the creator's own, not a copy."
+  }
+ },
+ "licensing": "SETTLED MODEL (2026-08-15): the engine ships NO licensed font file. OFL fonts (Playfair/Poppins/Noto Sans Adlam/Inter/DM Sans) ship bundled. The licensed pack fonts — Prosecco (PeachCreme, PAID) / Soup Du Jour (Pizzadude.dk, 'distribution prohibited') / Bloop (personal-use) — are EXCLUDED from ship (make-ship.sh) and resolve BY NAME from the buyer's own CapCut (product/capcut_userfonts.py; CapCut Pro carries them). check-ship.sh §8 scans font BINARIES and fails on any licensed leak. Geomanist / Opera Cake were the discarded Vintage pack's fonts and are not used by any launch pack. If a buyer's CapCut can't resolve one, product/capcut_font_doctor.py reports it and lets them hand-map a file. Helvetica Neue = system, never bundled.",
+ "_playful_font_note": "Playful mixes TWO Soup Du Jour variants, both display-named 'Soup Du Jour' in CapCut (disambiguate by FILE / resource_id, never by name): the SOLID variant (subfamily 'Solid', resource_id 7525297864323435777) = SoupDuJour.ttf sets the HEADLINE and the THOUGHT_BUBBLE; the HOLLOW/outline variant (subfamily 'Regular', resource_id 7527233572441181457) = SoupDuJourHollow.ttf sets the TAKEOVER only. CAPTION, ACCENT_CAPTION and the subhead are Ugly Dave (UglyDaveAlternates.otf); Noto Sans Adlam is only their bundled fallback. None of these font files ship: they resolve by name from the creator's own CapCut.",
+ "next": "1) Wire build-hf-captions.py STYLE block + superyap/cleanyap to read a pack from here by name and apply file+size+tracking+line_height+y+case per element. 2) Add the karaoke-vs-snap caption toggle + drop-shadow toggle. 3) Render a kinetic + a CapCut sample per pack for the creator to verify. (All fonts captured incl. hollow+solid Soup Du Jour.)"
+}

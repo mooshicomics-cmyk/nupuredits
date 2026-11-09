@@ -1,0 +1,8 @@
+{
+  "draft_profile": "capcut_legacy",
+  "is_capcut_env": true,
+  "draft_domain": "http://localhost:9001",
+  "port": 9001,
+  "preview_router": "/draft/downloader",
+  "is_upload_draft": false
+}

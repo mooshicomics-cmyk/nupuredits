@@ -1,0 +1,76 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+/* Inter bundled locally (offline, deterministic render — no CDN at render time). Inter is OFL and the
+   two static faces ship co-located in this dir (inter-black.otf @900, inter-medium.ttf @500). */
+@font-face{font-family:'Inter';src:url('inter-black.otf');font-weight:900;}
+@font-face{font-family:'Inter';src:url('inter-medium.ttf');font-weight:500;}
+/* Butter "Mellow" pack — pale-lemon ground, vivid-cobalt ink + hairlines, marigold blocks. Inter only (OFL,
+   bundled locally in this dir) so nothing needs staging. Type = UPPERCASE Inter-900 display (the loud graphic) + lowercase
+   Inter-500 labels (the calm). NO shadows, NO rounded, 1px cobalt hairlines. Treatment = block behind word.
+   (The Bloop cute eyebrow is part of Butter's full identity; add it here when the Hands-Off lane is wired to
+   font staging — it is a licensed CapCut font, resolved like Prosecco in the editorial template.) */
+:root{--lemon:#fffdd7;--cobalt:#317ae1;--cobalt-lite:#2a66c4;--marigold:#fdc341;}
+/* Readability (HyperFrames' contrast check, WCAG AA). Vivid cobalt and marigold sit at 2.61:1 against each other,
+   and lemon type on vivid cobalt is 4.06:1, short of 4.5:1 for the small footer. So the full-cobalt frames use the
+   deeper --cobalt-lite ground (lemon 5.34:1, marigold 3.44:1) and cobalt type on a marigold block is --cobalt-lite
+   too. Marigold is a fill, never text on the lemon ground (1.55:1), so the $300 stat keeps it as the pack's own
+   block-behind-word: cobalt-lite type on a marigold block, padding scaled with the 30cqw size. */
+*{margin:0;padding:0;box-sizing:border-box;}html,body{width:1080px;height:1920px;overflow:hidden;background:#000;}
+.frame{position:absolute;inset:0;container-type:size;overflow:hidden;}
+.blk{font-family:'Inter',sans-serif;font-weight:900;text-transform:uppercase;line-height:0.92;letter-spacing:-0.03em;}
+.mono{font-family:'Inter',sans-serif;font-weight:500;text-transform:lowercase;letter-spacing:0.02em;}
+.topbar{position:absolute;top:5cqw;left:5cqw;right:5cqw;display:flex;justify-content:space-between;align-items:center;font-family:'Inter',sans-serif;font-weight:500;text-transform:lowercase;letter-spacing:0.02em;font-size:2.4cqw;}
+.foot{position:absolute;bottom:5cqw;left:5cqw;right:5cqw;display:flex;justify-content:space-between;font-family:'Inter',sans-serif;font-weight:500;text-transform:lowercase;letter-spacing:0.02em;font-size:2.1cqw;}
+.center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 8cqw;text-align:center;}
+.rule{height:2px;background:var(--cobalt);}
+.block{background:var(--marigold);color:var(--cobalt-lite);padding:1cqw 3cqw;display:inline-block;}
+</style></head><body>
+<div id="root" data-composition-id="bt-reel" data-start="0" data-duration="9" data-width="1080" data-height="1920">
+
+<div class="clip" id="bt-cover" data-start="0" data-duration="2.4" data-track-index="0"><div class="frame" style="background:var(--lemon);color:var(--cobalt);">
+  <div class="topbar" style="color:var(--cobalt-lite);"><span id="t1">Naptime Creator Studio</span><span id="m1">01 / 04</span></div>
+  <div class="center">
+    <div class="mono" id="c1k" style="color:var(--cobalt-lite);font-size:2.8cqw;margin-bottom:4cqw;">a sunny little manifesto</div>
+    <div class="blk" id="c1h" style="font-size:15cqw;">income in<br>the <span class="block">margins</span></div>
+    <div class="rule" id="c1r" style="width:20cqw;margin-top:5cqw;"></div>
+  </div>
+  <div class="foot" style="color:var(--cobalt-lite);"><span>Butter</span><span>of motherhood</span></div>
+</div></div>
+
+<div class="clip" id="bt-permission" data-start="2.4" data-duration="2.2" data-track-index="0"><div class="frame" style="background:var(--cobalt-lite);color:var(--lemon);">
+  <div class="topbar" style="color:var(--lemon);"><span>the permission</span><span>02 / 04</span></div>
+  <div class="center">
+    <div class="blk" id="c2h" style="font-size:14cqw;">you are<br>allowed<br>to <span class="block">rest</span></div>
+  </div>
+  <div class="foot" style="color:var(--lemon);"><span>built during nap time</span><span></span></div>
+</div></div>
+
+<div class="clip" id="bt-proof" data-start="4.6" data-duration="2.4" data-track-index="0"><div class="frame" style="background:var(--lemon);color:var(--cobalt);">
+  <div class="topbar" style="color:var(--cobalt-lite);"><span>the proof</span><span>03 / 04</span></div>
+  <div class="center">
+    <div class="rule" id="c3r" style="width:16cqw;margin-bottom:4cqw;"></div>
+    <div class="mono" id="c3t" style="color:var(--cobalt-lite);font-size:2.8cqw;margin-bottom:3cqw;">made during one nap</div>
+    <div class="blk block" id="c3n" style="font-size:30cqw;padding:2cqw 6cqw;">$300</div>
+  </div>
+  <div class="foot" style="color:var(--cobalt-lite);"><span>one session</span><span></span></div>
+</div></div>
+
+<div class="clip" id="bt-closer" data-start="7.0" data-duration="2.0" data-track-index="0"><div class="frame" style="background:var(--cobalt-lite);color:var(--lemon);">
+  <div class="center">
+    <div class="blk" id="c4h" style="font-size:11cqw;color:var(--lemon);">naptime<br>creator<br>studio</div>
+    <div class="mono" id="c4t" style="font-size:3.2cqw;color:var(--marigold);margin-top:4cqw;">income that fits your life</div>
+  </div>
+</div></div>
+
+</div>
+<script>
+window.__timelines=window.__timelines||{};const tl=gsap.timeline({paused:true});const E="power3.out";
+tl.from("#t1",{autoAlpha:0,duration:0.4},0.1).from("#m1",{autoAlpha:0,duration:0.4},0.2);
+tl.from("#c1k",{autoAlpha:0,y:-12,duration:0.4},0.35).from("#c1h",{autoAlpha:0,y:26,duration:0.55,ease:E},0.5).fromTo("#c1r",{width:0},{width:"20cqw",duration:0.5,ease:E},0.9);
+tl.from("#c2h",{autoAlpha:0,y:26,duration:0.55,ease:E},2.6);
+tl.fromTo("#c3r",{width:0},{width:"16cqw",duration:0.4,ease:E},4.75).from("#c3t",{autoAlpha:0,y:-10,duration:0.4},4.9);
+const o={v:0};tl.from("#c3n",{autoAlpha:0,y:30,duration:0.4,ease:"back.out(2)"},5.1).to(o,{v:300,duration:1.0,ease:"power2.out",onUpdate:()=>{document.getElementById("c3n").textContent="$"+Math.round(o.v)}},5.15);
+tl.from("#c4h",{autoAlpha:0,y:20,duration:0.5,ease:E},7.15).from("#c4t",{autoAlpha:0,y:10,duration:0.5},7.55);
+tl.set({},{},9);window.__timelines["bt-reel"]=tl;
+</script></body></html>

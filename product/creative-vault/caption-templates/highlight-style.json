@@ -1,0 +1,34 @@
+{
+  "name": "highlight",
+  "named_by": "the creator, 2026-09-23, on the launch-site reel",
+  "summary": "One word at a time in the pack's caption font, white, under her chin, with rare accent words in the pack's accent serif, italic, in the pack's accent colour and visibly larger.",
+  "base": {
+    "font_role": "caption",
+    "case": "lower",
+    "color": "#ffffff",
+    "px": 72,
+    "weight": 600,
+    "letter_spacing": -1,
+    "shadow": "0 6px 32px rgba(0,0,0,.55)",
+    "placement": "the measured open zone BELOW her chin (subject-zones.json), never a remembered number",
+    "timing": "native: one .clip per word, data-start/data-duration from the aligned transcript",
+    "animation": "none - a per-word fade flickers when she talks fast"
+  },
+  "accent": {
+    "font": "InstrumentSerif-Italic",
+    "color": "#FAE38E",
+    "px": 104,
+    "letter_spacing": 0,
+    "why_bigger": "a serif reads visually smaller than a grotesque at the same px, so MATCHING the number makes the accent look like a mistake. 104 against a 72 base is the ratio she approved (1.44x)."
+  },
+  "picking_the_words": {
+    "rule": "the word carrying the CLAIM - the noun, the number, the payoff. NEVER the verb that delivers it. 'I trained CLAUDE', not 'I TRAINED Claude'.",
+    "density": "roughly one per spoken sentence that makes a claim; phrases may take both words ('real business', 'film strip', 'little nudge')",
+    "in_a_ui_walkthrough": "YES - accent the word that names what the screen is doing as it does it. An earlier guess that the screen was already doing the pointing was wrong and she reversed it.",
+    "case": "a true acronym keeps its caps (MCP); a word she merely says loudly does not (website)",
+    "HOW_TO_ASK": "DO NOT pick them alone and hope. Build the word-picker widget (product/creative-vault/caption-templates/highlight-picker.md) from the aligned transcript, show it, and apply exactly what comes back. She asked for this and it settled a round of 'these words are not good' in one pass."
+  },
+  "sound": {
+    "rule": "NO whoosh or swish inside a full-screen takeover span; the marks may still speak"
+  }
+}

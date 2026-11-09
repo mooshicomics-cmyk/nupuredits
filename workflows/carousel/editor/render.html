@@ -1,0 +1,14 @@
+<!doctype html><meta charset=utf-8><link rel=stylesheet href="/editor/slide.css">
+<style>html,body{margin:0;width:1080px;overflow:hidden;background:#000}.s{display:block}
+/* sticker spaces are for the editor only: the creator adds the real sticker in Instagram */
+.s .stk{visibility:hidden!important}</style>
+<script src="/editor/slide.js"></script>
+<script>
+// ?from=a&to=b stacks slides a..b (1-based) so one screenshot captures them all; ?n=i draws a single slide.
+fetch("/state", {cache: "no-store"}).then(r => r.json()).then(async s => {
+  const q = new URLSearchParams(location.search), a = +(q.get("from") || q.get("n")), b = +(q.get("to") || q.get("n"));
+  for (let i = a; i <= b; i++) document.body.append(buildSlide(s, i - 1));
+  await document.fonts.ready;
+  await Promise.all([...document.images].map(i => i.complete ? 0 : new Promise(r => i.onload = i.onerror = r)));
+});
+</script>
