@@ -44,14 +44,7 @@ talk the way a friend would: the energy, how long your sentences run, whether yo
 much slang. Finish with the one question you would ask of any line before you post it.
 
 ```
-{{two or three lines on how you talk, ending with your gut-check. Three made-up creators, to show the shape:
-  · "Calm and exact, like a shop teacher who likes you. Short sentences. No hype words. Gut check: would
-    I say this with my hands in the dough?"
-  · "Fast, funny, a little chaotic. Lowercase, lots of fragments, one joke per post. Gut check: would
-    this make my group chat laugh?"
-  · "Warm and unhurried. Plain words, no jargon, never rushed. Gut check: would a nervous beginner feel
-    calmer after reading this?"
-Now yours, in your own words.}}
+Conversational and thinking out loud, like talking to one friend across a table. Plain words, second person ("you", "she"), short questions to herself ("Will she like this? Will she not?"). Says the blunt truth first ("everyone on the internet is selfish"), then softens it with a small everyday moment (the chai). Repeats the key idea to make it stick, and teaches while she connects: a mix of personal and useful. Gut check: would I say this to one friend over chai, and would she learn something?
 ```
 
 ### Your voice DNA: the lines you actually say (optional, and it pays off)
