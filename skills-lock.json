@@ -1,0 +1,163 @@
+{
+  "version": 2,
+  "installedWith": "checked at tag v0.9.6 on 2026-11-02: from v0.8.231 only hyperframes-cli references/init-and-scaffold.md, hyperframes SKILL.md, hyperframes references/skill-lifecycle.md (all three only name the reverse-any-video skill, which is not carried), media-use references/heygen.md and reverse-any-video itself changed upstream, and none of those changes is taken, so every hash stands; earlier: checked at tag v0.8.231 on 2026-11-01: no skills/ file changed from v0.8.230, so every hash stands; earlier: hyperframes-cli, hyperframes-registry, media-use and remotion-to-hyperframes brought up to tag v0.8.230 on 2026-11-01 (the only skills/ files of the seven that changed from v0.8.214 to v0.8.230; plain copies except hyperframes-cli TOOLKIT.md, references/preview-render.md, references/upgrade-info-misc.md and references/cloud.md, hyperframes-registry TOOLKIT.md, media-use TOOLKIT.md and references/setup-providers.md, which keep the engine's own changes: no cloud render as the paid-plan final, no sign-in prompt, no `billing`, `media-use generate` or `transcribe --engine heygen`, and a paid call says its cost first; media-use references/heygen.md and the new reverse-any-video skill are not carried; remotion-to-hyperframes scripts frame_strip.sh and render_diff.sh, removed upstream, stay); earlier: hyperframes, hyperframes-cli, hyperframes-registry, media-use, figma, slideshow and remotion-to-hyperframes brought up to tag v0.8.214 on 2026-10-28 (the seven skills HyperFrames still publishes after it retired the workflow skills and folded guides in v0.8.185; every skills/ file of theirs that changed or was added from v0.8.181 to v0.8.214 is carried, plain copies except the hyperframes, hyperframes-cli, hyperframes-registry and media-use entries (TOOLKIT.md), hyperframes-cli references/preview-render.md and the new references/feedback.md, hyperframes-registry's new references/search.md and hyperframes references/skill-lifecycle.md, which keep the engine's own changes; files upstream removed from these seven stay, because the retired skills still use them; hyperframes-studio and the desktop-app hand-off are not carried). The thirteen retired skills (hyperframes-core, -animation, -keyframes, -creative, -audio, embedded-captions, general-video, motion-graphics, faceless-explainer, talking-head-recut, product-launch-video, pr-to-video, music-to-video) stay as they were at v0.8.181, so their hashes stand; earlier: embedded-captions (scripts/hf-cli.cjs, its new hf-cli.test.mjs, check-overflow.cjs, check-rail-climax.cjs, measure-layout.cjs, preview-frames.cjs) and media-use (references/operations.md) brought up to tag v0.8.181 on 2026-10-20 (the only skills/ files that changed from v0.8.174 to v0.8.181; plain copies, except hf-cli.cjs keeps the engine's pinned HyperFrames and gains upstream's hfBrowser, so the caption scripts launch the browser the CLI picks; no SKILL.md or TOOLKIT.md changed, so every hash stands); earlier: hyperframes, hyperframes-animation, hyperframes-cli (references/cloud.md), media-use (scripts/lib/recipe-store.mjs) and motion-graphics brought up to tag v0.8.174 on 2026-10-18 (the only skills/ files that changed from v0.8.170 to v0.8.174; plain copies, except hyperframes TOOLKIT.md, where upstream's new contents list and reference-file index are added around the engine's own changes); earlier: media-use, faceless-explainer, pr-to-video, product-launch-video and slideshow brought up to tag v0.8.170 on 2026-10-18 (the only skills/ files that changed from v0.8.169 to v0.8.170; plain copies, except media-use keeps sound effects on its bundled library unless Openverse is asked for); earlier: hyperframes-core and hyperframes (references/skill-lifecycle.md) brought up to tag v0.8.169 on 2026-10-17 (the only skills/ files that changed from v0.8.163 to v0.8.169; plain copies); earlier: hyperframes-cli and hyperframes-animation brought up to tag v0.8.163 on 2026-10-15 (the only skills/ files that changed from v0.8.159 to v0.8.163; the engine's own changes kept, upstream's new `usage` spend field not carried since the engine never runs usage); earlier: synced from github.com/heygen-com/hyperframes at tag v0.8.158 (skills/ + the six repo-internal .claude/skills/ doctrine skills) on 2026-10-14, keeping the engine's own changes (see THIRD-PARTY-NOTICES.md); the new upstream hyperframes-studio skill is not carried; earlier: synced from github.com/heygen-com/hyperframes at tag v0.8.43 (skills/ + the six repo-internal .claude/skills/ doctrine skills) on 2026-09-16; earlier: npx hyperframes@0.7.68 skills update (2026-07-22; installed to ~/.claude/skills, synced into repo, global copies removed; website-to-video removed upstream in 0.7.59, folded into product-launch-video). 2026-09-03: synced 10 skills added upstream since (captions-overlay, changelog-video, cut-the-curve, embedded-captions, figma, hyperframes-audio, motion-doctrine, music-to-video, oversized-cursor, seam-craft) from the same registry (git HEAD via CLI pin 0.7.68) into the repo. Now full parity with the registry: 26 skills.",
+  "hashScheme": "sha256 of the installed .claude/skills/<name>/SKILL.md bytes, or TOOLKIT.md for the toolkit skills stored as reference files (not auto-loaded) since v2.1",
+  "skills": {
+    "captions-overlay": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "registry",
+      "skillPath": ".claude/skills/captions-overlay/SKILL.md",
+      "computedHash": "dde58d4fcad6b244c2b0295636758a61c44d015ffa59e982e56eee3c60b4c66b"
+    },
+    "changelog-video": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "registry",
+      "skillPath": ".claude/skills/changelog-video/SKILL.md",
+      "computedHash": "5f8ca7a413e53616727408d34dcee770bda6cabe37cfe24034e2b49e041c2121"
+    },
+    "cut-the-curve": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "registry",
+      "skillPath": ".claude/skills/cut-the-curve/SKILL.md",
+      "computedHash": "c97df202caea16949a54afdcbc7007c60063028f73bb56ffeaec630ccb0d5145"
+    },
+    "embedded-captions": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "registry",
+      "skillPath": "skills/embedded-captions/SKILL.md",
+      "computedHash": "9b44d66a5408c87e7016c3eb1c36365710ef036c093ae729505a5e6d2801530a"
+    },
+    "faceless-explainer": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "registry",
+      "skillPath": "skills/faceless-explainer/SKILL.md",
+      "computedHash": "3d246a7a01fd12207d919db23c0f2e5cc635c26428adba94a3f3033478a12b57"
+    },
+    "figma": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "registry",
+      "skillPath": "skills/figma/SKILL.md",
+      "computedHash": "d9537758a88bf3cbfc5699167742e437a6791c57c0180556c930ec6c3aae0ab6"
+    },
+    "general-video": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "registry",
+      "skillPath": "skills/general-video/SKILL.md",
+      "computedHash": "02c2e4d1b940614f607505afac7b2119228a4e14d130041b97dbf7f18a169681"
+    },
+    "hyperframes": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "registry",
+      "skillPath": "skills/hyperframes/SKILL.md",
+      "computedHash": "3fcfc5148126533aa4fcd10703208b24b4574001f5d65790f1f651767560d458"
+    },
+    "hyperframes-animation": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "registry",
+      "skillPath": "skills/hyperframes-animation/SKILL.md",
+      "computedHash": "dfbbc2dc7907fa11fa3ae5bdb4f4c1fe7970c09f7c6e75248faf449bc67eb735"
+    },
+    "hyperframes-audio": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "registry",
+      "skillPath": "skills/hyperframes-audio/SKILL.md",
+      "computedHash": "daf3250390426ef096a7d2f71082919418099decbd1f31288640a43b43c7e293"
+    },
+    "hyperframes-cli": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "registry",
+      "skillPath": "skills/hyperframes-cli/SKILL.md",
+      "computedHash": "c791a0cb16932b753ce8c7fb8879e78455d7d19d30fd886ba02545e8a8938fe0"
+    },
+    "hyperframes-core": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "registry",
+      "skillPath": "skills/hyperframes-core/SKILL.md",
+      "computedHash": "a8d6fe52471be6bcf1816ba0b9eb16c6d1efc830c668de533d6bee8d41d86e11"
+    },
+    "hyperframes-creative": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "registry",
+      "skillPath": "skills/hyperframes-creative/SKILL.md",
+      "computedHash": "9da7b7ac84c8d884b54125887ecca1a645a38337013082b96af2fdc0259c945a"
+    },
+    "hyperframes-keyframes": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "registry",
+      "skillPath": "skills/hyperframes-keyframes/SKILL.md",
+      "computedHash": "d6484e8367ed522f2a89af9ec30ae3cd86ae243b5a23c5ab00a7a682e3d1a791"
+    },
+    "hyperframes-registry": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "registry",
+      "skillPath": "skills/hyperframes-registry/SKILL.md",
+      "computedHash": "8432113bbb0ceca104b88811e5632183b14af2ffbd3f29b567015ecf3f079f03"
+    },
+    "media-use": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "registry",
+      "skillPath": "skills/media-use/SKILL.md",
+      "computedHash": "88daa5e77f11eb81bba48b1457432365daf4227e180360d9ee643e2a03dcd9de"
+    },
+    "motion-doctrine": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "registry",
+      "skillPath": ".claude/skills/motion-doctrine/SKILL.md",
+      "computedHash": "d4d20aa33a57784154ffe55b83424037842269e59cc1e821c1b18bd541877142"
+    },
+    "motion-graphics": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "registry",
+      "skillPath": "skills/motion-graphics/SKILL.md",
+      "computedHash": "f6e25500b3c953f94f76f97c29e0d8167951966a2dc75214c8d5910dec58aa9c"
+    },
+    "music-to-video": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "registry",
+      "skillPath": "skills/music-to-video/SKILL.md",
+      "computedHash": "a13f792408a391e32cbd8625857fd5cb915704b73a24fd1e471a4239921f1545"
+    },
+    "oversized-cursor": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "registry",
+      "skillPath": ".claude/skills/oversized-cursor/SKILL.md",
+      "computedHash": "a176b1f251c37908a3a4dc88c76fb389b100a33447b7d2743e4c9acc08a252fe"
+    },
+    "pr-to-video": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "registry",
+      "skillPath": "skills/pr-to-video/SKILL.md",
+      "computedHash": "0cee428928b6c29459e39c4e4189c784836af3bc6bc5abf71d967bd39378bdd6"
+    },
+    "product-launch-video": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "registry",
+      "skillPath": "skills/product-launch-video/SKILL.md",
+      "computedHash": "b7e8071a7d5328195abd4b907e7ba3fca8c016652391b2b5d149aa1dcef7aa77"
+    },
+    "remotion-to-hyperframes": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "registry",
+      "skillPath": "skills/remotion-to-hyperframes/SKILL.md",
+      "computedHash": "ddd074498f7048c0c1c105e3e08411b19432524e16ca14dcccbc1d9dcca5c4af"
+    },
+    "seam-craft": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "registry",
+      "skillPath": ".claude/skills/seam-craft/SKILL.md",
+      "computedHash": "c5aa27c6d6c088fa0bec2941692927975dcd382bc568f6f0ba8518e049e092fe"
+    },
+    "slideshow": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "registry",
+      "skillPath": "skills/slideshow/SKILL.md",
+      "computedHash": "4525f1a0d468f91957b638f14599c37f4af5e00c9b3c4df519a1cbe16101c908"
+    },
+    "talking-head-recut": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "registry",
+      "skillPath": "skills/talking-head-recut/SKILL.md",
+      "computedHash": "84bb6ba0ac3cb0505f09dd1ded0a07e2298daed6c33c05d7bb9a56d0ade53d2c"
+    }
+  }
+}
