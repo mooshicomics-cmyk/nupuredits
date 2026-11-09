@@ -27,11 +27,11 @@ Six short sections, filled by the interview or by you.
 ## 1. You, and the people your reels are for
 
 - **You and your brand:** `Nupur, More than one fig`
-- **Who you help, and what they walk away with:** `{{one sentence: who you help and the outcome}}`
+- **Who you help, and what they walk away with:** `Women founders: I'm their behind-the-scenes partner, running their social media and backend so they stay the face of their brand while I tell their story.`
 - **Where you post:**
   - Instagram: `@morethanonefig`
-  - TikTok: `{{@yourhandle, or "none"}}`
-  - YouTube Shorts: `{{channel name, or "not used"}}`
+  - TikTok: `none`
+  - YouTube Shorts: `not used yet (planned)`
 
 > Specific beats broad, every time. "People who keep killing their sourdough starter," "first-time owners
 > of a reactive rescue dog," "freelancers who dread their own bookkeeping" and "runners coming back from an
