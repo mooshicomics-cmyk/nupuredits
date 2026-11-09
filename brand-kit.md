@@ -26,10 +26,10 @@ Six short sections, filled by the interview or by you.
 
 ## 1. You, and the people your reels are for
 
-- **You and your brand:** `{{your name, then your brand (yourbrand.com)}}`
+- **You and your brand:** `Nupur, More than one fig`
 - **Who you help, and what they walk away with:** `{{one sentence: who you help and the outcome}}`
 - **Where you post:**
-  - Instagram: `{{@yourhandle}}`
+  - Instagram: `@morethanonefig`
   - TikTok: `{{@yourhandle, or "none"}}`
   - YouTube Shorts: `{{channel name, or "not used"}}`
 
