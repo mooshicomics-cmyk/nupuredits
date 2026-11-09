@@ -52,15 +52,15 @@ Conversational and thinking out loud, like talking to one friend across a table.
 Three to six real lines lift your copy from "in your style" to "sounds like you." The interview can pull
 them from your own Instagram captions.
 
-- `{{a sentence shape you keep coming back to, like "you'd think X. it's actually Y." or "three things nobody tells you about X."}}`
-- `{{two or three phrases you really say out loud, like "here's the part nobody mentions," "quick one," "okay so"}}`
-- `{{how you tend to finish: "that's it, go try it." / "save this for the weekend." / no sign-off at all}}`
+- `No fixed formula. Loose and open, trailing into lines like "you have to figure it out as we keep going" or "just keep going." Never the "this is not about X, it is about Y" contrast shape.`
+- `"like," "you know," "what I've realized is"`
+- `No sign-off at all. The line just ends.`
 
 ## 3. Your rules
 
 The things your copy never does, checked on every caption, hook and card. Swap the samples for your own.
 
-- `{{a punctuation or formatting rule. One worth having: "No em dashes. Periods and short sentences." It is among the clearest signs a machine wrote the line.}}`
+- `Never use the "this is not about X, it is about Y" contrast construction, or any "not X, but Y" reframe. It reads as an AI tic and is not how she talks.`
 - `{{the words and phrases you never want to see, like "game-changer," "unlock," "level up," "crushing it"}}`
 - `{{the line your tone never crosses, like "never imply the viewer is doing it wrong" or "never fake urgency"}}`
 
