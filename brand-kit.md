@@ -74,9 +74,9 @@ What does carry over is the opener rule: the first sentence you say predicts the
 numbers wait for the middle. The hook card does a different job from your voice and never repeats your
 spoken opener. Two small defaults for that card:
 
-- **A hook you reuse on every reel:** `{{your default on-screen hook, or "blank" to write one per reel}}`
+- **A hook you reuse on every reel:** `blank`
   - "blank" is the usual answer. A fixed hook only helps when your reels share one recurring opener.
-- **A word you say to close the hook out loud:** `{{that word, like "okay", or "blank"}}`
+- **A word you say to close the hook out loud:** `blank`
   - With "blank" the card holds for about 8 seconds and leaves at the sentence break nearest that. One
     reel can set its own moment with `--hook-end`.
 
@@ -87,7 +87,7 @@ Playful): its fonts, each with its own job (captions, hook, takeover, thoughts),
 one tap. Change it later by saying **"let's customize my style pack."** Your captions are set in your pack's
 caption font. One font line remains, for the graphics the engine draws before a pack is in play:
 
-- **Headline font** (titles and graphics): `{{a font name, or "Inter" to keep the bundled one}}`
+- **Headline font** (titles and graphics): `Inter`
   - Inter ships with the engine, so keeping it means nothing to install. To use your own, add a Regular, a
     Bold and a Black weight of it (`.otf` or `.ttf`) to `assets/fonts/` and write its name here.
 
